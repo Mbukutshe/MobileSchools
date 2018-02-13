@@ -3,13 +3,20 @@ package com.payghost.mobileschools.Fragments;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.payghost.mobileschools.Adapters.RecyclerviewAdapter;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Handler.RequestHandler;
@@ -28,7 +35,7 @@ public class RetrieveDocumentsFrag extends Fragment {
 
     private String JSON_STRING;
     String message,time,title,subject,link;
-
+    RequestQueue requestQueue;
     LinearLayoutManager linearlayout;
     RecyclerView recyclerView;
     RecyclerviewAdapter recyclerviewAdapter;
@@ -60,8 +67,8 @@ public class RetrieveDocumentsFrag extends Fragment {
 
                 time = jo.getString(Config.TAG_MESSAGE_TIME);
                 title = jo.getString(Config.TAG_MESSAGE_TITLE);
-                message = jo.getString(Config.TAG_MESSAGE_MESSAGE);
-                message = jo.getString(Config.TAG_RESOURCE_LINK);
+                message = jo.getString(Config.TAG_RESOURCE_DESCRIPTION);
+                link = jo.getString(Config.TAG_RESOURCE_LINK);
 
                 arrList.add(new RetrieveService(title,message,time,link));
 
@@ -113,4 +120,52 @@ public class RetrieveDocumentsFrag extends Fragment {
         gj.execute();
     }
 
+    public void fetch() {
+
+        StringRequest request = new StringRequest(Request.Method.GET, Config.URL_GET_ALL_RESOURCES,
+
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        JSONObject jsonObject = null;
+                        ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
+                        List<RetrieveService> arrList = new ArrayList<RetrieveService>();
+                        try {
+                            jsonObject = new JSONObject(response);
+                            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+
+                            for(int i = 0; i<result.length(); i++){
+                                JSONObject jo = result.getJSONObject(i);
+
+                                time = jo.getString(Config.TAG_MESSAGE_TIME);
+                                title = jo.getString(Config.TAG_MESSAGE_TITLE);
+                                message = jo.getString(Config.TAG_RESOURCE_DESCRIPTION);
+                                link = jo.getString(Config.TAG_RESOURCE_LINK);
+
+                                arrList.add(new RetrieveService(title,message,time,link));
+
+                            }
+                            recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList);
+                            recyclerView.setAdapter(recyclerviewAdapter);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue = Volley.newRequestQueue(view.getContext());
+        requestQueue.add(request);
+    }
 }

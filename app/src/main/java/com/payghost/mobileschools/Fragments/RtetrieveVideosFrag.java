@@ -60,9 +60,8 @@ public class RtetrieveVideosFrag extends Fragment {
 
                 time = jo.getString(Config.TAG_MESSAGE_TIME);
                 title = jo.getString(Config.TAG_MESSAGE_TITLE);
-                message = jo.getString(Config.TAG_MESSAGE_MESSAGE);
-                message = jo.getString(Config.TAG_RESOURCE_LINK);
-                subject = jo.getString(Config.TAG_RESOURCE_SUBJECT);
+                message = jo.getString(Config.TAG_RESOURCE_DESCRIPTION);
+                link = jo.getString(Config.TAG_RESOURCE_LINK);
 
                 arrList.add(new RetrieveService(title,message,time,link));
 

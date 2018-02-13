@@ -6,6 +6,11 @@
     tools:context="com.payghost.mobileschools.Fragments.RetrieveImagesFrag">
 
     <!-- TODO: Update blank fragment layout -->
-    <include layout="@layout/resource_items"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerv_message"
+        android:layout_width="match_parent"
+        android:background="#EAEAEA"
+        android:padding="@dimen/recycler_padding"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.payghost.mobileschools.Objects.RetrieveService;
 import com.payghost.mobileschools.R;
 
 /**
@@ -19,7 +20,9 @@ public class MediaHolder extends RecyclerView.ViewHolder {
         textViewsubject = view.findViewById(R.id.subject);
         textViewdescription = view.findViewById(R.id.description);
     }
-    public void bind() {
-
+    public void bind(RetrieveService data) {
+        textViewdate.setText(data.date);
+        textViewsubject.setText(data.title);
+        textViewdescription.setText(data.message);
     }
 }

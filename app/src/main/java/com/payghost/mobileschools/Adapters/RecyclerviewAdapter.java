@@ -45,6 +45,11 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                 {
                     return Config.VIEW_TYPE_IMAGE;
                 }
+                else
+                if(Config.fragment.equals("videos"))
+                {
+                    return Config.VIEW_TYPE_VIDEOS;
+                }
         return 0;
     }
     @Override
@@ -55,7 +60,6 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
         if (viewType == Config.VIEW_TYPE_MESSAGE) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.message_item, parent, false);
-
             return new MessageHolder(view);
         }
         else
@@ -69,9 +73,16 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                 if (viewType == Config.VIEW_TYPE_IMAGE)
                 {
                     view = LayoutInflater.from(parent.getContext())
-                            .inflate(R.layout.message_item, parent, false);
+                            .inflate(R.layout.resource_items, parent, false);
                     return new MediaHolder(view);
                 }
+                else
+                    if (viewType == Config.VIEW_TYPE_VIDEOS)
+                    {
+                        view = LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.resource_video_item, parent, false);
+                        return new MediaHolder(view);
+                    }
         return null;
     }
 
@@ -84,14 +95,16 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
         switch (holder.getItemViewType()) {
             case Config.VIEW_TYPE_MESSAGE:
                 ((MessageHolder)holder).bind(data);
-
-                break;
+            break;
             case Config.VIEW_TYPE_DOCUMENT:
-
+                ((DocumentHolder)holder).bind(data);
                  break;
             case Config.VIEW_TYPE_IMAGE:
-
-                break;
+                ((MediaHolder)holder).bind(data);
+            break;
+            case Config.VIEW_TYPE_VIDEOS:
+                ((MediaHolder)holder).bind(data);
+            break;
         }
     }
 
