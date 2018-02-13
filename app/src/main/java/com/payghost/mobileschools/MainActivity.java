@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_images:
                     fragmentManager.beginTransaction().replace(R.id.content,new RetrieveImagesFrag()).commit();
+                    Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.navigation_videos:
                   fragmentManager.beginTransaction().replace(R.id.content,new RtetrieveVideosFrag()).commit();
