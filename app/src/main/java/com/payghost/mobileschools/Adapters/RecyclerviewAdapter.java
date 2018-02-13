@@ -111,7 +111,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                 ((MediaHolder)holder).bind(data);
             break;
             case Config.VIEW_TYPE_SCHOOLS:
-                ((SchoolsHolder)holder).bind(data);
+                ((SchoolsHolder)holder).bind(data,context);
             break;
         }
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/trash_item"
+    android:id="@+id/school_item"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_marginTop="@dimen/activity_horizontal_margin"
