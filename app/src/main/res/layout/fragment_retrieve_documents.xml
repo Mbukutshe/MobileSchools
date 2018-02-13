@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAEAEA"
-    tools:context="com.payghost.mobileschools.RetrieveDocumentsFrag">
+    tools:context="com.payghost.mobileschools.Fragments.RetrieveDocumentsFrag">
 
     <!-- TODO: Update blank fragment layout -->
     <include layout="@layout/resource_document_item"/>

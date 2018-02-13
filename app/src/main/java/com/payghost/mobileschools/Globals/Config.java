@@ -1,4 +1,4 @@
-package com.payghost.mobileschools;
+package com.payghost.mobileschools.Globals;
 
 /**
  * Created by Payghost on 2/13/2018.

@@ -1,4 +1,4 @@
-package com.payghost.mobileschools;
+package com.payghost.mobileschools.Activities;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +8,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.payghost.mobileschools.Fragments.MoreFrag;
+import com.payghost.mobileschools.R;
+import com.payghost.mobileschools.Fragments.RetrieveDocumentsFrag;
+import com.payghost.mobileschools.Fragments.RetrieveImagesFrag;
+import com.payghost.mobileschools.Fragments.RetrieveMessageFrag;
+import com.payghost.mobileschools.Fragments.RtetrieveVideosFrag;
 
 
 public class MainActivity extends AppCompatActivity {

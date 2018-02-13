@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAEAEA"
-    tools:context="com.payghost.mobileschools.RetrieveMessageFrag">
+    tools:context="com.payghost.mobileschools.Fragments.RetrieveMessageFrag">
     <!-- TODO: Update blank fragment layout -->
     <include layout="@layout/message_item"/>
 
