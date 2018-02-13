@@ -1,24 +1,34 @@
 package com.payghost.mobileschools.Adapters;
 
+import android.content.Context;
+import android.service.autofill.Dataset;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Holders.DocumentHolder;
 import com.payghost.mobileschools.Holders.MediaHolder;
 import com.payghost.mobileschools.Holders.MessageHolder;
+import com.payghost.mobileschools.Objects.RetrieveService;
 import com.payghost.mobileschools.R;
+
+import java.util.List;
 
 /**
  * Created by Wiseman on 2018-02-13.
  */
 
 public class RecyclerviewAdapter extends RecyclerView.Adapter{
-    public RecyclerviewAdapter()
-    {
+    List<RetrieveService> arrList;
+    Context context;
 
+    public RecyclerviewAdapter(Context applicationContext, List<RetrieveService> arrList)
+    {
+        this.arrList = arrList;
+        context =  applicationContext;
     }
     @Override
     public int getItemViewType(int position)
@@ -47,6 +57,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
         if (viewType == Config.VIEW_TYPE_MESSAGE) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.message_item, parent, false);
+
             return new MessageHolder(view);
         }
         else
@@ -69,8 +80,12 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
     {
+        RetrieveService data = (RetrieveService)arrList.get(position);
+
+        //Toast.makeText(context,arrList.toString(),Toast.LENGTH_LONG).show();
         switch (holder.getItemViewType()) {
             case Config.VIEW_TYPE_MESSAGE:
+                ((MessageHolder)holder).bind(data);
 
                 break;
             case Config.VIEW_TYPE_DOCUMENT:
@@ -84,6 +99,6 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arrList.size();
     }
 }

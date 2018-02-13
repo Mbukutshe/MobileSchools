@@ -16,9 +16,5 @@ public class RetrieveService {
         this.date = date;
         this.link = link;
     }
-    public RetrieveService(String title, String message, String date) {
-        this.title = title;
-        this.message = message;
-        this.date = date;
-    }
+
 }

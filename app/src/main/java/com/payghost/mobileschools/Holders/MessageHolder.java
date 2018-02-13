@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.payghost.mobileschools.Objects.RetrieveService;
 import com.payghost.mobileschools.R;
 
 /**
@@ -21,7 +22,11 @@ public class MessageHolder extends RecyclerView.ViewHolder{
         textViewdescription = view.findViewById(R.id.description);
 
     }
-    public void bind(){
+    public void bind(RetrieveService data){
+        textViewuser.setText(data.link);
+        textViewdate.setText(data.date);
+        textViewsubject.setText(data.title);
+        textViewdescription.setText(data.message);
 
     }
 }

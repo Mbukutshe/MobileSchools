@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_message:
                     Config.fragment="messages";
                     fragmentManager.beginTransaction().replace(R.id.content,new RetrieveMessageFrag()).commit();
-                    Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.navigation_images:
                     Config.fragment="images";
