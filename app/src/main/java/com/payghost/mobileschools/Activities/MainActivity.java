@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.payghost.mobileschools.Fragments.MoreFrag;
+import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 import com.payghost.mobileschools.Fragments.RetrieveDocumentsFrag;
 import com.payghost.mobileschools.Fragments.RetrieveImagesFrag;
@@ -31,16 +32,20 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_message:
+                    Config.fragment="messages";
                     fragmentManager.beginTransaction().replace(R.id.content,new RetrieveMessageFrag()).commit();
                     Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.navigation_images:
+                    Config.fragment="images";
                     fragmentManager.beginTransaction().replace(R.id.content,new RetrieveImagesFrag()).commit();
                     return true;
                 case R.id.navigation_videos:
+                    Config.fragment="videos";
                   fragmentManager.beginTransaction().replace(R.id.content,new RtetrieveVideosFrag()).commit();
                     return true;
                 case R.id.navigation_documents:
+                    Config.fragment="documents";
                   fragmentManager.beginTransaction().replace(R.id.content,new RetrieveDocumentsFrag()).commit();
                     return true;
                 case R.id.navigation_more:

@@ -21,7 +21,7 @@ public class MessageHolder extends RecyclerView.ViewHolder{
         textViewdescription = view.findViewById(R.id.description);
 
     }
-    public void bind() {
+    public void bind(){
 
     }
 }
