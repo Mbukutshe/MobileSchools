@@ -17,15 +17,16 @@
             android:layout_gravity="start|center"
             android:layout_width="wrap_content"
             android:layout_weight="0"
+            android:background="@drawable/icon_document_background"
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/picture"
                 android:layout_gravity="center"
-                android:layout_height="100dp"
-                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
-                android:background="@drawable/postplace"/>
+                android:background="@drawable/pdfdocument"/>
         </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/subject_text_size"
-                    android:text="Video Title"/>
+                    android:text="Document Title"/>
             </FrameLayout>
             <FrameLayout
                 android:id="@+id/edit"
@@ -82,7 +83,7 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textSize="@dimen/description_text_size"
-                    android:text="Video Description"/>
+                    android:text="Document Description"/>
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>

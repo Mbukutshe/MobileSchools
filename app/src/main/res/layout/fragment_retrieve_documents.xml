@@ -6,5 +6,5 @@
     tools:context="com.payghost.mobileschools.RetrieveDocumentsFrag">
 
     <!-- TODO: Update blank fragment layout -->
-    <include layout="@layout/resource_items"/>
+    <include layout="@layout/resource_document_item"/>
 </FrameLayout>

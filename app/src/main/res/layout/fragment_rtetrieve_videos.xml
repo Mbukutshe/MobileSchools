@@ -6,5 +6,5 @@
     tools:context="com.payghost.mobileschools.RtetrieveVideosFrag">
 
     <!-- TODO: Update blank fragment layout -->
-    <include layout="@layout/resource_items"/>
+    <include layout="@layout/resource_video_item"/>
 </FrameLayout>

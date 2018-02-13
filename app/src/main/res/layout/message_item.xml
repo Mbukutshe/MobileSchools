@@ -13,32 +13,44 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <FrameLayout
-            android:layout_gravity="start|center"
-            android:layout_width="wrap_content"
-            android:layout_weight="0"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/picture"
-                android:layout_gravity="center"
-                android:layout_height="100dp"
-                android:layout_width="100dp"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
-                android:background="@drawable/postplace"/>
-        </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_weight="3"
             android:layout_gravity="end|center_vertical"
+            android:paddingBottom="10dp"
             android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:paddingBottom="10dp"
                 android:orientation="horizontal">
                 <FrameLayout
-                    android:layout_gravity="end"
+                    android:layout_gravity="start"
+                    android:layout_width="wrap_content"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_gravity="start"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
+                        android:background="@drawable/profilepic" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/user"
+                        android:layout_gravity="start"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/description_text_size"
+                        android:text="The Principal"/>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_gravity="end|center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_weight="3"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -48,7 +60,6 @@
                         android:layout_gravity="end|center_vertical"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:textSize="@dimen/date_text_size"
                         android:text="08:10 am"/>
                 </FrameLayout>
             </LinearLayout>
@@ -62,8 +73,8 @@
                     android:layout_gravity="start|center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:textSize="@dimen/subject_text_size"
-                    android:text="Video Title"/>
+                    android:textSize="9pt"
+                    android:text="Image Title"/>
             </FrameLayout>
             <FrameLayout
                 android:id="@+id/edit"
@@ -81,8 +92,8 @@
                     android:layout_width="wrap_content"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:textSize="@dimen/description_text_size"
-                    android:text="Video Description"/>
+                    android:textSize="7pt"
+                    android:text="Image Description"/>
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
