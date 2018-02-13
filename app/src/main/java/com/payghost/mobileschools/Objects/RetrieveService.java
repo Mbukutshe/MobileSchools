@@ -9,7 +9,7 @@ public class RetrieveService {
     public String message;
     public String date;
     public String link;
-
+    public String school_name;
     public RetrieveService(String title, String message, String date, String link) {
         this.title = title;
         this.message = message;
