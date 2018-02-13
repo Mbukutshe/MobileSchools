@@ -67,8 +67,19 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
+    {
+        switch (holder.getItemViewType()) {
+            case Config.VIEW_TYPE_MESSAGE:
 
+                break;
+            case Config.VIEW_TYPE_DOCUMENT:
+
+                 break;
+            case Config.VIEW_TYPE_IMAGE:
+
+                break;
+        }
     }
 
     @Override

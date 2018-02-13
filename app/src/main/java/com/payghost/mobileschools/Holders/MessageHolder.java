@@ -12,4 +12,7 @@ public class MessageHolder extends RecyclerView.ViewHolder{
     {
         super(view);
     }
+    public void bind() {
+
+    }
 }

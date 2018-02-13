@@ -12,4 +12,7 @@ public class DocumentHolder extends RecyclerView.ViewHolder {
     {
         super(view);
     }
+    public void bind() {
+
+    }
 }
