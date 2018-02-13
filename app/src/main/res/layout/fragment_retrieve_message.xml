@@ -9,7 +9,6 @@
         android:id="@+id/recyclerv_message"
         android:layout_width="match_parent"
         android:background="#EAEAEA"
-        android:padding="@dimen/recycler_padding"
         android:layout_height="match_parent">
 
 

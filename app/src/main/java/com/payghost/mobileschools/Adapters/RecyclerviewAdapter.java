@@ -89,9 +89,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
     {
-        RetrieveService data = (RetrieveService)arrList.get(position);
+        RetrieveService data = arrList.get(position);
 
-        //Toast.makeText(context,arrList.toString(),Toast.LENGTH_LONG).show();
         switch (holder.getItemViewType()) {
             case Config.VIEW_TYPE_MESSAGE:
                 ((MessageHolder)holder).bind(data);
