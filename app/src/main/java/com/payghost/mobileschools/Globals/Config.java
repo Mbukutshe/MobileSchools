@@ -10,6 +10,7 @@ public class Config {
     public static final int VIEW_TYPE_DOCUMENT = 2;
     public static final int VIEW_TYPE_IMAGE= 3;
     public static final int VIEW_TYPE_VIDEOS= 4;
+    public static final int VIEW_TYPE_SCHOOLS= 5;
     public static final String TAG_JSON_ARRAY = "result";
 
     ////////// Messages ////////////

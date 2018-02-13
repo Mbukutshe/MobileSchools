@@ -10,6 +10,7 @@ import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Holders.DocumentHolder;
 import com.payghost.mobileschools.Holders.MediaHolder;
 import com.payghost.mobileschools.Holders.MessageHolder;
+import com.payghost.mobileschools.Holders.SchoolsHolder;
 import com.payghost.mobileschools.Objects.RetrieveService;
 import com.payghost.mobileschools.R;
 
@@ -46,10 +47,15 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                     return Config.VIEW_TYPE_IMAGE;
                 }
                 else
-                if(Config.fragment.equals("videos"))
-                {
-                    return Config.VIEW_TYPE_VIDEOS;
-                }
+                    if(Config.fragment.equals("videos"))
+                    {
+                        return Config.VIEW_TYPE_VIDEOS;
+                    }
+                    else
+                        if(Config.fragment.equals("schools"))
+                        {
+                            return Config.VIEW_TYPE_SCHOOLS;
+                        }
         return 0;
     }
     @Override
@@ -103,6 +109,9 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
             break;
             case Config.VIEW_TYPE_VIDEOS:
                 ((MediaHolder)holder).bind(data);
+            break;
+            case Config.VIEW_TYPE_SCHOOLS:
+                ((SchoolsHolder)holder).bind(data);
             break;
         }
     }

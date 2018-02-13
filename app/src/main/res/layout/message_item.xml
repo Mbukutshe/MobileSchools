@@ -95,15 +95,6 @@
                     android:ellipsize="end"
                     android:textSize="@dimen/description_text_size"
                     android:text="Message Description"/>
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_imae"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_gravity="center_horizontal"
-
-                    />
-
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
