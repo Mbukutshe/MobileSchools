@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_message:
                     fragmentManager.beginTransaction().replace(R.id.content,new RetrieveMessageFrag()).commit();
+                    Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
                     return true;
                 case R.id.navigation_images:
                     fragmentManager.beginTransaction().replace(R.id.content,new RetrieveImagesFrag()).commit();
