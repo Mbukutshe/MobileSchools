@@ -23,7 +23,6 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
     @Override
     public int getItemViewType(int position)
     {
-        int viewType=1;
         if (Config.fragment.equals("messages")) {
             // If the current user is the sender of the message
             return Config.VIEW_TYPE_MESSAGE;
@@ -38,7 +37,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                 {
                     return Config.VIEW_TYPE_IMAGE;
                 }
-        return viewType;
+        return 0;
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
