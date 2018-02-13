@@ -23,19 +23,19 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_message:
-                    transaction.replace(R.id.content,new RetrieveMessageFrag()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.content,new RetrieveMessageFrag()).commit();
                     return true;
                 case R.id.navigation_images:
-                    transaction.replace(R.id.content,new RetrieveImagesFrag()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.content,new RetrieveImagesFrag()).commit();
                     return true;
                 case R.id.navigation_videos:
-                //    transaction.replace(R.id.content,new RtetrieveVideosFrag()).commit();
+                  fragmentManager.beginTransaction().replace(R.id.content,new RtetrieveVideosFrag()).commit();
                     return true;
                 case R.id.navigation_documents:
-                //    transaction.replace(R.id.content,new RetrieveDocumentsFrag()).commit();
+                  fragmentManager.beginTransaction().replace(R.id.content,new RetrieveDocumentsFrag()).commit();
                     return true;
                 case R.id.navigation_more:
-                 //   transaction.replace(R.id.content,new MoreFrag()).commit();
+                   fragmentManager.beginTransaction().replace(R.id.content,new MoreFrag()).commit();
                     return true;
             }
             return false;
