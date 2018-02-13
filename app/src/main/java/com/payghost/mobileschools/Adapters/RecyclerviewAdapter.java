@@ -1,12 +1,10 @@
 package com.payghost.mobileschools.Adapters;
 
 import android.content.Context;
-import android.service.autofill.Dataset;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Holders.DocumentHolder;

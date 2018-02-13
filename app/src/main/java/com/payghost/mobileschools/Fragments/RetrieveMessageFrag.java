@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.payghost.mobileschools.Adapters.RecyclerviewAdapter;
 import com.payghost.mobileschools.Globals.Config;
@@ -33,19 +32,18 @@ public class RetrieveMessageFrag extends Fragment {
     LinearLayoutManager linearlayout;
     RecyclerView recyclerView;
     RecyclerviewAdapter recyclerviewAdapter;
-
+    View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_retrieve_message, container, false);
+        view = inflater.inflate(R.layout.fragment_retrieve_message, container, false);
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerv_message);
         linearlayout = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearlayout);
-
+        Config.fragment = "messages";
         getJSON();
-
         return view;
     }
 
@@ -67,7 +65,6 @@ public class RetrieveMessageFrag extends Fragment {
                 message = jo.getString(Config.TAG_MESSAGE_MESSAGE);
 
 
-
                 HashMap<String,String> Tenants = new HashMap<>();
 
                 Tenants.put(Config.TAG_MESSAGE_SENDER,sender);
@@ -78,7 +75,6 @@ public class RetrieveMessageFrag extends Fragment {
                 list.add(Tenants);
 
                 arrList.add(new RetrieveService(title,message,time,sender));
-                Toast.makeText(getActivity(), sender, Toast.LENGTH_SHORT).show();
 
             }
             recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList);
@@ -91,7 +87,7 @@ public class RetrieveMessageFrag extends Fragment {
     }
 
 
-    private void getJSON(){
+   private void getJSON(){
 
         class GetJSON extends AsyncTask<Void,Void,String> {
 
@@ -115,7 +111,6 @@ public class RetrieveMessageFrag extends Fragment {
                 loading.dismiss();
                 JSON_STRING = s;
                 showMessages();
-
             }
 
             @Override
@@ -128,5 +123,4 @@ public class RetrieveMessageFrag extends Fragment {
         GetJSON gj = new GetJSON();
         gj.execute();
     }
-
 }

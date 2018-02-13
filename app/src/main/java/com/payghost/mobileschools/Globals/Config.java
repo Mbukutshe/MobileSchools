@@ -18,6 +18,12 @@ public class Config {
     public static final String TAG_MESSAGE_MESSAGE = "message";
     public static final String URL_GET_ALL_MESSAGES = " http://mydm.co.za/schools/RetrieveMessages.php";
 
+    ////////// Messages ////////////
+    public static final String TAG_RESOURCE_LINK = "message";
+    public static final String TAG_RESOURCE_TYPE = "message";
+    public static final String TAG_RESOURCE_GRADE = "message";
+    public static final String TAG_RESOURCE_SUBJECT = "message";
+    public static final String URL_GET_ALL_RESOURCES = " http://mydm.co.za/schools/RetrieveRecources.php";
 
 
 }
