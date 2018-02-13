@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/school_item"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_marginTop="@dimen/activity_horizontal_margin"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:background="@drawable/resource_item_background"
     android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:background="@drawable/resource_item_background"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_height="match_parent">
         <FrameLayout
             android:layout_gravity="start|center"
@@ -22,8 +22,7 @@
                 android:id="@+id/profile_image"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/schoollogo"
-                android:background="#EAEAE"/>
+                android:src="@drawable/schoollogo" />
         </FrameLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -65,4 +64,4 @@
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>
