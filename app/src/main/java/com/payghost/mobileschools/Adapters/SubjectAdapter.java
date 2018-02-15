@@ -43,9 +43,17 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectsHolder> impleme
     }
 
     @Override
-    public void onBindViewHolder(SubjectsHolder holder, int position)
+    public void onBindViewHolder(SubjectsHolder holder,final int position)
     {
         holder.subject_name.setText(list.get(position).name);
+        holder.delete_subject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                list.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position,list.size());
+            }
+        });
     }
 
     @Override
