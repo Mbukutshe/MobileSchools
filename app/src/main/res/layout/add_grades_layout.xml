@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/all_grades"
+android:visibility="gone"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="@dimen/activity_horizontal_margin"
+android:theme="@style/InputLayout"
+android:background="@drawable/resource_item_background">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/subject_text_size"
+            android:text="Add Grades ONE BY ONE "/>
+    </FrameLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+             <android.support.v7.widget.RecyclerView
+                 android:id="@+id/grades_recycler_view"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+             </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_horizontal_margin">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@drawable/grade_hint"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_weight="0"
+                android:paddingLeft="5dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Grade : "/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_gravity="start"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_input"
+                android:padding="5dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/grade"
+                    android:background="@android:color/transparent"
+                    android:textCursorDrawable="@drawable/edittext_cursor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="grade number"
+                    android:inputType="number"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/add_grade"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:layout_margin="16dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/add_background"
+        android:textColor="@drawable/button_selector"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/add"/>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/subject_text_size"
+                android:text="Add"/>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>
