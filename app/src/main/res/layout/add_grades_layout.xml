@@ -15,15 +15,6 @@ android:background="@drawable/resource_item_background">
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/subject_text_size"
-            android:text="Add Grades ONE BY ONE "/>
-    </FrameLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -71,17 +62,28 @@ android:background="@drawable/resource_item_background">
                 android:layout_gravity="start"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
+                android:orientation="horizontal"
                 android:background="@drawable/text_input"
                 android:padding="5dp"
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/grade"
+                    android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:textCursorDrawable="@drawable/edittext_cursor"
                     android:layout_width="match_parent"
+                    android:layout_gravity="start"
                     android:layout_height="wrap_content"
                     android:hint="grade number"
                     android:inputType="number"/>
+                <TextView
+                    android:id="@+id/grade_validator"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_weight="0"
+                    android:visibility="gone"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/hand"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

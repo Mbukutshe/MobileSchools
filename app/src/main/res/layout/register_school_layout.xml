@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <LinearLayout
+            android:id="@+id/logo_school"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,8 +37,8 @@
                     android:layout_height="wrap_content">
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/school_logo"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/schoollogo"/>
                 </FrameLayout>
             </LinearLayout>
@@ -65,17 +66,23 @@
                             android:hint="School Name"
                             android:inputType="text"
                             android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/school_name_validator"
+                            android:layout_gravity="end|center_vertical"
+                            android:visibility="gone"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/hand"/>
                     </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/empty_layout"
+                android:id="@+id/add_grades"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/resource_item_background">
                 <LinearLayout
-                    android:id="@+id/add_grades"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -112,7 +119,7 @@
             </LinearLayout>
             <include layout="@layout/add_grades_layout"/>
             <LinearLayout
-                android:id="@+id/upload_button"
+                android:id="@+id/register_school_button"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:clickable="true"

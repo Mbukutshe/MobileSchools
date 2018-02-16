@@ -1,12 +1,18 @@
 package com.payghost.mobileschools.Adapters;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +25,8 @@ import com.payghost.mobileschools.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by Wiseman on 2018-02-15.
  */
@@ -26,16 +34,25 @@ import java.util.List;
 public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements View.OnClickListener{
     Context context;
     List<SubjectAndGrade> list,subjectList;
-    EditText grade;
+    EditText grade,school_name;
     LinearLayout btn;
     LinearLayoutManager layoutManager;
     SubjectAdapter subjectAdapter;
-    public SchoolRegistrationAdapter(Context context, List<SubjectAndGrade> list, EditText grade, LinearLayout btn)
+    LinearLayout logo_school,register_button;
+    CircleImageView school_logo;
+    Bitmap bitmap;
+    TextView name_validator,grade_validator;
+
+    public SchoolRegistrationAdapter(Context context, List<SubjectAndGrade> list, EditText grade, LinearLayout btn,EditText school_name,LinearLayout register_button,TextView name_validator,TextView grade_validator)
     {
         this.context = context;
         this.list = list;
         this.grade = grade;
         this.btn = btn;
+        this.school_name = school_name;
+        this.register_button = register_button;
+        this.name_validator = name_validator;
+        this.grade_validator = grade_validator;
         this.btn.setOnClickListener(this);
     }
 
@@ -136,9 +153,50 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
         switch(view.getId())
         {
             case R.id.add_grade:
-                list.add(new SubjectAndGrade("Grade "+grade.getText().toString()));
-                grade.setText("");
-                notifyDataSetChanged();
+                if(grade.getText().toString().isEmpty())
+                {
+                    final Animation textAnim = new AlphaAnimation(0.0f, 1.0f);
+
+                    textAnim.setDuration(50);
+                    textAnim.setStartOffset(20);
+                    textAnim.setRepeatMode(Animation.REVERSE);
+                    textAnim.setRepeatCount(6);
+                    grade_validator.setVisibility(View.VISIBLE);
+                    grade_validator.startAnimation(textAnim);
+                }
+                else
+                    if(Integer.parseInt(grade.getText().toString())>12 || Integer.parseInt(grade.getText().toString())<1)
+                    {
+                        final Dialog dialog = new Dialog(view.getContext());
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.pop_up_layout);
+                        FrameLayout accept = (FrameLayout)dialog.findViewById(R.id.accept);
+                        accept.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                                list.add(new SubjectAndGrade("Grade "+grade.getText().toString()));
+                                grade.setText("");
+                                notifyDataSetChanged();
+                            }
+                        });
+                        FrameLayout deny = (FrameLayout)dialog.findViewById(R.id.deny);
+                        deny.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        });
+                        TextView question = (TextView)dialog.findViewById(R.id.question);
+                        question.setText("Really, Does your school have Grade :"+grade.getText().toString()+"?");
+                        dialog.show();
+                    }
+                    else
+                        {
+                            list.add(new SubjectAndGrade("Grade "+grade.getText().toString()));
+                            grade.setText("");
+                            notifyDataSetChanged();
+                        }
             break;
         }
     }

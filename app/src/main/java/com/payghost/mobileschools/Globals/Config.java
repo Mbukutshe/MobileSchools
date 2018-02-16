@@ -6,6 +6,7 @@ package com.payghost.mobileschools.Globals;
 
 public class Config {
     public static String fragment;
+    public static  int IS_GRADES_VISIBLE = 0;
     public static final int VIEW_TYPE_MESSAGE = 1;
     public static final int VIEW_TYPE_DOCUMENT = 2;
     public static final int VIEW_TYPE_IMAGE= 3;
@@ -14,6 +15,9 @@ public class Config {
     public static final int VIEW_TYPE_GRADES= 1;
     public static final int VIEW_TYPE_SUBJECTS= 2;
     public static final String TAG_JSON_ARRAY = "result";
+    public static final int RESULT_LOAD_IMAGE=1;
+    public static final int CAMERA_REQUEST = 1888;
+    public static final int RESULT_LOAD_VIDEO=2;
 
     ////////// Messages ////////////
     public static final String TAG_MESSAGE_SENDER = "sender";

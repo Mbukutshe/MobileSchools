@@ -51,6 +51,7 @@
                 android:clickable="true"
                 android:focusable="true">
                 <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_gravity="end"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
@@ -62,7 +63,16 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:hint="subject name..."
+                        android:layout_weight="1"
                         android:inputType="text"/>
+                    <TextView
+                        android:id="@+id/subject_validator"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_weight="0"
+                        android:visibility="gone"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/hand"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
