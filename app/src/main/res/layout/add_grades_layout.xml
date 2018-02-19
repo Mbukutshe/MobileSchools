@@ -56,6 +56,7 @@ android:background="@drawable/resource_item_background">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
+                    android:textColor="@color/menuColor"
                     android:text="Grade : "/>
             </LinearLayout>
             <LinearLayout
@@ -118,7 +119,8 @@ android:background="@drawable/resource_item_background">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/subject_text_size"
+                android:textSize="@dimen/description_text_size"
+                android:textColor="@color/menuColor"
                 android:text="Add"/>
         </FrameLayout>
     </LinearLayout>
