@@ -1,11 +1,14 @@
 package com.payghost.mobileschools.Adapters;
 
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -16,11 +19,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.payghost.mobileschools.Fragments.MoreVideo;
 import com.payghost.mobileschools.Functions.Animation;
 import com.payghost.mobileschools.Holders.VideosHolder;
 import com.payghost.mobileschools.Objects.Item;
 import com.payghost.mobileschools.R;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /**
@@ -37,12 +42,14 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosHolder> {
     CountDownTimer countDownTimer;
     ProgressDialog myProgressDialog;
     android.view.animation.Animation upAnim;
-    public VideosAdapter(Context context, List<Item> mDataset, RecyclerView recyclerView, RecyclerView.LayoutManager layoutManager, ProgressDialog myProgressDialog) {
+    FragmentManager fragmentManager;
+    public VideosAdapter(Context context, List<Item> mDataset, RecyclerView recyclerView, RecyclerView.LayoutManager layoutManager, ProgressDialog myProgressDialog,  FragmentManager fragmentManager) {
         this.mDataset = mDataset;
         this.context=context;
         this.recyclerView = recyclerView;
         this.layoutManager = layoutManager;
         this.myProgressDialog = myProgressDialog;
+        this.fragmentManager = fragmentManager;
         anim = new Animation(context);
     }
     @Override
@@ -68,6 +75,26 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosHolder> {
             upAnim = AnimationUtils.loadAnimation(context, R.anim.fromtop_translation);
             holder.itemView.clearAnimation();
             holder.itemView.startAnimation(upAnim);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                   Bitmap bitmap = mDataset.get(position).getImage();
+                   bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+                   byte[] bytes = stream.toByteArray();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("message",mDataset.get(position).getMessage());
+                    bundle.putString("time",mDataset.get(position).getDate());
+                    bundle.putString("subject",mDataset.get(position).getSubject());
+                    bundle.putByteArray("image",bytes);
+                    MoreVideo moreDetails = new  MoreVideo();
+                    moreDetails.setArguments(bundle);
+                    fragmentManager.beginTransaction().replace(R.id.content,moreDetails).addToBackStack("video").commit();
+                }
+            });
+
             holder.play.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

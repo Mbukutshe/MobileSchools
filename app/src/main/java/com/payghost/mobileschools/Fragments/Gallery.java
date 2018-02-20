@@ -243,7 +243,7 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                                 if(!response.equalsIgnoreCase("nodata"))
                                 {
                                     myDataset = VideoThumbnail.parseData(response);
-                                    mAdapter = new VideosAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog);
+                                    mAdapter = new VideosAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog,fragmentManager);
                                     mRecyclerView.setAdapter(mAdapter);
                                     RelativeLayout layout = (RelativeLayout)myProgressDialog.findViewById(R.id.progress_layout);
                                     ProgressBar bar = (ProgressBar)myProgressDialog.findViewById(R.id.progressBar);
@@ -360,7 +360,7 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                                 if(!response.equalsIgnoreCase("nodata"))
                                 {
                                     myDataset = VideoThumbnail.parseData(response);
-                                    mAdapter = new VideosAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog);
+                                    mAdapter = new VideosAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog,fragmentManager);
                                     mRecyclerView.setAdapter(mAdapter);
                                     RelativeLayout layout = (RelativeLayout)myProgressDialog.findViewById(R.id.progress_layout);
                                     ProgressBar bar = (ProgressBar)myProgressDialog.findViewById(R.id.progressBar);
