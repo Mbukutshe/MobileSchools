@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.payghost.mobileschools.Functions.Animation;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Holders.DocumentHolder;
 import com.payghost.mobileschools.Holders.MediaHolder;
@@ -23,11 +24,12 @@ import java.util.List;
 public class RecyclerviewAdapter extends RecyclerView.Adapter{
     List<RetrieveService> arrList;
     Context context;
-
+    Animation anim;
     public RecyclerviewAdapter(Context applicationContext, List<RetrieveService> arrList)
     {
         this.arrList = arrList;
         context =  applicationContext;
+        anim = new Animation(context);
     }
     @Override
     public int getItemViewType(int position)
@@ -59,45 +61,41 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
         return 0;
     }
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
+
         View view;
         // set the view's size, margins, paddings and layout parameters
-
         if (viewType == Config.VIEW_TYPE_MESSAGE) {
-            view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.message_item, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_item, parent, false);
             return new MessageHolder(view);
         }
         else
             if (viewType == Config.VIEW_TYPE_DOCUMENT)
             {
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.resource_document_item, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.resource_document_item, parent, false);
                 return new DocumentHolder(view);
             }
             else
                 if (viewType == Config.VIEW_TYPE_IMAGE)
                 {
-                    view = LayoutInflater.from(parent.getContext())
-                            .inflate(R.layout.resource_items, parent, false);
+                    view = LayoutInflater.from(parent.getContext()).inflate(R.layout.resource_items, parent, false);
                     return new MediaHolder(view);
                 }
                 else
-                    if (viewType == Config.VIEW_TYPE_VIDEOS)
+                    if(viewType == Config.VIEW_TYPE_VIDEOS)
                     {
-                        view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.resource_video_item, parent, false);
+                        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.resource_video_item, parent, false);
                         return new MediaHolder(view);
                     }
         return null;
     }
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
     {
+        anim.toRight(holder.itemView);
         RetrieveService data = arrList.get(position);
-
-        switch (holder.getItemViewType()) {
+        switch (holder.getItemViewType()){
             case Config.VIEW_TYPE_MESSAGE:
                 ((MessageHolder)holder).bind(data);
             break;
@@ -117,7 +115,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return arrList.size();
     }
 }

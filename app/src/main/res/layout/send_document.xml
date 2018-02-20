@@ -9,6 +9,12 @@
     android:focusable="true"
     android:paddingTop="@dimen/activity_horizontal_margin"
     android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="#EAEAEA"
+        android:scrollbars="none">
     <LinearLayout
         android:background="#EAEAEA"
         android:orientation="vertical"
@@ -18,7 +24,7 @@
         android:orientation="horizontal"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:background="@drawable/description_corners"
+        android:background="@drawable/subject_message_background"
         android:layout_height="wrap_content"
         android:theme="@style/TextInputLayout">
         <FrameLayout
@@ -52,7 +58,7 @@
             android:orientation="horizontal"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:background="@drawable/description_corners"
+            android:background="@drawable/chat_sent_background"
             android:layout_height="wrap_content"
             android:theme="@style/TextInputLayout">
             <FrameLayout
@@ -62,6 +68,7 @@
                 <TextView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:rotationY="180"
                     android:background="@drawable/write"/>
             </FrameLayout>
             <FrameLayout
@@ -152,4 +159,5 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

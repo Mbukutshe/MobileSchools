@@ -1,14 +1,17 @@
 package com.payghost.mobileschools.Fragments;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.payghost.mobileschools.Adapters.RecyclerviewAdapter;
 import com.payghost.mobileschools.Globals.Config;
@@ -28,7 +31,7 @@ public class RetrieveMessageFrag extends Fragment {
 
     private String JSON_STRING;
     String message,time,title,sender;
-
+    ProgressDialog myProgressDialog;
     LinearLayoutManager linearlayout;
     RecyclerView recyclerView;
     RecyclerviewAdapter recyclerviewAdapter;
@@ -91,16 +94,15 @@ public class RetrieveMessageFrag extends Fragment {
 
         class GetJSON extends AsyncTask<Void,Void,String> {
 
-            ProgressDialog loading;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
 
-                loading = new ProgressDialog(getActivity());
-                loading.setMessage("Fetching Messages...");
-                loading.setIndeterminate(false);
-                loading.setCancelable(true);
-                loading.show();
+                myProgressDialog = new ProgressDialog(view.getContext());
+                myProgressDialog.show();
+                myProgressDialog.setContentView(R.layout.progress);
+                ProgressBar progressBar = (ProgressBar) myProgressDialog.findViewById(R.id.progressBar);
+                progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
 
                 //   loading = ProgressDialog.show(getActivity().getApplicationContext(),"Fetching Messages"," Please Wait...",false,false);
             }
@@ -108,9 +110,9 @@ public class RetrieveMessageFrag extends Fragment {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                loading.dismiss();
                 JSON_STRING = s;
                 showMessages();
+                myProgressDialog.dismiss();
             }
 
             @Override

@@ -5,12 +5,15 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/greyish_color"
     tools:context="com.payghost.mobileschools.Activities.MainActivity">
 
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/greyish_color"
+        android:paddingBottom="?android:actionBarSize">
 
 
     </FrameLayout>

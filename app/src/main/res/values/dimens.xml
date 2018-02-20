@@ -6,4 +6,19 @@
     <dimen name="description_text_size">18sp</dimen>
     <dimen name="date_text_size">15sp</dimen>
     <dimen name="recycler_padding">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="one_device_pixel">1dp</dimen>
+    <dimen name="two_device_pixels">2dp</dimen>
+    <dimen name="three_device_pixel">3dp</dimen>
+    <dimen name="five_device_pixels">5dp</dimen>
+    <dimen name="eight_device_pixels">8dp</dimen>
+    <dimen name="ten_device_pixels">10dp</dimen>
+    <dimen name="padding_size">16dp</dimen>
+    <dimen name="smaller_icon">20dp</dimen>
+    <dimen name="suitable_icon">30dp</dimen>
+    <dimen name="large_icon">50dp</dimen>
+    <dimen name="smaller_image">100dp</dimen>
+    <dimen name="perfect_description_size">18sp</dimen>
+    <dimen name="lowest_description_size">15sp</dimen>
+    <dimen name="perfect_subject_size">20sp</dimen>
 </resources>

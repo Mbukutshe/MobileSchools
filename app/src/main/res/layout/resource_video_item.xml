@@ -19,7 +19,7 @@
             android:layout_weight="0"
             android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/picture"
+                android:id="@+id/video_thumbnail"
                 android:layout_gravity="center"
                 android:layout_height="100dp"
                 android:layout_width="100dp"
@@ -27,15 +27,42 @@
                 android:adjustViewBounds="true"
                 android:background="@drawable/postplace"/>
             <FrameLayout
+                android:id="@+id/play_video_layout"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/play_background"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/play_video"
                     android:layout_height="20dp"
                     android:layout_width="20dp"
                     android:background="@drawable/playvideo"/>
             </FrameLayout>
+            <LinearLayout
+                android:id="@+id/video_footer_layout"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:background="@drawable/textview_duration_corners"
+                android:layout_margin="@dimen/three_device_pixel"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:id="@+id/video_duration_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/video_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/lowest_description_size"
+                        android:text="03:02"
+                        android:textColor="#fff"/>
+                </FrameLayout>
+
+            </LinearLayout>
         </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,7 +81,7 @@
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/date"
+                        android:id="@+id/time_message"
                         android:layout_gravity="end|center_vertical"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -68,7 +95,7 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/subject"
+                    android:id="@+id/subject_message"
                     android:layout_gravity="start|center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -85,7 +112,7 @@
                 android:clickable="true"
                 android:focusable="true">
                 <TextView
-                    android:id="@+id/description"
+                    android:id="@+id/message_message"
                     android:layout_gravity="start|center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"

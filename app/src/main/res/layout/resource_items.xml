@@ -19,13 +19,27 @@
             android:layout_weight="0"
             android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/picture"
+                android:id="@+id/video_thumbnail"
                 android:layout_gravity="center"
                 android:layout_height="100dp"
                 android:layout_width="100dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:background="@drawable/postplace"/>
+            <FrameLayout
+                android:id="@+id/play_video_layout"
+                android:layout_width="wrap_content"
+                android:background="@drawable/text_view_corners"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/play_video"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/share"/>
+            </FrameLayout>
         </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +58,7 @@
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/date"
+                        android:id="@+id/time_message"
                         android:layout_gravity="end|center_vertical"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -58,7 +72,7 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/subject"
+                    android:id="@+id/subject_message"
                     android:layout_gravity="start|center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
@@ -75,7 +89,7 @@
                 android:clickable="true"
                 android:focusable="true">
                 <TextView
-                    android:id="@+id/description"
+                    android:id="@+id/message_message"
                     android:layout_gravity="start|center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
