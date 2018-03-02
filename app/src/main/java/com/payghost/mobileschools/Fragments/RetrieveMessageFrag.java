@@ -80,7 +80,7 @@ public class RetrieveMessageFrag extends Fragment {
                 arrList.add(new RetrieveService(title,message,time,sender));
 
             }
-            recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList);
+            recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList,getFragmentManager());
             recyclerView.setAdapter(recyclerviewAdapter);
 
         } catch (JSONException e) {

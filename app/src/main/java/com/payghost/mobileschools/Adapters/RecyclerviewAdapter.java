@@ -1,14 +1,20 @@
 package com.payghost.mobileschools.Adapters;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.payghost.mobileschools.Activities.MainActivity;
+import com.payghost.mobileschools.Fragments.GradesList;
 import com.payghost.mobileschools.Functions.Animation;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Holders.DocumentHolder;
+import com.payghost.mobileschools.Holders.GradesListHolder;
 import com.payghost.mobileschools.Holders.MediaHolder;
 import com.payghost.mobileschools.Holders.MessageHolder;
 import com.payghost.mobileschools.Holders.SchoolsHolder;
@@ -25,10 +31,12 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
     List<RetrieveService> arrList;
     Context context;
     Animation anim;
-    public RecyclerviewAdapter(Context applicationContext, List<RetrieveService> arrList)
+    FragmentManager fragmentManager;
+    public RecyclerviewAdapter(Context applicationContext, List<RetrieveService> arrList, FragmentManager fragmentManager)
     {
         this.arrList = arrList;
         context =  applicationContext;
+        this.fragmentManager =fragmentManager;
         anim = new Animation(context);
     }
     @Override
@@ -58,6 +66,11 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                         {
                             return Config.VIEW_TYPE_SCHOOLS;
                         }
+                        else
+                            if(Config.fragment.equals("grades"))
+                            {
+                                return Config.VIEW_TYPE_GRADE_LIST;
+                            }
         return 0;
     }
     @Override
@@ -88,6 +101,18 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.resource_video_item, parent, false);
                         return new MediaHolder(view);
                     }
+                    else
+                        if(viewType == Config.VIEW_TYPE_SCHOOLS)
+                        {
+                            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.school_item, parent, false);
+                            return new SchoolsHolder(view);
+                        }
+                        else
+                            if(viewType == Config.VIEW_TYPE_GRADE_LIST)
+                            {
+                                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grade_item, parent, false);
+                                return new GradesListHolder(view);
+                            }
         return null;
     }
     @Override
@@ -110,10 +135,35 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
             break;
             case Config.VIEW_TYPE_SCHOOLS:
                 ((SchoolsHolder)holder).bind(data,context);
+                ((SchoolsHolder)holder).itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        switch ( Config.which_one)
+                        {
+                            case "learner":
+                                fragmentManager.beginTransaction().replace(R.id.schools_and_grades,new GradesList()).addToBackStack("").commit();
+                                break;
+                            case "parent":
+                                context.startActivity(new Intent(view.getContext(),MainActivity.class));
+                                ((Activity)context).finish();
+                                break;
+                        }
+
+                    }
+                });
+            break;
+            case Config.VIEW_TYPE_GRADE_LIST:
+                ((GradesListHolder)holder).bind(data);
+                ((GradesListHolder)holder).itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view){
+                        context.startActivity(new Intent(context, MainActivity.class));
+                        ((Activity)context).finish();
+                    }
+                });
             break;
         }
     }
-
     @Override
     public int getItemCount()
     {

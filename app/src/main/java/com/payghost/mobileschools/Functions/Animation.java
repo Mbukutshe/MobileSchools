@@ -66,4 +66,9 @@ public class Animation {
         animation = AnimationUtils.loadAnimation(context, R.anim.from_right);
         view.startAnimation(animation);
     }
+    public void fromSides(View view)
+    {
+        animation = AnimationUtils.loadAnimation(context, R.anim.to_left);
+        view.startAnimation(animation);
+    }
 }

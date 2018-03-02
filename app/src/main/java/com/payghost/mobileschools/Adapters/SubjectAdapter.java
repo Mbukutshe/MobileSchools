@@ -8,9 +8,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Holders.SubjectsHolder;
+import com.payghost.mobileschools.Objects.SubjAndGrades;
 import com.payghost.mobileschools.Objects.SubjectAndGrade;
 import com.payghost.mobileschools.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -52,12 +57,116 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectsHolder> impleme
                 list.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position,list.size());
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
+        Config.size=list.size();
+        JSONObject obj = new JSONObject();
+        //Collection<JSONObject> items = new ArrayList<JSONObject>();
+        JSONArray json = new JSONArray();
+        JSONArray array = new JSONArray();
+
+        for(int i=0; i<list.size(); i++)
+        {
+            try {
+                json.put(list.get(i).name);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        try
+        {
+            //items.add(json);
+            if(Config.grade_name.equalsIgnoreCase("Grade R"))
+            {
+                obj.put("Grade R",json);
+                SubjAndGrades.Grader = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 1"))
+            {
+                obj.put("Grade 1",json);
+                SubjAndGrades.Grade1 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 2"))
+            {
+                obj.put("Grade 2",json);
+                SubjAndGrades.Grade2 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 3"))
+            {
+                obj.put("Grade 3",json);
+                SubjAndGrades.Grade3 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 4"))
+            {
+                obj.put("Grade 4",json);
+                SubjAndGrades.Grade4 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 5"))
+            {
+                obj.put("Grade 5",json);
+                SubjAndGrades.Grade5 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 6"))
+            {
+                obj.put("Grade 6",json);
+                SubjAndGrades.Grade6 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 7"))
+            {
+                obj.put("Grade 7",json);
+                SubjAndGrades.Grade7 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 8"))
+            {
+                obj.put("Grade 8",json);
+                SubjAndGrades.Grade8 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 9"))
+            {
+                obj.put("Grade 9",json);
+                SubjAndGrades.Grade9 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 10"))
+            {
+                obj.put("Grade 10",json);
+                SubjAndGrades.Grade10 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 11"))
+            {
+                obj.put("Grade 11",json);
+                SubjAndGrades.Grade11 = obj.toString();
+            }
+            else
+            if(Config.grade_name.equalsIgnoreCase("Grade 12"))
+            {
+                obj.put("Grade 12",json);
+                SubjAndGrades.Grade12 = obj.toString();
+            }
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         return list.size();
     }
     @Override
@@ -69,6 +178,8 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectsHolder> impleme
                 list.add(new SubjectAndGrade(subject.getText().toString()));
                 subject.setText("");
                 notifyDataSetChanged();
+
+
                 break;
         }
     }

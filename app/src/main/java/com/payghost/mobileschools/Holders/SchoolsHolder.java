@@ -1,13 +1,11 @@
 package com.payghost.mobileschools.Holders;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.payghost.mobileschools.Activities.MainActivity;
 import com.payghost.mobileschools.Objects.RetrieveService;
 import com.payghost.mobileschools.R;
 
@@ -26,7 +24,6 @@ public class SchoolsHolder extends RecyclerView.ViewHolder implements View.OnCli
     {
         super(view);
         item = (LinearLayout)view.findViewById(R.id.school_item);
-        item.setOnClickListener(this);
         logo = (CircleImageView)view.findViewById(R.id.profile_image);
         name = (TextView)view.findViewById(R.id.school_name);
     }
@@ -42,7 +39,7 @@ public class SchoolsHolder extends RecyclerView.ViewHolder implements View.OnCli
         switch (view.getId())
         {
             case R.id.school_item:
-            context.startActivity(new Intent(context, MainActivity.class));
+
             break;
         }
     }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="NewApi"
+    android:drawable="@drawable/cross_drawable">
+    <target
+        android:name="from_left"
+        android:animation="@anim/cross_animation" />
+    <target
+        android:name="to_right"
+        android:animation="@anim/to_right_cross_animation" />
+</animated-vector>

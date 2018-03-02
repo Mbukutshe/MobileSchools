@@ -1,13 +1,22 @@
 package com.payghost.mobileschools.Activities;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.MediaStore;
+import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -15,16 +24,30 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.payghost.mobileschools.Adapters.SchoolRegistrationAdapter;
 import com.payghost.mobileschools.Globals.Config;
+import com.payghost.mobileschools.Objects.SubjAndGrades;
 import com.payghost.mobileschools.Objects.SubjectAndGrade;
 import com.payghost.mobileschools.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -52,11 +75,20 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
     Bitmap bitmap;
     TextView school_name_validator,grade_validator;
     TextView subject_name;
+    public static  int COUNT_DOWN=1000;
+    CountDownTimer countDownTimer;
+    ProgressDialog myProgressDialog,progress;
+    AppCompatImageView mImgCheck;
+    AnimatedVectorDrawableCompat avd;
+    Drawable drawable;
+    RequestQueue requestQueue;
+    byte[] bytes;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_school_layout);
-
+        getSupportActionBar().setTitle("School Registration");
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
         logo_school = (LinearLayout)findViewById(R.id.logo_school);
         school_logo = (CircleImageView)findViewById(R.id.school_logo);
         school_logo.setOnClickListener(this);
@@ -86,13 +118,14 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                 if(IS_GRADES_VISIBLE==0)
                 {
                     all_grades.setVisibility(View.VISIBLE);
-                    recyclerviewAdapter = new SchoolRegistrationAdapter(getApplicationContext(),list,grade,add_grade,school_name,register_school_button,school_name_validator,grade_validator);
+                    recyclerviewAdapter = new SchoolRegistrationAdapter(getApplicationContext(),recyclerView,list,grade,add_grade,school_name,register_school_button,school_name_validator,grade_validator);
                     recyclerView.setAdapter(recyclerviewAdapter);
                     IS_GRADES_VISIBLE = 1;
                 }
 
             }
         });
+
     }
     public List<SubjectAndGrade> getList()
     {
@@ -129,6 +162,75 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                 });
                 dialog.show();
             break;
+            case R.id.register_school_button:
+                String schoolName = school_name.getText().toString();
+               /**/
+             //  String grade = subjects.get(1).grade;
+                JSONArray object = new JSONArray();
+                JSONObject obj = new JSONObject();
+                try
+                {
+
+                    if(!SubjAndGrades.Grader.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grader);
+                    }
+                    if(!SubjAndGrades.Grade1.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade1);
+                    }
+                    if(!SubjAndGrades.Grade2.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade2);
+                    }
+                    if(!SubjAndGrades.Grade3.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade3);
+                    }
+                    if(!SubjAndGrades.Grade4.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade4);
+                    }
+                    if(!SubjAndGrades.Grade5.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade5);
+                    }
+                    if(!SubjAndGrades.Grade6.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade6);
+                    }
+                    if(!SubjAndGrades.Grade7.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade7);
+                    }
+                    if(!SubjAndGrades.Grade8.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade8);
+                    }
+                    if(!SubjAndGrades.Grade9.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade9);
+                    }
+                    if(!SubjAndGrades.Grade10.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade10);
+                    }
+                    if(!SubjAndGrades.Grade11.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade11);
+                    }
+                    if(!SubjAndGrades.Grade12.equalsIgnoreCase("null"))
+                    {
+                        object.put(SubjAndGrades.Grade12);
+                    }
+                    obj.put("json",object);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                register(object,schoolName,view.getContext());
+            break;
         }
     }
 
@@ -142,11 +244,10 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
         }
         return false;
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        ByteArrayOutputStream bytes;
+        ByteArrayOutputStream stream;
         if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK )
         {
             Uri photo =  data.getData();
@@ -155,8 +256,9 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
             school_logo.setImageURI(photo);
 
             bitmap = ((BitmapDrawable) school_logo.getDrawable()).getBitmap();
-            bytes = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            bytes = stream.toByteArray();
         }
         else
         if(requestCode == CAMERA_REQUEST && resultCode == RESULT_OK)
@@ -167,8 +269,64 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
             school_logo.buildDrawingCache();
             school_logo.setImageBitmap(bitmap);
             //showing it on the image view widget
-            bytes = new ByteArrayOutputStream();
-            bitmap .compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+           stream = new ByteArrayOutputStream();
+            bitmap .compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            bytes = stream.toByteArray();
         }
+    }
+    public void register(final JSONArray obj, final String name, final Context context)
+    {
+        progress = new ProgressDialog(context);
+        progress.show();
+        progress.setContentView(R.layout.progress);
+        ProgressBar progressBar = (ProgressBar)progress.findViewById(R.id.progressBar);
+        progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
+
+        StringRequest request = new StringRequest(Request.Method.POST, Config.URL_SCHOOL_REGISTRATION,
+
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(final String response) {
+                        progress.dismiss();
+                        myProgressDialog = new ProgressDialog(context);
+                        myProgressDialog.show();
+                        myProgressDialog.setContentView(R.layout.success_layout);
+                        mImgCheck = (AppCompatImageView)myProgressDialog.findViewById(R.id.success_image);
+                        avd = AnimatedVectorDrawableCompat.create(context,R.drawable.animated_check);
+                        // drawable = mImgCheck.getDrawable();
+                        // mImgCheck.setImageDrawable(avd);
+                        ((Animatable) mImgCheck.getDrawable()).start();
+                        countDownTimer = new CountDownTimer(COUNT_DOWN,16) {
+                            @Override
+                            public void onTick(long l) {
+                            }
+                            @Override
+                            public void onFinish(){
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                mImgCheck.setVisibility(View.GONE);
+                                myProgressDialog.dismiss();
+                                finish();
+                            }
+                        };
+                        countDownTimer.start();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<String, String>();
+                parameters.put("json",obj.toString());
+                parameters.put("icon",bytes.toString());
+                parameters.put("name",name);
+                return parameters;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue.add(request);
     }
 }

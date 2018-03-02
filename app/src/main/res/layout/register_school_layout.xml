@@ -64,6 +64,7 @@
                             android:textSize="@dimen/subject_text_size"
                             android:hint="School Name"
                             android:inputType="text"
+                            android:textColorHint="#afafaf"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/school_name_validator"

@@ -2,6 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="choose_options_size">70dp</dimen>
     <dimen name="subject_text_size">20sp</dimen>
     <dimen name="description_text_size">18sp</dimen>
     <dimen name="date_text_size">15sp</dimen>
@@ -21,4 +22,5 @@
     <dimen name="perfect_description_size">18sp</dimen>
     <dimen name="lowest_description_size">15sp</dimen>
     <dimen name="perfect_subject_size">20sp</dimen>
+    <dimen name="large_subject_size">30sp</dimen>
 </resources>

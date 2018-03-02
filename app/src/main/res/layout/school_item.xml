@@ -9,7 +9,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:background="@drawable/resource_item_background"
+        android:background="@drawable/no_corners_background"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_height="match_parent">

@@ -23,7 +23,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/resource_item_background">
+                android:background="@drawable/no_corners_background">
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:background="@drawable/resource_item_background">
+            android:background="@drawable/no_corners_background">
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -237,7 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:background="@drawable/resource_item_background">
+                android:background="@drawable/no_corners_background">
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"

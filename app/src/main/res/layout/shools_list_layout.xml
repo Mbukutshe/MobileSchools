@@ -12,5 +12,4 @@
         android:background="#EAEAEA"
         android:padding="@dimen/recycler_padding"
         android:layout_height="match_parent"/>
-
 </FrameLayout>

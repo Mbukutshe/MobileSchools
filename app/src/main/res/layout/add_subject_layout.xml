@@ -61,6 +61,7 @@
                         android:id="@+id/added_subject"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColorHint="#afafaf"
                         android:textSize="15sp"
                         android:hint="subject name..."
                         android:layout_weight="1"

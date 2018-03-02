@@ -7,7 +7,7 @@
     android:layout_marginTop="@dimen/activity_horizontal_margin"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:background="@drawable/resource_item_background"
+    android:background="@drawable/no_corners_background"
     android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="horizontal"

@@ -23,7 +23,7 @@ public class RegisterStaff extends Fragment{
         View view=   inflater.inflate(R.layout.staff_additionals, container, false);
         anim = new Animation(view.getContext());
         linearLayout = (LinearLayout)view.findViewById(R.id.register_staff);
-        anim.toRight(linearLayout);
+        anim.fromSides(linearLayout);
         return view;
     }
 }

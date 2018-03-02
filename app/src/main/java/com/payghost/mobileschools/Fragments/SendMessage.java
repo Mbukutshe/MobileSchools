@@ -24,7 +24,7 @@ public class SendMessage extends Fragment{
         view = inflater.inflate(R.layout.send_message, container, false);
         message_layout = (RelativeLayout)view.findViewById(R.id.message);
         anim = new Animation(view.getContext());
-        anim.toRight(message_layout);
+        anim.fromSides(message_layout);
         return view;
     }
 }

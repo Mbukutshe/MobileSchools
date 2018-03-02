@@ -33,7 +33,7 @@ public class DeleteAdapter extends RecyclerView.Adapter{
         this.context = context;
         this.list = list;
         this.fragmentManager = fragmentManager;
-        anim = AnimationUtils.loadAnimation(this.context,R.anim.from_sides);
+        anim = AnimationUtils.loadAnimation(this.context,R.anim.to_left);
     }
 
     @Override

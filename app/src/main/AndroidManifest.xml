@@ -22,14 +22,25 @@
             android:name=".Activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.SchoolRegistration"
             android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".Activities.SchoolsAndGrades"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".Activities.Information"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.MediaUpload"
@@ -38,6 +49,11 @@
         </activity>
         <activity
             android:name=".Activities.ZoomPicture"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NewGroup">
+        </activity>
+        <activity
+            android:name=".Activities.Success"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NewGroup">
         </activity>

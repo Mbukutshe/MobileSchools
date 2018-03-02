@@ -77,7 +77,7 @@ public class RetrieveDocumentsFrag extends Fragment {
                 arrList.add(new RetrieveService(title,message,time,link));
 
             }
-            recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList);
+            recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList,getFragmentManager());
             recyclerView.setAdapter(recyclerviewAdapter);
 
         } catch (JSONException e) {
@@ -150,7 +150,7 @@ public class RetrieveDocumentsFrag extends Fragment {
                                 arrList.add(new RetrieveService(title,message,time,link));
 
                             }
-                            recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList);
+                            recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList,getFragmentManager());
                             recyclerView.setAdapter(recyclerviewAdapter);
 
                         } catch (JSONException e) {

@@ -42,7 +42,7 @@ public class InsertToDatabase {
         {
             myProgressDialog.show();
             myProgressDialog.setContentView(R.layout.progress);
-            ProgressBar progressBar = (ProgressBar) myProgressDialog.findViewById(R.id.progressBar);
+            ProgressBar progressBar = (ProgressBar)myProgressDialog.findViewById(R.id.progressBar);
             progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
             StringRequest request = new StringRequest(Request.Method.POST, Config.GROUP_INSERTION,
 
@@ -60,11 +60,8 @@ public class InsertToDatabase {
                                 myProgressDialog.dismiss();
                                 Toast.makeText(context,"Group hasn't created. try again",Toast.LENGTH_LONG).show();
                             }
-
-
                         }
                     },
-
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
@@ -117,5 +114,4 @@ public class InsertToDatabase {
         requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(request);
     }
-
 }

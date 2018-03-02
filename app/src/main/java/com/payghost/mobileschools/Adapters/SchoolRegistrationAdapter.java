@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Holders.GradesHolder;
 import com.payghost.mobileschools.Holders.SubjectsHolder;
+import com.payghost.mobileschools.Objects.DeleteOptions;
 import com.payghost.mobileschools.Objects.SubjectAndGrade;
 import com.payghost.mobileschools.R;
 
@@ -42,8 +43,8 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
     CircleImageView school_logo;
     Bitmap bitmap;
     TextView name_validator,grade_validator;
-
-    public SchoolRegistrationAdapter(Context context, List<SubjectAndGrade> list, EditText grade, LinearLayout btn,EditText school_name,LinearLayout register_button,TextView name_validator,TextView grade_validator)
+    RecyclerView recyclerView;
+    public SchoolRegistrationAdapter(Context context, RecyclerView recyclerView, List<SubjectAndGrade> list, EditText grade, LinearLayout btn,EditText school_name,LinearLayout register_button,TextView name_validator,TextView grade_validator)
     {
         this.context = context;
         this.list = list;
@@ -53,9 +54,9 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
         this.register_button = register_button;
         this.name_validator = name_validator;
         this.grade_validator = grade_validator;
+        this.recyclerView = recyclerView;
         this.btn.setOnClickListener(this);
     }
-
     @Override
     public int getItemViewType(int position) {
         if (Config.fragment.equals("grades")) {
@@ -69,7 +70,6 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
         }
         return 0;
     }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
@@ -96,14 +96,24 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
         layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         ((GradesHolder)holder).subjects.setHasFixedSize(true);
         ((GradesHolder)holder).subjects.setLayoutManager(layoutManager);
+
         switch (holder.getItemViewType()) {
             case Config.VIEW_TYPE_GRADES:
                 bind(((GradesHolder)holder).grade_name,((GradesHolder)holder).itemView,position);
             break;
         }
+        ((GradesHolder)holder).edit_subject_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Config.grade_name = list.get(position).name;
+                Config.grade_position = position;
+            }
+        });
         ((GradesHolder)holder).grade_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Config.grade_name = list.get(position).name;
+                Config.grade_position = position;
                 List<SubjectAndGrade> subjectList = getList();
                 if(((GradesHolder)holder).all_subjects.getVisibility()==View.GONE && subjectList.size()==1)
                 {
@@ -139,12 +149,17 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
     }
     @Override
     public int getItemCount() {
-        return list.size();
+        int size = list.size();
+        Config.grades = new ArrayList<>();
+        for(int i=0;i<size;i++)
+        {
+            Config.grades.add(i,new DeleteOptions(list.get(i).name));
+        }
+        return size;
     }
     public void bind(TextView grade, View view,int position)
     {
         grade.setText(list.get(position).name);
-
     }
 
     @Override
@@ -156,7 +171,6 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
                 if(grade.getText().toString().isEmpty())
                 {
                     final Animation textAnim = new AlphaAnimation(0.0f, 1.0f);
-
                     textAnim.setDuration(50);
                     textAnim.setStartOffset(20);
                     textAnim.setRepeatMode(Animation.REVERSE);
@@ -177,6 +191,7 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
                                 dialog.dismiss();
                                 list.add(new SubjectAndGrade("Grade "+grade.getText().toString()));
                                 grade.setText("");
+                                recyclerView.scrollToPosition(list.size()-1);
                                 notifyDataSetChanged();
                             }
                         });
@@ -195,10 +210,12 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
                         {
                             list.add(new SubjectAndGrade("Grade "+grade.getText().toString()));
                             grade.setText("");
+                            recyclerView.scrollToPosition(list.size()-1);
                             notifyDataSetChanged();
                         }
             break;
         }
+
     }
     public List<SubjectAndGrade> getList()
     {

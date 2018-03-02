@@ -17,7 +17,6 @@ import com.payghost.mobileschools.R;
 /**
  * Created by Wiseman on 2018-02-20.
  */
-
 public class MoreVideo extends Fragment {
     View view;
     Animation anim;
