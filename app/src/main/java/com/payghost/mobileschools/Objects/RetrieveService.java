@@ -9,8 +9,11 @@ public class RetrieveService {
     public String message;
     public String date;
     public String link;
+    public String id;
+    public String school_logo;
     public String school_name;
     public String grade_name;
+
     public RetrieveService()
     {
 
@@ -20,6 +23,12 @@ public class RetrieveService {
         this.message = message;
         this.date = date;
         this.link = link;
+    }
+    public RetrieveService(String id,String school_logo,String school_name)
+    {
+        this.id = id;
+        this.school_name = school_name;
+        this.school_logo = school_logo;
     }
     public RetrieveService(String school_name)
     {

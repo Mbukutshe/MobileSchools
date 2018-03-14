@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:id="@+id/register_school"
+    android:fitsSystemWindows="true"
     android:background="#EAEAEA"
-    android:theme="@style/InputLayout"
-    android:padding="@dimen/activity_horizontal_margin">
-    <ScrollView
+    android:scrollbars="none">
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
+        android:id="@+id/register_school"
         android:background="#EAEAEA"
-        android:scrollbars="none">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:theme="@style/InputLayout"
+        android:padding="@dimen/activity_horizontal_margin">
+
         <LinearLayout
             android:id="@+id/logo_school"
             android:orientation="vertical"
@@ -43,114 +40,113 @@
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:background="@drawable/layout_background">
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:background="@drawable/resource_item_background">
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/name_of_school"
-                            android:background="@android:color/transparent"
-                            android:textCursorDrawable="@drawable/edittext_cursor"
-                            android:layout_width="match_parent"
-                            android:textSize="@dimen/subject_text_size"
-                            android:hint="School Name"
-                            android:inputType="text"
-                            android:textColorHint="#afafaf"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/school_name_validator"
-                            android:layout_gravity="end|center_vertical"
-                            android:visibility="gone"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:background="@drawable/hand"/>
-                    </FrameLayout>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/add_grades"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/resource_item_background">
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_gravity="start">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/subject_text_size"
-                            android:textColor="@color/menuColor"
-                            android:text="School Grades"/>
-                    </FrameLayout>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:layout_gravity="end"
-                        android:gravity="center"
-                        android:layout_height="match_parent">
-                        <FrameLayout
-                            android:layout_gravity="end"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_gravity="center"
-                                android:layout_height="20dp"
-                                android:layout_width="20dp"
-                                android:background="@drawable/add"/>
-                        </FrameLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-            <include layout="@layout/add_grades_layout"/>
-            <LinearLayout
-                android:id="@+id/register_school_button"
-                android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:clickable="true"
-                android:layout_margin="16dp"
-                android:padding="5dp"
-                android:background="@drawable/search_button_background"
-                android:textColor="@drawable/button_selector"
-                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/name_of_school"
+                        android:background="@android:color/transparent"
+                        android:textCursorDrawable="@drawable/edittext_cursor"
+                        android:layout_width="match_parent"
+                        android:textSize="@dimen/subject_text_size"
+                        android:hint="School Name"
+                        android:inputType="text"
+                        android:textColorHint="#afafaf"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/school_name_validator"
+                        android:layout_gravity="end|center_vertical"
+                        android:visibility="gone"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/hand"/>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/add_grades"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_background">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <FrameLayout
                     android:layout_width="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="start">
                     <TextView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/btnregister"/>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/btn_login"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/subject_text_size"
                         android:textColor="@color/menuColor"
-                        android:text="Register"/>
+                        android:text="School Grades"/>
                 </FrameLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <FrameLayout
+                        android:layout_gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_height="20dp"
+                            android:layout_width="20dp"
+                            android:background="@drawable/add"/>
+                    </FrameLayout>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        <include layout="@layout/add_grades_layout"/>
+        <LinearLayout
+            android:id="@+id/register_school_button"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:layout_margin="16dp"
+            android:padding="5dp"
+            android:background="@drawable/search_button_background"
+            android:textColor="@drawable/button_selector"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/btnregister"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/btn_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/subject_text_size"
+                    android:textColor="@color/menuColor"
+                    android:text="Register"/>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

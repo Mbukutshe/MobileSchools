@@ -299,8 +299,9 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
                 .setMaxRetries(1)
                 .startUpload();
             }
-            catch (Exception ex) {
-            Toast.makeText(getApplicationContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
+            catch (Exception ex)
+            {
+                Toast.makeText(getApplicationContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
             }
         }
 }

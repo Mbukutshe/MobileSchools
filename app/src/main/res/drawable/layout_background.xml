@@ -5,5 +5,10 @@
         android:width="1dp"
         android:color="#fafafa" />
     <solid android:color="#fff"/>
+    <padding
+        android:left="@dimen/ten_device_pixels"
+        android:right="@dimen/ten_device_pixels"
+        android:bottom="@dimen/ten_device_pixels"
+        android:top="@dimen/ten_device_pixels"/>
     <corners android:radius="20dp"/>
 </shape>

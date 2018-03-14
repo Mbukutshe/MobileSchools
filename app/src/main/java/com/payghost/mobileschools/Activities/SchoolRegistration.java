@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +27,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -83,6 +85,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
     Drawable drawable;
     RequestQueue requestQueue;
     byte[] bytes;
+    String encodeImage;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -163,7 +166,6 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                 dialog.show();
             break;
             case R.id.register_school_button:
-                String schoolName = school_name.getText().toString();
                /**/
              //  String grade = subjects.get(1).grade;
                 JSONArray object = new JSONArray();
@@ -229,7 +231,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                 {
 
                 }
-                register(object,schoolName,view.getContext());
+                register(object,school_name.getText().toString(),view.getContext());
             break;
         }
     }
@@ -255,10 +257,11 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
             school_logo.buildDrawingCache();
             school_logo.setImageURI(photo);
 
-            bitmap = ((BitmapDrawable) school_logo.getDrawable()).getBitmap();
+            bitmap = ((BitmapDrawable)school_logo.getDrawable()).getBitmap();
             stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             bytes = stream.toByteArray();
+            encodeImage = Base64.encodeToString(bytes, Base64.DEFAULT);
         }
         else
         if(requestCode == CAMERA_REQUEST && resultCode == RESULT_OK)
@@ -269,10 +272,15 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
             school_logo.buildDrawingCache();
             school_logo.setImageBitmap(bitmap);
             //showing it on the image view widget
-           stream = new ByteArrayOutputStream();
-            bitmap .compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            bytes = stream.toByteArray();
+
         }
+
+        stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bytes = stream.toByteArray();
+        encodeImage = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+        Toast.makeText(this,encodeImage.length()+"",Toast.LENGTH_LONG).show();
     }
     public void register(final JSONArray obj, final String name, final Context context)
     {
@@ -302,6 +310,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                             }
                             @Override
                             public void onFinish(){
+                                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
                                 mImgCheck.setVisibility(View.GONE);
                                 myProgressDialog.dismiss();
@@ -321,7 +330,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("json",obj.toString());
-                parameters.put("icon",bytes.toString());
+                parameters.put("icon",encodeImage);
                 parameters.put("name",name);
                 return parameters;
             }

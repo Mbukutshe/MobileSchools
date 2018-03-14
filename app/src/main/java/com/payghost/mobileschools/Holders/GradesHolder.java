@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.payghost.mobileschools.R;
@@ -21,7 +20,7 @@ public class GradesHolder extends RecyclerView.ViewHolder implements View.OnClic
     public EditText edit_subject_name;
     public RecyclerView subjects;
     public FrameLayout grade_text;
-    public ScrollView all_subjects;
+    public LinearLayout all_subjects;
     public GradesHolder(View itemView)
     {
         super(itemView);
@@ -32,7 +31,7 @@ public class GradesHolder extends RecyclerView.ViewHolder implements View.OnClic
         subjects = (RecyclerView)itemView.findViewById(R.id.subjects_recycler_view);
         edit_subject_name = (EditText)itemView.findViewById(R.id.added_subject);
         add_subject = (LinearLayout)itemView.findViewById(R.id.add_subject);
-        all_subjects = (ScrollView)itemView.findViewById(R.id.all_subjects);
+        all_subjects = (LinearLayout)itemView.findViewById(R.id.all_subjects);
         grade_pointer = (TextView)itemView.findViewById(R.id.grade_pointer);
         edit_text_subject = (LinearLayout)itemView.findViewById(R.id.edit_text_subject);
     }

@@ -49,8 +49,8 @@ public class UploadDocument extends Fragment {
         {
             new MultipartUploadRequest(view.getContext(), Config.INSERT_POST_URL)
                     .addFileToUpload("", "uploaded_file")
-                    .addParameter("subject","")
-                    .addParameter("description", "")
+                    .addParameter("subject",subject.getText().toString())
+                    .addParameter("description", description.getText().toString())
                     .setMethod("POST")
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(1)

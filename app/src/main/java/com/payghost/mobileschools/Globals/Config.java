@@ -14,6 +14,7 @@ public class Config {
     public static List<SubjectAndGrade> grade_and_subjects;
     public static int grade_position;
     public static int size;
+    public static String school_id;
     public static String grade_name;
     public static String fragment;
     public static  int IS_GRADES_VISIBLE = 0;
@@ -48,6 +49,9 @@ public class Config {
     public static final String TAG_RESOURCE_SUBJECT = "subject";
     public static final String TAG_RESOURCE_DESCRIPTION= "description";
     public static final String URL_GET_ALL_RESOURCES = " http://mydm.co.za/schools/Retrieveresources.php";
+    public static final String URL_GET_ALL_SCHOOLS = " http://mydm.co.za/schools/get_schools.php";
+    public static final String URL_GET_ALL_GRADES = " http://mydm.co.za/schools/get_grades.php";
+    public static final String URL_GET_ALL_SUBJECTS = " http://mydm.co.za/schools/get_subjects.php";
     public static final String URL_SCHOOL_REGISTRATION = " http://mydm.co.za/schools/school_registration.php";
 
     public static String REGISTER_DEVICE_URL = "http://mydm.co.za/bikes/scripts/register.php";
@@ -80,5 +84,28 @@ public class Config {
     public static String LONGITUDE = "longitude";
     public static String UPLOAD_OPERATION = "upload";
 
+    //SCHOOL FIELDS
+    public static final String TAG_SCHOOL_ID = "id";
+    public static final String TAG_SCHOOL_LOGO = "logo";
+    public static final String TAG_SCHOOL_NAME = "name";
+    ///////////////////////////////////////////////////
 
+    //GRADE FIELDS
+    public static final String TAG_GRADE_ID = "id";
+    public static final String TAG_GRADE_NAME = "grade";
+    ////////////////////////////////////////////////////
+
+    //SUBJECT FIELDS
+    public static final String TAG_SUBJECT_ID = "id";
+    public static final String TAG_SUBJECT_NAME = "subject";
+    ////////////////////////////////////////////////////////
+
+    //USER REGISTRATION
+    public static String TAG_FIRST_NAME;
+    public static String TAG_SURNAME;
+    public static String TAG_DOB;
+    public static String TAG_GENDER;
+    public static String TAG_SCHOOL;
+    public static String TAG_GRADE;
+    public static String TAG_DEVICE;
 }

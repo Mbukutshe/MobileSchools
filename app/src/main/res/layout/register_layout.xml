@@ -245,9 +245,8 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:clickable="true"
-                android:layout_margin="16dp"
                 android:padding="5dp"
-                android:background="@drawable/search_button_background"
+                android:background="@drawable/bottom_corners"
                 android:textColor="@drawable/button_selector"
                 android:gravity="center"
                 android:layout_height="wrap_content">
@@ -258,7 +257,7 @@
                     <TextView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/btnregister"/>
+                        android:background="@drawable/next"/>
                 </FrameLayout>
                 <FrameLayout
                     android:layout_width="wrap_content"
@@ -267,8 +266,9 @@
                         android:id="@+id/btn_login"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9pt"
-                        android:text="Register"/>
+                        android:textSize="@dimen/perfect_description_size"
+                        android:textColor="@color/white_color"
+                        android:text="Proceed to choose School &amp; Grade"/>
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>

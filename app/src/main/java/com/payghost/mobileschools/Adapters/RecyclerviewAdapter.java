@@ -116,10 +116,10 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
         return null;
     }
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position)
     {
         anim.toRight(holder.itemView);
-        RetrieveService data = arrList.get(position);
+        final RetrieveService data = arrList.get(position);
         switch (holder.getItemViewType()){
             case Config.VIEW_TYPE_MESSAGE:
                 ((MessageHolder)holder).bind(data);
@@ -141,11 +141,12 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                         switch ( Config.which_one)
                         {
                             case "learner":
+                                Config.school_id = data.id;
                                 fragmentManager.beginTransaction().replace(R.id.schools_and_grades,new GradesList()).addToBackStack("").commit();
                                 break;
                             case "parent":
-                                context.startActivity(new Intent(view.getContext(),MainActivity.class));
-                                ((Activity)context).finish();
+                                 view.getContext().startActivity(new Intent(view.getContext(),MainActivity.class));
+                                ((Activity) view.getContext()).finish();
                                 break;
                         }
 
@@ -157,8 +158,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
                 ((GradesListHolder)holder).itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view){
-                        context.startActivity(new Intent(context, MainActivity.class));
-                        ((Activity)context).finish();
+                        view.getContext().startActivity(new Intent(context, MainActivity.class));
+                        ((Activity) view.getContext()).finish();
                     }
                 });
             break;

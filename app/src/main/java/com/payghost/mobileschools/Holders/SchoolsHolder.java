@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.payghost.mobileschools.Objects.RetrieveService;
 import com.payghost.mobileschools.R;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -30,7 +31,8 @@ public class SchoolsHolder extends RecyclerView.ViewHolder implements View.OnCli
     public void bind(RetrieveService data,Context context)
     {
         this.context = context;
-      name.setText(data.school_name);
+        name.setText(data.school_name);
+        Picasso.with(context).load(data.school_logo).into(logo);
     }
 
     @Override

@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.payghost.mobileschools.Activities.SchoolsAndGrades;
+import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 
 /**
@@ -53,10 +54,18 @@ public class LearnerRagistration extends Fragment implements View.OnClickListene
 
         register_button = (LinearLayout)view.findViewById(R.id.register_button);
         register_button.setOnClickListener(this);
+
         layout_female.setOnClickListener(this);
+        female.setOnClickListener(this);
+
         layout_male.setOnClickListener(this);
+        male.setOnClickListener(this);
+
         layout_parent.setOnClickListener(this);
+        parent.setOnClickListener(this);
+
         layout_learner.setOnClickListener(this);
+        learner.setOnClickListener(this);
 
         return view;
     }
@@ -66,6 +75,9 @@ public class LearnerRagistration extends Fragment implements View.OnClickListene
         switch(view.getId())
         {
             case R.id.register_button:
+                Config.TAG_FIRST_NAME = first_name.getText().toString();
+                Config.TAG_SURNAME = surname.getText().toString();
+                Config.TAG_DOB = birthday.getText().toString();
                 progress = new ProgressDialog(view.getContext());
                 progress.show();
                 progress.setContentView(R.layout.progress);
@@ -97,7 +109,15 @@ public class LearnerRagistration extends Fragment implements View.OnClickListene
                 female.setChecked(true);
                 male.setChecked(false);
             break;
+            case R.id.female:
+                female.setChecked(true);
+                male.setChecked(false);
+                break;
             case R.id.layout_male:
+                male.setChecked(true);
+                female.setChecked(false);
+            break;
+            case R.id.male:
                 male.setChecked(true);
                 female.setChecked(false);
             break;
@@ -105,7 +125,15 @@ public class LearnerRagistration extends Fragment implements View.OnClickListene
                 learner.setChecked(true);
                 parent.setChecked(false);
             break;
+            case R.id.learner:
+                learner.setChecked(true);
+                parent.setChecked(false);
+            break;
             case R.id.layout_parent:
+                parent.setChecked(true);
+                learner.setChecked(false);
+            break;
+            case R.id.parent:
                 parent.setChecked(true);
                 learner.setChecked(false);
             break;
