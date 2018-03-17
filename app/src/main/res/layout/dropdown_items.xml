@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fff"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingTop="0dp"
+    android:textSize="7pt"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:textColor="@color/menuColor">
+</CheckedTextView>

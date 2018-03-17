@@ -18,6 +18,7 @@
     <dimen name="smaller_icon">20dp</dimen>
     <dimen name="suitable_icon">30dp</dimen>
     <dimen name="large_icon">50dp</dimen>
+    <dimen name="large_margin">20dp</dimen>
     <dimen name="smaller_image">100dp</dimen>
     <dimen name="perfect_description_size">18sp</dimen>
     <dimen name="lowest_description_size">15sp</dimen>

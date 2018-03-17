@@ -1,11 +1,13 @@
 package com.payghost.mobileschools.Fragments;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,6 +35,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RetrieveDocumentsFrag extends Fragment {
 
@@ -44,17 +47,20 @@ public class RetrieveDocumentsFrag extends Fragment {
     RecyclerviewAdapter recyclerviewAdapter;
     ProgressDialog myProgressDialog;
     View view;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_retrieve_documents, container, false);
+        pref = view.getContext().getSharedPreferences("Users", Context.MODE_PRIVATE);
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerv_message);
         linearlayout = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearlayout);
         Config.fragment = "documents";
-        getJSON();
+        fetch();
         return view;
     }
     private void showMessages(){
@@ -94,7 +100,6 @@ public class RetrieveDocumentsFrag extends Fragment {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-
                 myProgressDialog = new ProgressDialog(view.getContext());
                 myProgressDialog.show();
                 myProgressDialog.setContentView(R.layout.progress);
@@ -123,17 +128,22 @@ public class RetrieveDocumentsFrag extends Fragment {
         GetJSON gj = new GetJSON();
         gj.execute();
     }
+    public void fetch()
+    {
 
-    public void fetch() {
+        myProgressDialog = new ProgressDialog(view.getContext());
+        myProgressDialog.show();
+        myProgressDialog.setContentView(R.layout.progress);
+        ProgressBar progressBar = (ProgressBar) myProgressDialog.findViewById(R.id.progressBar);
+        progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
 
-        StringRequest request = new StringRequest(Request.Method.GET, Config.URL_GET_ALL_RESOURCES,
+
+        StringRequest request = new StringRequest(Request.Method.POST, Config.URL_GET_ALL_RESOURCES,
 
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         JSONObject jsonObject = null;
-                        ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
                         List<RetrieveService> arrList = new ArrayList<RetrieveService>();
                         try {
                             jsonObject = new JSONObject(response);
@@ -152,11 +162,12 @@ public class RetrieveDocumentsFrag extends Fragment {
                             }
                             recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList,getFragmentManager());
                             recyclerView.setAdapter(recyclerviewAdapter);
-
-                        } catch (JSONException e) {
+                        }
+                        catch (JSONException e)
+                        {
                             e.printStackTrace();
                         }
-
+                        myProgressDialog.dismiss();
                     }
                 },
                 new Response.ErrorListener()
@@ -165,8 +176,18 @@ public class RetrieveDocumentsFrag extends Fragment {
                     public void onErrorResponse(VolleyError error) {
 
                     }
-                }) {
-
+                })
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> parameters = new HashMap<String, String>();
+                parameters.put("school",pref.getString("school",""));
+                parameters.put("grade",pref.getString("grade",""));
+                parameters.put("subject",Config.TAG_SUBJECT);
+                parameters.put("which_one",pref.getString("which_one",""));
+                return parameters;
+            }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue = Volley.newRequestQueue(view.getContext());

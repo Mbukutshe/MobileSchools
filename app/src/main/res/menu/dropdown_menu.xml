@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/menu_spinner"
+        android:title="ActionBar Spinner"
+        app:actionViewClass="android.widget.Spinner"
+        android:background="@color/white_color"
+        local:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        app:showAsAction="always" />
+</menu>

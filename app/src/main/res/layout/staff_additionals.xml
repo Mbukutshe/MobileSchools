@@ -41,7 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
-                            android:id="@+id/vehicle_province"
+                            android:id="@+id/first_name"
                             android:textCursorDrawable="@drawable/edittext_cursor"
                             android:layout_width="match_parent"
                             android:textSize="@dimen/lowest_description_size"
@@ -66,7 +66,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
-                            android:id="@+id/vehicle_make"
+                            android:id="@+id/surname"
                             android:textCursorDrawable="@drawable/edittext_cursor"
                             android:layout_width="match_parent"
                             android:textSize="@dimen/lowest_description_size"
@@ -91,7 +91,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
-                            android:id="@+id/vehicle_transmission"
+                            android:id="@+id/dob"
                             android:layout_width="match_parent"
                             android:textSize="@dimen/lowest_description_size"
                             android:inputType="text"
@@ -125,6 +125,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:id="@+id/layout_male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -135,6 +136,7 @@
                         android:clickable="true"
                         android:focusable="true">
                         <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/male"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"/>
@@ -147,6 +149,7 @@
                             android:text="Male"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/layout_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -156,6 +159,7 @@
                         android:clickable="true"
                         android:focusable="true">
                         <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/female"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
@@ -188,6 +192,7 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp">
                     <LinearLayout
+                        android:id="@+id/layout_admin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -198,6 +203,7 @@
                         android:clickable="true"
                         android:focusable="true">
                         <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/admin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"/>
@@ -210,6 +216,7 @@
                             android:text="Admin"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/layout_teacher"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -219,6 +226,7 @@
                         android:clickable="true"
                         android:focusable="true">
                         <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/teacher"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
@@ -255,6 +263,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
+                            android:id="@+id/email"
                             android:textCursorDrawable="@drawable/edittext_cursor"
                             android:layout_width="match_parent"
                             android:textSize="@dimen/lowest_description_size"
@@ -279,6 +288,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
+                            android:id="@+id/username"
                             android:textCursorDrawable="@drawable/edittext_cursor"
                             android:layout_width="match_parent"
                             android:textSize="@dimen/lowest_description_size"
@@ -303,6 +313,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
+                            android:id="@+id/password"
                             android:layout_width="match_parent"
                             android:textSize="@dimen/lowest_description_size"
                             android:inputType="textPassword"
@@ -326,6 +337,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
+                            android:id="@+id/retype_password"
                             android:layout_width="match_parent"
                             android:textSize="@dimen/lowest_description_size"
                             android:inputType="textPassword"
@@ -334,7 +346,7 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/upload_button"
+                android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:clickable="true"

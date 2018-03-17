@@ -125,7 +125,6 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                     recyclerView.setAdapter(recyclerviewAdapter);
                     IS_GRADES_VISIBLE = 1;
                 }
-
             }
         });
 

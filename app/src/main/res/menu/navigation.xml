@@ -10,14 +10,13 @@
         android:icon="@drawable/messages"
         android:title="Messages"/>
     <item
-        android:id="@+id/navigation_posts"
-        android:icon="@drawable/posts"
-        android:title="Posts" />
-
-    <item
         android:id="@+id/navigation_documents"
         android:icon="@drawable/document"
         android:title="Documents" />
+    <item
+        android:id="@+id/navigation_posts"
+        android:icon="@drawable/posts"
+        android:title="Posts" />
 
     <item
         android:id="@+id/navigation_more"

@@ -3,18 +3,15 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:id="@+id/upload_vehicles"
-    android:background="#EAEAEA">
+    android:id="@+id/upload_vehicles">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:background="#EAEAEA"
         android:padding="@dimen/activity_horizontal_margin"
         android:scrollbars="none">
         <LinearLayout
             android:orientation="vertical"
-            android:background="#EAEAEA"
             android:layout_width="match_parent"
             android:theme="@style/InputLayout"
             android:layout_height="match_parent">
@@ -98,6 +95,30 @@
                             android:layout_height="wrap_content" />
                     </FrameLayout>
                 </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/perfect_description_size"
+                            android:text="Email Address"/>
+                    </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:textSize="8pt"
+                            android:inputType="textEmailAddress"
+                            android:layout_height="wrap_content" />
+                    </FrameLayout>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
@@ -172,79 +193,13 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/perfect_description_size"
-                            android:text="Category : "/>
-                    </FrameLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp">
-                        <LinearLayout
-                            android:id="@+id/layout_learner"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:orientation="horizontal"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:clickable="true"
-                            android:focusable="true">
-                            <android.support.v7.widget.AppCompatCheckBox
-                                android:id="@+id/learner"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:checked="true"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:ellipsize="end"
-                                android:textSize="@dimen/perfect_description_size"
-                                android:text="Learner"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/layout_parent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:orientation="horizontal"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:clickable="true"
-                            android:focusable="true">
-                            <android.support.v7.widget.AppCompatCheckBox
-                                android:id="@+id/parent"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="1"
-                                android:ellipsize="end"
-                                android:textSize="@dimen/perfect_description_size"
-                                android:text="Parent"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:clickable="true"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:padding="5dp"
                 android:background="@drawable/bottom_corners"
                 android:textColor="@drawable/button_selector"
@@ -268,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/perfect_description_size"
                         android:textColor="@color/white_color"
-                        android:text="Proceed to choose School &amp; Grade"/>
+                        android:text=""/>
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>

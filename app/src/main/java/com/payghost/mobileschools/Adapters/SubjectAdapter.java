@@ -178,8 +178,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectsHolder> impleme
                 list.add(new SubjectAndGrade(subject.getText().toString()));
                 subject.setText("");
                 notifyDataSetChanged();
-
-
                 break;
         }
     }

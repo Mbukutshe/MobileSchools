@@ -80,7 +80,7 @@ public class GradesList extends Fragment {
 
                                 id = jo.getString(Config.TAG_GRADE_ID);
                                 grade = jo.getString(Config.TAG_GRADE_NAME);
-                                names.add(new RetrieveService(grade));
+                                names.add(new RetrieveService(id,grade));
 
                             }
                             recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),names,getFragmentManager());

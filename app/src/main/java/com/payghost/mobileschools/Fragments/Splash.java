@@ -2,7 +2,9 @@ package com.payghost.mobileschools.Fragments;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
@@ -12,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.payghost.mobileschools.Activities.SchoolRegistration;
+import com.payghost.mobileschools.Activities.Login;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 
@@ -26,9 +28,13 @@ public class Splash extends Fragment implements View.OnClickListener{
     AnimatedVectorDrawableCompat avd;
     LinearLayout learner,parent,instructor,proceed;
     FragmentManager fragmentManager;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.splash_layout,container,false);
+        pref = view.getContext().getSharedPreferences("Users", Context.MODE_PRIVATE);
+        editor = pref.edit();
         mImgCheck = (AppCompatImageView)view.findViewById(R.id.learner_tick);
         parent_tick = (AppCompatImageView)view.findViewById(R.id.parent_tick);
         instructor_tick = (AppCompatImageView)view.findViewById(R.id.instructor_tick);
@@ -53,6 +59,8 @@ public class Splash extends Fragment implements View.OnClickListener{
         {
             case R.id.learner:
                 Config.which_one="learner";
+                editor.putString("which_one","learner");
+                editor.commit();
                 instructor_tick.setVisibility(View.GONE);
                 parent_tick.setVisibility(View.GONE);
                 mImgCheck.setVisibility(View.VISIBLE);
@@ -60,6 +68,8 @@ public class Splash extends Fragment implements View.OnClickListener{
                 break;
             case R.id.parent:
                 Config.which_one ="parent";
+                editor.putString("which_one","parent");
+                editor.commit();
                 instructor_tick.setVisibility(View.GONE);
                 mImgCheck.setVisibility(View.GONE);
                 parent_tick.setVisibility(View.VISIBLE);
@@ -67,6 +77,8 @@ public class Splash extends Fragment implements View.OnClickListener{
                 break;
             case R.id.instructor:
                 Config.which_one ="instructor";
+                editor.putString("which_one","instructor");
+                editor.commit();
                 mImgCheck.setVisibility(View.GONE);
                 parent_tick.setVisibility(View.GONE);
                 instructor_tick.setVisibility(View.VISIBLE);
@@ -82,7 +94,7 @@ public class Splash extends Fragment implements View.OnClickListener{
                         fragmentManager.beginTransaction().replace(R.id.information_fragment,new LearnerRagistration()).commit();
                         break;
                     case "instructor":
-                        startActivity(new Intent(view.getContext(), SchoolRegistration.class));
+                        startActivity(new Intent(view.getContext(), Login.class));
                         getActivity().finish();
                         break;
                 }

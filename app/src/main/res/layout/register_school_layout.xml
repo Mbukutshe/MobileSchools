@@ -36,7 +36,7 @@
                         android:id="@+id/school_logo"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/schoollogo"/>
+                        android:src="@drawable/logo"/>
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>

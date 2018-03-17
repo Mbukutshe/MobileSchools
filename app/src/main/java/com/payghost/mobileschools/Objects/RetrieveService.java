@@ -30,6 +30,11 @@ public class RetrieveService {
         this.school_name = school_name;
         this.school_logo = school_logo;
     }
+    public RetrieveService(String id,String school_name)
+    {
+        this.id = id;
+        this.school_name = school_name;
+    }
     public RetrieveService(String school_name)
     {
         this.school_name = school_name;

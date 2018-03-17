@@ -1,8 +1,11 @@
 package com.payghost.mobileschools.Globals;
 
+import android.graphics.Bitmap;
+
 import com.payghost.mobileschools.Objects.DeleteOptions;
 import com.payghost.mobileschools.Objects.SubjectAndGrade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,12 +14,16 @@ import java.util.List;
 
 public class Config {
     public static List<DeleteOptions> grades;
+    public static ArrayList<String> prefSubjects;
     public static List<SubjectAndGrade> grade_and_subjects;
     public static int grade_position;
     public static int size;
+    public static boolean granted=false;
     public static String school_id;
     public static String grade_name;
+    public static String grade_id;
     public static String fragment;
+    public static Bitmap bitmap;
     public static  int IS_GRADES_VISIBLE = 0;
     public static final int VIEW_TYPE_MESSAGE = 1;
     public static final int VIEW_TYPE_DOCUMENT = 2;
@@ -53,10 +60,15 @@ public class Config {
     public static final String URL_GET_ALL_GRADES = " http://mydm.co.za/schools/get_grades.php";
     public static final String URL_GET_ALL_SUBJECTS = " http://mydm.co.za/schools/get_subjects.php";
     public static final String URL_SCHOOL_REGISTRATION = " http://mydm.co.za/schools/school_registration.php";
+    public static final String URL_USER_REGISTRATION = " http://mydm.co.za/schools/user_registration.php";
+    public static final String URL_STAFF_REGISTRATION = " http://mydm.co.za/schools/Adduser.php";
+    public static final String URL_SEND_MESSAGE = "http://mydm.co.za/schools/send.php";
+    public static final String URL_SEND_DOCUMENT = "https://mydm.co.za/schools/send_doc.php";
+    public static final String URL_SEND_MEDIA = "https://mydm.co.za/schools/send_media.php";
 
     public static String REGISTER_DEVICE_URL = "http://mydm.co.za/bikes/scripts/register.php";
 
-    public static String LOGIN_URL = "http://mydm.co.za/Autodealer/scripts/getIn.php";
+    public static String LOGIN_URL = "http://mydm.co.za/schools/getIn.php";
     public static String RETRIEVE_URL = "http://mydm.co.za/Autodealer/scripts/retrieve.php";
     public static String RETRIEVE_VEHICLES_URL = "http://mydm.co.za/Autodealer/scripts/vehicle_retrieve.php";
     public static String ADD_NEW_USER_URL = "http://mydm.co.za/Autodealer/scripts/newUser.php";
@@ -105,7 +117,14 @@ public class Config {
     public static String TAG_SURNAME;
     public static String TAG_DOB;
     public static String TAG_GENDER;
-    public static String TAG_SCHOOL;
-    public static String TAG_GRADE;
     public static String TAG_DEVICE;
+    public static String TAG_EMAIL;
+    public static String TAG_TITLE;
+    public static String TAG_TYPE;
+    public static String TAG_SUBJECT="";
+    //////////////////////////////////////////////////////////
+
+    //STAFF REGISTRATION
+    public static String TAG_PASSWORD;
+    public  static String TAG_USERNAME;
 }

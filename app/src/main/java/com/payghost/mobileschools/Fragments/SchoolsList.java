@@ -65,7 +65,6 @@ public class SchoolsList extends Fragment {
         progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
        final List<RetrieveService> names = new ArrayList<>();
         StringRequest request = new StringRequest(Request.Method.GET, Config.URL_GET_ALL_SCHOOLS,
-
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

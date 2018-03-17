@@ -117,17 +117,34 @@
             android:padding="20dp"
             android:background="#000"
             android:layout_gravity="bottom">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
                     android:background="@android:color/transparent"
-                    android:id="@+id/title_image"
+                    android:id="@+id/subject"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:textCursorDrawable="@drawable/color_cursor"
-                    android:hint="Add Caption..."
+                    android:hint="subject..."
+                    android:layout_gravity="bottom"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:background="@android:color/transparent"
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:hint="description..."
                     android:layout_gravity="bottom"/>
             </FrameLayout>
             <FrameLayout
@@ -145,9 +162,9 @@
                 app:borderWidth="0dp"
                 app:elevation="5dp"
                 app:backgroundTint="#EAEAEA"
-                app:srcCompat="@drawable/sending"
-                />
+                app:srcCompat="@drawable/sending"/>
             </FrameLayout>
+            </LinearLayout>
         </FrameLayout>
     </FrameLayout>
 </LinearLayout>
