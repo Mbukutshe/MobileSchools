@@ -31,9 +31,9 @@ public class PostJSONParser {
 
                 JSONObject obj = items_arry.getJSONObject(i);
                 items = new Item(obj.getString("subject").toString(),obj.getString("time").toString(),
-                        obj.getString("message").toString(),obj.getString("attachment").toString(),
-                        obj.getString("urgent").toString(),obj.getString("user").toString(),
-                        obj.getString("link").toString(),obj.getString("filename").toString());
+                        obj.getString("description").toString(),obj.getString("which_one").toString(),
+                        "",obj.getString("uploader").toString(),
+                        obj.getString("url").toString(),"");
                 itemList.add(items);
             }
 

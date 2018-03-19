@@ -11,9 +11,12 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -30,6 +33,7 @@ import com.payghost.mobileschools.Functions.Animation;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,9 +52,12 @@ public class RegisterStaff extends Fragment implements View.OnClickListener{
     LinearLayout linearLayout,layout_male,layout_female,layout_admin,layout_teacher,register_button;
     EditText first_name,surname,dob,email,username,password,retype_password;
     AppCompatCheckBox male,female,admin,teacher;
-    String gender,type;
+    String type="admin";
+    String gender = "male";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    AppCompatSpinner staff_grade;
+    String staf_grade="Mr";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=   inflater.inflate(R.layout.staff_additionals, container, false);
@@ -86,7 +93,28 @@ public class RegisterStaff extends Fragment implements View.OnClickListener{
         username = (EditText)view.findViewById(R.id.username);
         password = (EditText)view.findViewById(R.id.password);
         retype_password = (EditText)view.findViewById(R.id.retype_password);
+        staff_grade = (AppCompatSpinner)view.findViewById(R.id.staff_grade);
+        ArrayList<String> spinnerArray =  new ArrayList<String>();
+        spinnerArray.add("Mr.");
+        spinnerArray.add("Mrs.");
+        spinnerArray.add("Miss.");
+        spinnerArray.add("Prof.");
+        spinnerArray.add("Dr.");
+        ArrayAdapter<String> adaptor =  new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+        adaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        staff_grade.setAdapter(adaptor);
+        staff_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                staf_grade = adapterView.getItemAtPosition(i).toString();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+                staf_grade = adapterView.getItemAtPosition(0).toString();
+            }
+        });
 
         return view;
     }
@@ -109,19 +137,27 @@ public class RegisterStaff extends Fragment implements View.OnClickListener{
                 type="admin";
             break;
             case R.id.layout_teacher:
-                type="teacher";
+                type="instructor";
             break;
             case R.id.male:
                 gender ="male";
+                female.setChecked(false);
+                male.setChecked(true);
             break;
             case R.id.female:
                 gender ="female";
+                male.setChecked(false);
+                female.setChecked(true);
             break;
             case R.id.admin:
                 type="admin";
+                admin.setChecked(true);
+                teacher.setChecked(false);
             break;
             case R.id.teacher:
-                type="teacher";
+                type="instructor";
+                teacher.setChecked(true);
+                admin.setChecked(false);
             break;
         }
     }
@@ -199,12 +235,12 @@ public class RegisterStaff extends Fragment implements View.OnClickListener{
             protected Map<String, String> getParams()
             {
                 Map<String, String> parameters = new HashMap<String, String>();
-                parameters.put("title","");
+                parameters.put("title",staf_grade);
                 parameters.put("name",first_name.getText().toString());
                 parameters.put("surname",surname.getText().toString());
                 parameters.put("dob",dob.getText().toString());
                 parameters.put("gender",gender);
-                parameters.put("school","");
+                parameters.put("school",pref.getString("school",""));
                 parameters.put("email",email.getText().toString());
                 parameters.put("username",username.getText().toString());
                 parameters.put("password",password.getText().toString());

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -16,10 +17,14 @@ import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatSpinner;
 import android.util.Base64;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -43,6 +48,7 @@ import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +69,7 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
         private static final int RESULT_LOAD_VIDEO=2;
         Visible visible;
         Functions functions;
-        ProgressDialog myProgressDialog;
+        ProgressDialog myProgressDialog,progress;
         RequestQueue requestQueue;
         Bitmap bitmap;
         Uri filePath;
@@ -74,7 +80,11 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
         com.payghost.mobileschools.Functions.Animation animation;
         public static  int COUNT_DOWN=500;
         CountDownTimer countDownTimer;
+        AppCompatImageView mImgCheck;
+        public static  int COUNT_DAWN=1000;
         String which_one;
+        String staf_grade="All";
+         AppCompatSpinner staff_grade;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -89,8 +99,27 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
             layout_choose = (LinearLayout)findViewById(R.id.layout_choose);
             layout_Caption = (FrameLayout)findViewById(R.id.layout_caption);
             layout_Caption.getBackground().setAlpha(180);
+            staff_grade = (AppCompatSpinner)findViewById(R.id.staff_grade);
+            ArrayList<String> spinnerArray =  new ArrayList<String>();
+            spinnerArray.add("All");
+            spinnerArray.add("Instructor");
+            spinnerArray.add("Parent");
+            spinnerArray.add("Learner");
+            ArrayAdapter<String> adaptor =  new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
+            adaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            staff_grade.setAdapter(adaptor);
+            staff_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    staf_grade = adapterView.getItemAtPosition(i).toString();
+                }
 
-
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView)
+                {
+                    staf_grade = adapterView.getItemAtPosition(0).toString();
+                }
+            });
             upload_image_view = (ImageView)findViewById(R.id.upload_image_view);
             fab_image = (FloatingActionButton)findViewById(R.id.fab_image);
             fab_video = (FloatingActionButton)findViewById(R.id.fab_video);
@@ -253,13 +282,47 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
 
                             if( Config.GROUP_CREATION_SUCCESS.equalsIgnoreCase(response))
                             {
-                                myProgressDialog.dismiss();
-                                Toast.makeText(getApplicationContext(),"Image has been uploaded!", Toast.LENGTH_LONG) .show();
+                                    myProgressDialog.dismiss();
+                                    progress = new ProgressDialog(getApplicationContext());
+                                    progress.show();
+                                    progress.setContentView(R.layout.success_layout);
+                                    mImgCheck = (AppCompatImageView)progress.findViewById(R.id.success_image);
+                                    ((Animatable) mImgCheck.getDrawable()).start();
+                                    countDownTimer = new CountDownTimer(COUNT_DAWN,16) {
+                                    @Override
+                                    public void onTick(long l)
+                                    {
+
+                                    }
+                                    @Override
+                                    public void onFinish(){
+                                        mImgCheck.setVisibility(View.GONE);
+                                        progress.dismiss();
+                                    }
+                                };
+                                countDownTimer.start();
                             }
                             else
                             {
                                 myProgressDialog.dismiss();
-                                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                                progress = new ProgressDialog(getApplicationContext());
+                                progress.show();
+                                progress.setContentView(R.layout.error_layout);
+                                mImgCheck = (AppCompatImageView)progress.findViewById(R.id.error_image);
+                                ((Animatable) mImgCheck.getDrawable()).start();
+                                countDownTimer = new CountDownTimer(COUNT_DAWN,16) {
+                                    @Override
+                                    public void onTick(long l)
+                                    {
+
+                                    }
+                                    @Override
+                                    public void onFinish(){
+                                        mImgCheck.setVisibility(View.GONE);
+                                        progress.dismiss();
+                                    }
+                                };
+                                countDownTimer.start();
                             }
 
                         }
@@ -281,6 +344,8 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
                             parameters.put("subject",caption.getText().toString());
                             parameters.put("description",desc.getText().toString());
                             parameters.put("school",pref.getString("school",""));
+                            parameters.put("receiver",staf_grade);
+                            parameters.put("uploader",pref.getString("who_log_on",""));
                             return parameters;
                     }
                 };
@@ -295,7 +360,7 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
                 .addFileToUpload(getPath(filePath), "uploaded_file")
                 .addParameter("subject",caption.getText().toString())
                 .addParameter("description", desc.getText().toString())
-                .addParameter("receiver", "")
+                .addParameter("receiver", staf_grade)
                 .addParameter("school",Config.school_id)
                 .addParameter("which_one","video")
                 .addParameter("image","")

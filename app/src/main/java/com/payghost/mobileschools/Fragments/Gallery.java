@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
@@ -67,11 +68,15 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
    CoordinatorLayout linearLayout;
    FragmentManager fragmentManager;
     com.payghost.mobileschools.Functions.Animation anim;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_gallery,container,false);
+        pref = view.getContext().getSharedPreferences("Users", Context.MODE_PRIVATE);
+        editor = pref.edit();
         fragmentManager = getFragmentManager();
         connectivityManager = (ConnectivityManager)view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         activeNetwork = connectivityManager.getActiveNetworkInfo();
@@ -146,6 +151,8 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("type","image");
+                parameters.put("school",pref.getString("school",""));
+                parameters.put("receiver",pref.getString("which_one",""));
                 return parameters;
             }
         };
@@ -227,6 +234,8 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                     protected Map<String, String> getParams() {
                         Map<String, String> parameters = new HashMap<String, String>();
                         parameters.put("type","image");
+                        parameters.put("school",pref.getString("school",""));
+                        parameters.put("receiver",pref.getString("which_one",""));
                         return parameters;
                     }
                 };
@@ -277,6 +286,8 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                     protected Map<String, String> getParams() {
                         Map<String, String> parameters = new HashMap<String, String>();
                         parameters.put("type","video");
+                        parameters.put("school",pref.getString("school",""));
+                        parameters.put("receiver",pref.getString("which_one",""));
                         return parameters;
                     }
                 };
@@ -344,6 +355,8 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                     protected Map<String, String> getParams() {
                         Map<String, String> parameters = new HashMap<String, String>();
                         parameters.put("type","image");
+                        parameters.put("school",pref.getString("school",""));
+                        parameters.put("receiver",pref.getString("which_one",""));
                         return parameters;
                     }
                 };
@@ -394,6 +407,8 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                     protected Map<String, String> getParams() {
                         Map<String, String> parameters = new HashMap<String, String>();
                         parameters.put("type","video");
+                        parameters.put("school",pref.getString("school",""));
+                        parameters.put("receiver",pref.getString("which_one",""));
                         return parameters;
                     }
                 };

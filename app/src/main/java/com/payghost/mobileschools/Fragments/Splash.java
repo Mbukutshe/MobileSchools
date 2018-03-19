@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.payghost.mobileschools.Activities.Login;
+import com.payghost.mobileschools.Functions.Animation;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 
@@ -30,6 +31,7 @@ public class Splash extends Fragment implements View.OnClickListener{
     FragmentManager fragmentManager;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    Animation anim;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.splash_layout,container,false);
@@ -50,6 +52,8 @@ public class Splash extends Fragment implements View.OnClickListener{
         instructor.setOnClickListener(this);
         proceed.setOnClickListener(this);
         fragmentManager = getFragmentManager();
+        anim = new Animation(view.getContext());
+        anim.fromSides(((LinearLayout)view.findViewById(R.id.empty_layout)));
         return view;
     }
 
@@ -58,6 +62,7 @@ public class Splash extends Fragment implements View.OnClickListener{
         switch(view.getId())
         {
             case R.id.learner:
+                anim.setAlphaAnimation(learner);
                 Config.which_one="learner";
                 editor.putString("which_one","learner");
                 editor.commit();
@@ -67,6 +72,7 @@ public class Splash extends Fragment implements View.OnClickListener{
                 ((Animatable) mImgCheck.getDrawable()).start();
                 break;
             case R.id.parent:
+                anim.setAlphaAnimation(parent);
                 Config.which_one ="parent";
                 editor.putString("which_one","parent");
                 editor.commit();
@@ -76,6 +82,7 @@ public class Splash extends Fragment implements View.OnClickListener{
                 ((Animatable) parent_tick.getDrawable()).start();
                 break;
             case R.id.instructor:
+                anim.setAlphaAnimation(instructor);
                 Config.which_one ="instructor";
                 editor.putString("which_one","instructor");
                 editor.commit();
@@ -85,6 +92,7 @@ public class Splash extends Fragment implements View.OnClickListener{
                 ((Animatable) instructor_tick.getDrawable()).start();
                 break;
             case R.id.proceed:
+                anim.setAlphaAnimation(proceed);
                 switch ( Config.which_one)
                 {
                     case "learner":

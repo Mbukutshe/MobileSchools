@@ -88,6 +88,8 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosHolder> {
                     bundle.putString("message",mDataset.get(position).getMessage());
                     bundle.putString("time",mDataset.get(position).getDate());
                     bundle.putString("subject",mDataset.get(position).getSubject());
+                    bundle.putString("duration",mDataset.get(position).getDuration());
+                    bundle.putString("url",mDataset.get(position).getLink());
                     bundle.putByteArray("image",bytes);
                     MoreVideo moreDetails = new  MoreVideo();
                     moreDetails.setArguments(bundle);
@@ -104,7 +106,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosHolder> {
                     boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
                     if(isConnected)
                     {
-                        String url = holder.link.getText()+"";
+                        String url = mDataset.get(position).getLink();
                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                         context.startActivity(browserIntent);
                     }

@@ -171,7 +171,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="03:02"
+                                android:textSize="@dimen/lowest_description_size"
                                 android:textColor="#fff"/>
                         </FrameLayout>
 

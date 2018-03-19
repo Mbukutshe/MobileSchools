@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.payghost.mobileschools.Activities.SchoolsAndGrades;
+import com.payghost.mobileschools.Functions.Animation;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 
@@ -33,6 +35,7 @@ public class LearnerRagistration extends Fragment implements View.OnClickListene
     ProgressDialog myProgressDialog,progress;
     TextView btn_login;
     String gender="male";
+    Animation anim;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.register_layout,container,false);
@@ -66,7 +69,8 @@ public class LearnerRagistration extends Fragment implements View.OnClickListene
         {
             btn_login.setText("Proceed to choose School");
         }
-
+        anim = new Animation(view.getContext());
+        anim.fromSides(((LinearLayout)view.findViewById(R.id.upload_vehicles)));
         return view;
     }
 
@@ -75,15 +79,23 @@ public class LearnerRagistration extends Fragment implements View.OnClickListene
         switch(view.getId())
         {
             case R.id.register_button:
+                anim.setAlphaAnimation(register_button);
+                if(!(first_name.getText().toString().isEmpty()||surname.getText().toString().isEmpty()||birthday.getText().toString().isEmpty()))
+                {
+                    Config.TAG_FIRST_NAME = first_name.getText().toString();
+                    Config.TAG_SURNAME = surname.getText().toString();
+                    Config.TAG_DOB = birthday.getText().toString();
+                    Config.TAG_EMAIL = email.getText().toString();
+                    Config.TAG_TYPE = Config.which_one;
+                    Config.TAG_GENDER = gender;
+                    startActivity(new Intent(view.getContext(),SchoolsAndGrades.class));
+                    getActivity().finish();
+                }
+                else
+                {
+                    Toast.makeText(view.getContext(),"All fields are required!",Toast.LENGTH_LONG).show();
+                }
 
-                Config.TAG_FIRST_NAME = first_name.getText().toString();
-                Config.TAG_SURNAME = surname.getText().toString();
-                Config.TAG_DOB = birthday.getText().toString();
-                Config.TAG_EMAIL = email.getText().toString();
-                Config.TAG_TYPE = Config.which_one;
-                Config.TAG_GENDER = gender;
-                startActivity(new Intent(view.getContext(),SchoolsAndGrades.class));
-                getActivity().finish();
             break;
             case R.id.layout_female:
                 female.setChecked(true);

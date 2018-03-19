@@ -50,24 +50,24 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     private void showNotification(String message, String subject,String url,String key)
     {
-        switch (key) {
-            case "image":
-                new downloadImage(getApplicationContext(), url).execute();
-                Intent in = new Intent(this, MainActivity.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, in, PendingIntent.FLAG_UPDATE_CURRENT);
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this).setAutoCancel(true).setContentTitle(subject).setSubText(message).setSmallIcon(R.drawable.logo).setStyle(new NotificationCompat.BigPictureStyle().bigPicture(Config.bitmap));
-                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                manager.notify(0, builder.build());
-            break;
-            default:
+        if(key.equalsIgnoreCase("image")) {
+            new downloadImage(getApplicationContext(), url).execute();
+            Intent in = new Intent(this, MainActivity.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, in, PendingIntent.FLAG_UPDATE_CURRENT);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this).setAutoCancel(true).setContentTitle(subject).setSubText(message).setSmallIcon(R.drawable.logo).setStyle(new NotificationCompat.BigPictureStyle().bigPicture(Config.bitmap));
+            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            manager.notify(0, builder.build());
+        }
+        else
+        {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 PendingIntent Intent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 NotificationCompat.Builder Builder = new NotificationCompat.Builder(this).setAutoCancel(true).setContentTitle(subject).setSubText(message).setSmallIcon(R.drawable.logo);
                 NotificationManager Manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 Manager.notify(0, Builder.build());
-            break;
+
         }
     }
     public class downloadImage extends AsyncTask<Void,Void,Bitmap>

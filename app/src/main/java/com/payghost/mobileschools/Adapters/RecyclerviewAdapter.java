@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Animatable;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
@@ -154,6 +155,14 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
             break;
             case Config.VIEW_TYPE_DOCUMENT:
                 ((DocumentHolder)holder).bind(data);
+                ((DocumentHolder)holder).itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String url = data.link;
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        ((Activity)view.getContext()).startActivity(browserIntent);
+                    }
+                });
                  break;
             case Config.VIEW_TYPE_IMAGE:
                 ((MediaHolder)holder).bind(data);

@@ -32,12 +32,12 @@ public class VideoThumbnail {
             for (int i = 0; i < items_arry.length(); i++) {
 
                 JSONObject obj = items_arry.getJSONObject(i);
-                thumbnail = getVideoThumbnail(obj.getString("link").toString());
+                thumbnail = getVideoThumbnail(obj.getString("url").toString());
 
                 items = new Item(thumbnail,video_duration,obj.getString("subject").toString(),obj.getString("time").toString(),
-                        obj.getString("message").toString(),obj.getString("attachment").toString(),
-                        obj.getString("urgent").toString(),obj.getString("user").toString(),
-                        obj.getString("link").toString(),obj.getString("filename").toString());
+                        obj.getString("description").toString(),obj.getString("which_one").toString(),
+                        "no",obj.getString("uploader").toString(),
+                        obj.getString("url").toString(),"");
                 itemList.add(items);
             }
         }

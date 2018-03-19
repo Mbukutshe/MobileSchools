@@ -147,6 +147,29 @@
                     android:hint="description..."
                     android:layout_gravity="bottom"/>
             </FrameLayout>
+            <LinearLayout
+                android:id="@+id/instructor_grade_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/large_margin"
+                android:layout_marginLeft="@dimen/large_margin"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                android:gravity="start"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/lowest_description_size"
+                    android:text="Who must get this:"/>
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/staff_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
             <FrameLayout
                 android:id="@+id/fab_send"
                 android:layout_width="wrap_content"

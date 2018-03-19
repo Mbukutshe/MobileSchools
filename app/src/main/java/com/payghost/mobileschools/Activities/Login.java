@@ -168,9 +168,22 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     JSONObject obj = new JSONObject(response);
                     access = obj.getString("access");
                     privileges = obj.getString("privileges");
+
                     if(access.equalsIgnoreCase("granted"))
                     {
-                        pref = getSharedPreferences("Users", Context.MODE_PRIVATE);
+                        String username = obj.getString("username");
+                        editor.putString("username",username);
+                        editor.commit();
+                        String school = obj.getString("school");
+                        editor.putString("school",school);
+                        editor.commit();
+
+                        String title = obj.getString("title");
+                        String name = obj.getString("name");
+                        String surname = obj.getString("surname");
+                        editor.putString("uploader",title+" "+name+" "+surname);
+                        editor.commit();
+
                         final Boolean check = pref.getBoolean("check",false);
 
                         if(check)
@@ -184,6 +197,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             {
                                 if(!obj.getString("school").equalsIgnoreCase(""))
                                 {
+                                    Config.granted = true;
+                                       editor.putString("school",obj.getString("school"));
+                                       editor.commit();
+                                    editor.putString("who_log_on","Principal");
+                                    editor.commit();
+                                    editor.putString("uploader","Principal");
+                                    editor.commit();
                                     startActivity(new Intent(Login.this,MainActivity.class));
                                     finish();
                                 }
@@ -191,16 +211,24 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 {
                                     Config.granted = true;
                                     Intent mainIntent = new Intent(getApplicationContext(),SchoolRegistration.class);
-                                    mainIntent.putExtra("username",username);
-                                    mainIntent.putExtra("privileges",privileges);
                                     Login.this.startActivity(mainIntent);
                                     Login.this.finish();
                                 }
 
                             }
                             else
-                                if(privileges.equalsIgnoreCase("instructor") || privileges.equalsIgnoreCase("admin"))
+                            if(privileges.equalsIgnoreCase("admin"))
+                            {
+                                editor.putString("who_log_on","admin");
+                                editor.commit();
+                                startActivity(new Intent(Login.this,MainActivity.class));
+                                finish();
+                            }
+                            else
+                                if(privileges.equalsIgnoreCase("instructor"))
                                 {
+                                    editor.putString("who_log_on","instructor");
+                                    editor.commit();
                                     startActivity(new Intent(Login.this,MainActivity.class));
                                     finish();
                                 }

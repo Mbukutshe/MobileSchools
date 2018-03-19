@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -86,11 +87,15 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
     RequestQueue requestQueue;
     byte[] bytes;
     String encodeImage;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_school_layout);
         getSupportActionBar().setTitle("School Registration");
+        pref = getSharedPreferences("Users", Context.MODE_PRIVATE);
+        editor = pref.edit();
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         logo_school = (LinearLayout)findViewById(R.id.logo_school);
         school_logo = (CircleImageView)findViewById(R.id.school_logo);
@@ -167,6 +172,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
             case R.id.register_school_button:
                /**/
              //  String grade = subjects.get(1).grade;
+
                 JSONArray object = new JSONArray();
                 JSONObject obj = new JSONObject();
                 try
@@ -283,6 +289,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
     }
     public void register(final JSONArray obj, final String name, final Context context)
     {
+        editor.putString("school_name",name);
         progress = new ProgressDialog(context);
         progress.show();
         progress.setContentView(R.layout.progress);

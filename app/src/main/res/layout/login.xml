@@ -101,7 +101,7 @@
                                 android:textCursorDrawable="@drawable/text_input_color_cursor"
                                 android:textColor="#fff"
                                 android:inputType="textCapWords"
-                                android:hint="Username" />
+                                android:hint="Username or Email address" />
                         </android.support.design.widget.TextInputLayout>
                             <TextView
                                 android:id="@+id/write_username"

@@ -15,6 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.payghost.mobileschools.Fragments.Gallery;
 import com.payghost.mobileschools.Fragments.MoreFrag;
@@ -23,8 +30,14 @@ import com.payghost.mobileschools.Fragments.RetrieveMessageFrag;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> spinnerArray;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-
+    RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         pref = getSharedPreferences("Users", Context.MODE_PRIVATE);
         editor = pref.edit();
         fragmentManager = getFragmentManager();
+        getGrades(getApplicationContext());
+        getSubjects(getApplicationContext());
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         FirebaseMessaging.getInstance().subscribeToTopic("test");
@@ -115,5 +130,92 @@ public class MainActivity extends AppCompatActivity {
         });
         return true;
     }
+    public void getGrades(final Context context) {
 
+        StringRequest request = new StringRequest(Request.Method.POST, Config.URL_GET_ALL_GRADES,
+
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONObject jsonObject = null;
+
+                        try {
+                            jsonObject = new JSONObject(response);
+                            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+
+                            for (int i = 0; i < result.length(); i++)
+                            {
+                                JSONObject jo = result.getJSONObject(i);
+                                editor.putString("grade:"+i,jo.getString("grade"));
+                                editor.commit();
+                            }
+                            editor.putInt("grade_size",result.length());
+                            editor.commit();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<String, String>();
+                parameters.put("school_id",pref.getString("school",""));
+                return parameters;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(request);
+    }
+    public void getSubjects(final Context context) {
+
+        StringRequest request = new StringRequest(Request.Method.POST, Config.URL_GET_ALL_SUBJECTS,
+
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response);
+                            JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
+
+                            for (int i = 0; i < result.length(); i++)
+                            {
+                                JSONObject jo = result.getJSONObject(i);
+                                editor.putString("subject:"+i,jo.getString("subject"));
+                                editor.commit();
+                            }
+                            editor.putInt("subject_size",result.length());
+                            editor.commit();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<String, String>();
+                parameters.put("school_id",pref.getString("school",""));
+                parameters.put("grade_code","");
+                return parameters;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(request);
+    }
 }
