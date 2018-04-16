@@ -18,4 +18,20 @@ public class SubjAndGrades {
     public static String Grade10="null";
     public static String Grade11="null";
     public static String Grade12="null";
+
+    public String GradeId;
+    public String GradeName;
+    public String SubjectId;
+    public String SubjectName;
+    public String SubjectAction;
+    public String GradeAction;
+    public SubjAndGrades(String GradeId,String GradeName,String SubjectId,String SubjectName,String SubjectAction,String GradeAction)
+    {
+        this.GradeId = GradeId;
+        this.GradeName = GradeName;
+        this.SubjectId = SubjectId;
+        this.SubjectName = SubjectName;
+        this.SubjectAction = SubjectAction;
+        this.GradeAction = GradeAction;
+    }
 }

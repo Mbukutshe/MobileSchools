@@ -58,7 +58,8 @@ public class GradesList extends Fragment {
     }
     public void getList()
     {
-        progress = new ProgressDialog(view.getContext());
+        progress = new ProgressDialog(view.getContext(),R.style.MyTheme);
+        progress.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         progress.show();
         progress.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar)progress.findViewById(R.id.progressBar);

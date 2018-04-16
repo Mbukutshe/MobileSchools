@@ -23,7 +23,7 @@ public class Information extends AppCompatActivity{
     SharedPreferences pref;
     LinearLayout splash;
     ImageView image;
-    public static  int COUNT_DOWN=1000;
+    public static  int COUNT_DOWN=2000;
     CountDownTimer countDownTimer;
 
     @Override
@@ -54,7 +54,5 @@ public class Information extends AppCompatActivity{
             }
         };
         countDownTimer.start();
-
-
     }
 }

@@ -1,8 +1,8 @@
 package com.payghost.mobileschools.Holders;
 
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.payghost.mobileschools.Objects.RetrieveService;
 import com.payghost.mobileschools.R;
@@ -12,7 +12,7 @@ import com.payghost.mobileschools.R;
  */
 
 public class MessageHolder extends RecyclerView.ViewHolder{
-    public TextView textViewuser,textViewdate,textViewsubject,textViewdescription;
+    public AppCompatTextView textViewuser,textViewdate,textViewsubject,textViewdescription,user;
     public MessageHolder(View view)
     {
         super(view);
@@ -20,9 +20,10 @@ public class MessageHolder extends RecyclerView.ViewHolder{
         textViewdate = view.findViewById(R.id.date);
         textViewsubject = view.findViewById(R.id.subject);
         textViewdescription = view.findViewById(R.id.description);
-
+        user = view.findViewById(R.id.user);
     }
     public void bind(RetrieveService data){
+        user.setText(data.sender);
         textViewuser.setText(data.link);
         textViewdate.setText(data.date);
         textViewsubject.setText(data.title);

@@ -27,6 +27,6 @@ public class ImagesHolder extends RecyclerView.ViewHolder{
         subject =(TextView)tv.findViewById(R.id.subject_message);
         link = (TextView)tv.findViewById(R.id.link);
         play = (FrameLayout)tv.findViewById(R.id.play_video_layout);
-
+        author = (TextView)tv.findViewById(R.id.author_message);
     }
 }

@@ -164,7 +164,8 @@ public class RegisterStaff extends Fragment implements View.OnClickListener{
     public void Register(final Context context)
     {
         final String token = FirebaseInstanceId.getInstance().getToken();
-        progress = new ProgressDialog(context);
+        progress = new ProgressDialog(context,R.style.MyTheme);
+        progress.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         progress.show();
         progress.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar)progress.findViewById(R.id.progressBar);

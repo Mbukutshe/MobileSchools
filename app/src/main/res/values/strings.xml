@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mobile Schools</string>
+    <string name="app_name">Smart Schools Communicator</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -7,4 +7,30 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="message">\"Whatever your mind believes and conceive it can achieve\"</string>
+    <string-array name="division">
+        <item>...Select Division...</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>H</item>
+    </string-array>
+    <string-array name="grades">
+        <item>...Select a Grade....</item>
+        <item>Grade R</item>
+        <item>Grade 01</item>
+        <item>Grade 02</item>
+        <item>Grade 03</item>
+        <item>Grade 04</item>
+        <item>Grade 05</item>
+        <item>Grade 06</item>
+        <item>Grade 07</item>
+        <item>Grade 08</item>
+        <item>Grade 09</item>
+        <item>Grade 10</item>
+        <item>Grade 11</item>
+        <item>Grade 12</item>
+    </string-array>
 </resources>

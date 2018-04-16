@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.payghost.mobileschools.Activities.MediaUpload;
 import com.payghost.mobileschools.Fragments.Delete;
 import com.payghost.mobileschools.Fragments.RegisterStaff;
+import com.payghost.mobileschools.Fragments.SchoolProfile;
 import com.payghost.mobileschools.Fragments.SendMessage;
 import com.payghost.mobileschools.Fragments.UploadDocument;
 import com.payghost.mobileschools.Functions.Animation;
@@ -116,6 +117,9 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminHolder> implements V
                             break;
                         case 4:
                             fragmentManager.beginTransaction().replace(R.id.content,new Delete()).addToBackStack("delete").commit();
+                            break;
+                        case 5:
+                            fragmentManager.beginTransaction().replace(R.id.content,new SchoolProfile()).addToBackStack("profile").commit();
                             break;
                     }
                 }

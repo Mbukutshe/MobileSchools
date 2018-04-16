@@ -63,11 +63,11 @@ public class LearnerRagistration extends Fragment implements View.OnClickListene
         male.setOnClickListener(this);
         if(Config.which_one.equalsIgnoreCase("learner"))
         {
-            btn_login.setText("Proceed to choose School,Grade &amp; Subjects");
+            btn_login.setText("Next");
         }
         else
         {
-            btn_login.setText("Proceed to choose School");
+            btn_login.setText("Next");
         }
         anim = new Animation(view.getContext());
         anim.fromSides(((LinearLayout)view.findViewById(R.id.upload_vehicles)));

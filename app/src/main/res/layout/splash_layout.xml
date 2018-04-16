@@ -20,17 +20,20 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/perfect_description_size"
-                    android:text="Go with the option below that describes you and proceed to complete your action:"/>
+                    android:layout_gravity="center"
+                    app:fontFamily="@font/montserrat_alternates"
+                    app:autoSizeTextType="uniform"
+                    android:text="Choose the option below then click on Next when you done:"/>
             </FrameLayout>
             <LinearLayout
                 android:id="@+id/choose_image"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:background="@drawable/resource_item_background"
+                android:padding="@dimen/five_device_pixels"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_height="wrap_content">
@@ -68,12 +71,13 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:paddingBottom="5dp">
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:textSize="@dimen/perfect_description_size"
                             android:textColor="@color/menuColor"
+                            app:autoSizeTextType="uniform"
+                            app:fontFamily="@font/montserrat_alternates"
                             android:text="Learner"/>
                     </FrameLayout>
                 </LinearLayout>
@@ -115,12 +119,13 @@
                         android:layout_weight="1"
                         android:padding="10dp"
                         android:paddingBottom="5dp">
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:textColor="@color/menuColor"
-                            android:textSize="@dimen/perfect_description_size"
+                            app:autoSizeTextType="uniform"
+                            app:fontFamily="@font/montserrat_alternates"
                             android:text="Parent"/>
                     </FrameLayout>
                 </LinearLayout>
@@ -162,12 +167,13 @@
                         android:layout_weight="1"
                         android:padding="10dp"
                         android:paddingBottom="5dp">
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:textColor="@color/menuColor"
-                            android:textSize="@dimen/perfect_description_size"
+                            app:autoSizeTextType="uniform"
+                            app:fontFamily="@font/montserrat_alternates"
                             android:text="Instructor"/>
                     </FrameLayout>
                 </LinearLayout>
@@ -203,7 +209,7 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/perfect_description_size"
                     android:textColor="@color/white_color"
-                    android:text="Proceed"/>
+                    android:text="Next"/>
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>

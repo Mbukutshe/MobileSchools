@@ -8,6 +8,7 @@
     android:visibility="visible"
     android:focusable="true"
     android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/five_device_pixels"
     android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
@@ -214,11 +215,41 @@
                         android:text="Learners"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/type_grade_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="@dimen/large_margin"
+                    android:layout_marginLeft="@dimen/large_margin"
+                    android:paddingTop="@dimen/ten_device_pixels"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="start"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textSize="@dimen/lowest_description_size"
+                            android:text="What's this:"/>
+                        <android.support.v7.widget.AppCompatSpinner
+                            android:id="@+id/type_grade"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
                     android:id="@+id/learner_grade_layout"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_marginRight="@dimen/large_margin"
                     android:layout_marginLeft="@dimen/large_margin"
+                    android:paddingTop="@dimen/ten_device_pixels"
                     android:visibility="gone"
                     android:layout_height="wrap_content">
                     <LinearLayout

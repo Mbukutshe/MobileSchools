@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:id="@+id/upload_vehicles">
@@ -15,6 +16,18 @@
             android:layout_width="match_parent"
             android:theme="@style/InputLayout"
             android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/ten_device_pixels">
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white_color"
+                    app:autoSizeTextType="uniform"
+                    app:fontFamily="@font/montserrat_alternates"
+                    android:text="Please enter the details then click on Next when you done:"/>
+            </FrameLayout>
             <LinearLayout
                 android:id="@+id/empty_layout"
                 android:orientation="vertical"
@@ -82,7 +95,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/perfect_description_size"
-                            android:text="Date Of Birth"/>
+                            android:text="Birthday"/>
                     </FrameLayout>
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -92,6 +105,8 @@
                             android:layout_width="match_parent"
                             android:textSize="8pt"
                             android:inputType="text"
+                            android:textColorHint="#E5E5E5"
+                            android:hint="dd/mm"
                             android:layout_height="wrap_content" />
                     </FrameLayout>
                 </LinearLayout>
@@ -223,6 +238,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/perfect_description_size"
                         android:textColor="@color/white_color"
+                        android:maxLines="1"
                         android:text=""/>
                 </FrameLayout>
             </LinearLayout>

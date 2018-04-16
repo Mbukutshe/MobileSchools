@@ -7,7 +7,7 @@
     android:id="@+id/register_staff"
     android:background="#EAEAEA"
     android:theme="@style/InputLayout"
-    android:padding="@dimen/activity_horizontal_margin" >
+    android:padding="@dimen/activity_horizontal_margin">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +17,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:paddingBottom="@dimen/five_device_pixels"
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/empty_layout"
                 android:orientation="vertical"
@@ -106,7 +107,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/perfect_description_size"
-                            android:text="Date Of Birth"/>
+                            android:text="Birthday"/>
                     </FrameLayout>
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -116,8 +117,8 @@
                             android:layout_width="match_parent"
                             android:textSize="@dimen/lowest_description_size"
                             android:inputType="text"
-                            android:hint="yyyy/mm/dd"
-                            android:textColorHint="@color/greyish_color"
+                            android:textColorHint="#E5E5E5"
+                            android:hint="dd/mm"
                             android:layout_height="wrap_content" />
                     </FrameLayout>
                 </LinearLayout>

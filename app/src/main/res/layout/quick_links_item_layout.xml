@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/general_item"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_height="wrap_content">
+    <FrameLayout
+        android:id="@+id/link"
+        android:layout_gravity="start"
+        android:background="@drawable/links_background"
+        android:layout_width="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/subject"
+            android:layout_gravity="start|center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:fontFamily="@font/montserrat_alternates"
+            android:textSize="@dimen/description_text_size"
+            android:text="Document Title"/>
+    </FrameLayout>
+</FrameLayout>

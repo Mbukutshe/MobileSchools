@@ -58,8 +58,9 @@ public class AdministratorDashboard extends Fragment {
         names.add(new Dashboard("Send Messages",R.drawable.send));
         names.add(new Dashboard("Documents",R.drawable.successfile));
         names.add(new Dashboard("Media",R.drawable.videos));
-        names.add(new Dashboard("Register",R.drawable.add));
+        names.add(new Dashboard("Add Instructor",R.drawable.add));
         names.add(new Dashboard("Edit or Delete",R.drawable.edit));
+        names.add(new Dashboard("School Profile",R.drawable.add));
         return names;
     }
     private List<Dashboard> getData()

@@ -13,16 +13,17 @@ public class RetrieveService {
     public String school_logo;
     public String school_name;
     public String grade_name;
-
+    public String sender;
     public RetrieveService()
     {
 
     }
-    public RetrieveService(String title, String message, String date, String link) {
+    public RetrieveService(String title, String message, String date, String link,String sender) {
         this.title = title;
         this.message = message;
         this.date = date;
         this.link = link;
+        this.sender = sender;
     }
     public RetrieveService(String id,String school_logo,String school_name)
     {

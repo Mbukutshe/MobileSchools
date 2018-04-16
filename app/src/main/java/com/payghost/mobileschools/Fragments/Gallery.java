@@ -23,7 +23,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -104,7 +103,8 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.videos).setText("Videos"));
         tabLayout.setOnTabSelectedListener(this);
 
-        myProgressDialog = new ProgressDialog(view.getContext());
+        myProgressDialog = new ProgressDialog(view.getContext(),R.style.MyTheme);
+        myProgressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         myProgressDialog.show();
         myProgressDialog.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar) myProgressDialog.findViewById(R.id.progressBar);
@@ -119,7 +119,7 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                             myDataset = PostJSONParser.parseData(response);
                             Adapter = new ImagesAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog,fragmentManager);
                             mRecyclerView.setAdapter(Adapter);
-                            RelativeLayout layout = (RelativeLayout)myProgressDialog.findViewById(R.id.progress_layout);
+                            LinearLayout layout = (LinearLayout)myProgressDialog.findViewById(R.id.progress_layout);
                             ProgressBar bar = (ProgressBar)myProgressDialog.findViewById(R.id.progressBar);
                             ImageView image = (ImageView)myProgressDialog.findViewById(R.id.progress_image);
                             Animation anim = AnimationUtils.loadAnimation(view.getContext(),R.anim.zoom_out);
@@ -183,7 +183,8 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-        myProgressDialog = new ProgressDialog(view.getContext());
+        myProgressDialog = new ProgressDialog(view.getContext(),R.style.MyTheme);
+        myProgressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         myProgressDialog.show();
         myProgressDialog.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar) myProgressDialog.findViewById(R.id.progressBar);
@@ -202,7 +203,7 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                                     myDataset = PostJSONParser.parseData(response);
                                     Adapter = new ImagesAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog,fragmentManager);
                                     mRecyclerView.setAdapter(Adapter);
-                                    RelativeLayout layout = (RelativeLayout)myProgressDialog.findViewById(R.id.progress_layout);
+                                    LinearLayout layout = (LinearLayout)myProgressDialog.findViewById(R.id.progress_layout);
                                     ProgressBar bar = (ProgressBar)myProgressDialog.findViewById(R.id.progressBar);
                                     ImageView image = (ImageView)myProgressDialog.findViewById(R.id.progress_image);
                                     Animation anim = AnimationUtils.loadAnimation(view.getContext(),R.anim.zoom_out);
@@ -254,7 +255,7 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                                     myDataset = VideoThumbnail.parseData(response);
                                     mAdapter = new VideosAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog,fragmentManager);
                                     mRecyclerView.setAdapter(mAdapter);
-                                    RelativeLayout layout = (RelativeLayout)myProgressDialog.findViewById(R.id.progress_layout);
+                                    LinearLayout layout = (LinearLayout)myProgressDialog.findViewById(R.id.progress_layout);
                                     ProgressBar bar = (ProgressBar)myProgressDialog.findViewById(R.id.progressBar);
                                     ImageView image = (ImageView)myProgressDialog.findViewById(R.id.progress_image);
                                     Animation anim = AnimationUtils.loadAnimation(view.getContext(),R.anim.zoom_out);
@@ -305,7 +306,8 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        myProgressDialog = new ProgressDialog(view.getContext());
+        myProgressDialog = new ProgressDialog(view.getContext(),R.style.MyTheme);
+        myProgressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         myProgressDialog.show();
         myProgressDialog.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar) myProgressDialog.findViewById(R.id.progressBar);
@@ -324,7 +326,7 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                                     myDataset = PostJSONParser.parseData(response);
                                     Adapter = new ImagesAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog,fragmentManager);
                                     mRecyclerView.setAdapter(Adapter);
-                                    RelativeLayout layout = (RelativeLayout)myProgressDialog.findViewById(R.id.progress_layout);
+                                    LinearLayout layout = (LinearLayout)myProgressDialog.findViewById(R.id.progress_layout);
                                     ProgressBar bar = (ProgressBar)myProgressDialog.findViewById(R.id.progressBar);
                                     ImageView image = (ImageView)myProgressDialog.findViewById(R.id.progress_image);
                                     Animation anim = AnimationUtils.loadAnimation(view.getContext(),R.anim.zoom_out);
@@ -375,7 +377,7 @@ public class Gallery extends Fragment implements TabLayout.OnTabSelectedListener
                                     myDataset = VideoThumbnail.parseData(response);
                                     mAdapter = new VideosAdapter(view.getContext(), myDataset, mRecyclerView, mLayoutManager,myProgressDialog,fragmentManager);
                                     mRecyclerView.setAdapter(mAdapter);
-                                    RelativeLayout layout = (RelativeLayout)myProgressDialog.findViewById(R.id.progress_layout);
+                                    LinearLayout layout = (LinearLayout)myProgressDialog.findViewById(R.id.progress_layout);
                                     ProgressBar bar = (ProgressBar)myProgressDialog.findViewById(R.id.progressBar);
                                     ImageView image = (ImageView)myProgressDialog.findViewById(R.id.progress_image);
                                     Animation anim = AnimationUtils.loadAnimation(view.getContext(), R.anim.zoom_out);

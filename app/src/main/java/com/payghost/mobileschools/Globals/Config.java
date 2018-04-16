@@ -3,6 +3,7 @@ package com.payghost.mobileschools.Globals;
 import android.graphics.Bitmap;
 
 import com.payghost.mobileschools.Objects.DeleteOptions;
+import com.payghost.mobileschools.Objects.ProfileUpdate;
 import com.payghost.mobileschools.Objects.SubjectAndGrade;
 
 import java.util.ArrayList;
@@ -13,18 +14,30 @@ import java.util.List;
  */
 
 public class Config {
+    public  static int STEP;
     public static List<DeleteOptions> grades;
     public static ArrayList<String> prefSubjects;
+    public static ArrayList<String> prefSchools;
+    public static ArrayList<String> prefSchoolsName;
+    public static List<SubjectAndGrade> subjectsArray;
+    public static List<ProfileUpdate> profileUpdates;
     public static List<SubjectAndGrade> grade_and_subjects;
+    public static List<SubjectAndGrade> subjectList= new ArrayList<>();
     public static int grade_position;
     public static int size;
     public static boolean granted=false;
+    public static String SchoolProfile="";
     public static String school_id;
+    public static String modify="register";
     public static String grade_name;
     public static String grade_id;
     public static String fragment;
     public static Bitmap bitmap;
     public static  int IS_GRADES_VISIBLE = 0;
+    public static final int VIEW_TYPE_PAST = 14;
+    public static final int VIEW_TYPE_GENERAL = 11;
+    public static final int VIEW_TYPE_QUICK = 12;
+    public static final int VIEW_TYPE_POLICY= 13;
     public static final int VIEW_TYPE_MESSAGE = 1;
     public static final int VIEW_TYPE_DOCUMENT = 2;
     public static final int VIEW_TYPE_IMAGE= 3;
@@ -47,8 +60,12 @@ public class Config {
     public static final String TAG_MESSAGE_TIME = "date";
     public static final String TAG_MESSAGE_TITLE = "title";
     public static final String TAG_MESSAGE_MESSAGE = "message";
+    public static final String URL_SCHOOL_PROFILE_UPDATE = " http://mydm.co.za/schools/school_profile_update.php";
+    public static final String URL_SCHOOL_PROFILE = " http://mydm.co.za/schools/everything.php";
     public static final String URL_GET_ALL_MESSAGES = " http://mydm.co.za/schools/RetrieveMessages.php";
-
+    public static final String URL_GET_ALL_GENERAL= " http://mydm.co.za/schools/general.php";
+    public static final String URL_GET_ALL_PAST= " http://mydm.co.za/schools/past_year.php";
+    public static final String URL_SEND_NEW= " http://mydm.co.za/schools/send_new.php";
     ////////// Messages ////////////
     public static final String TAG_RESOURCE_LINK = "link";
     public static final String TAG_RESOURCE_TYPE = "type";
@@ -65,6 +82,7 @@ public class Config {
     public static final String URL_SEND_MESSAGE = "http://mydm.co.za/schools/send.php";
     public static final String URL_SEND_DOCUMENT = "https://mydm.co.za/schools/send_doc.php";
     public static final String URL_SEND_MEDIA = "https://mydm.co.za/schools/send_media.php";
+    public static final String URL_STAFF_DEVICE = "https://mydm.co.za/schools/update_device.php";
 
     public static String REGISTER_DEVICE_URL = "http://mydm.co.za/bikes/scripts/register.php";
 

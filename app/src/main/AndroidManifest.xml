@@ -21,7 +21,8 @@
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
         </activity>
         <activity
             android:name=".Activities.SchoolRegistration"
@@ -57,6 +58,11 @@
             android:theme="@style/Theme.NewGroup">
         </activity>
         <activity
+            android:name=".Activities.ParentMessage"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NewGroup">
+        </activity>
+        <activity
             android:name=".Activities.Success"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NewGroup">
@@ -72,6 +78,10 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

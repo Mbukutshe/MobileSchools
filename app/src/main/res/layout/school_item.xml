@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/school_item"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/ten_device_pixels"
         android:background="@drawable/no_corners_background"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -43,6 +43,11 @@
                     android:layout_width="wrap_content"
                     android:textSize="@dimen/subject_text_size"
                     android:text="School Name"/>
+                <TextView
+                    android:id="@+id/checked"
+                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:text="false"/>
             </FrameLayout>
         </LinearLayout>
         <LinearLayout
@@ -53,13 +58,23 @@
             android:gravity="center"
             android:layout_height="match_parent">
             <FrameLayout
-                android:layout_gravity="center"
+                android:layout_gravity="end|center"
                 android:layout_width="wrap_content"
+                android:layout_weight="0"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_height="30dp"
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/check_image"
                     android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/animated_check_subject"/>
+                <TextView
+                    android:id="@+id/grade_pointer"
+                    android:layout_gravity="center"
+                    android:layout_height="20dp"
+                    android:layout_width="20dp"
+                    android:visibility="gone"
                     android:background="@drawable/proceed"/>
             </FrameLayout>
         </LinearLayout>

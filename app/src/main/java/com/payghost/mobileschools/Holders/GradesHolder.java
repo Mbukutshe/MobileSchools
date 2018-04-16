@@ -15,7 +15,7 @@ import com.payghost.mobileschools.R;
  */
 
 public class GradesHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    public TextView grade_name,grade_pointer;
+    public TextView grade_name,grade_pointer,grade_id;
     public LinearLayout grade_close,grade_proceed,subject_close,add_subject,edit_text_subject;
     public EditText edit_subject_name;
     public RecyclerView subjects;
@@ -26,6 +26,7 @@ public class GradesHolder extends RecyclerView.ViewHolder implements View.OnClic
         super(itemView);
         grade_text = (FrameLayout)itemView.findViewById(R.id.grade_text);
         grade_name = (TextView)itemView.findViewById(R.id.grade_name);
+        grade_id = (TextView)itemView.findViewById(R.id.grade_id);
         grade_close = (LinearLayout) itemView.findViewById(R.id.delete_grade);
         grade_proceed = (LinearLayout) itemView.findViewById(R.id.proceed_grade);
         subjects = (RecyclerView)itemView.findViewById(R.id.subjects_recycler_view);

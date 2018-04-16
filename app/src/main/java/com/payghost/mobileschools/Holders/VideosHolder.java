@@ -16,7 +16,7 @@ import com.payghost.mobileschools.R;
  */
 
 public class VideosHolder extends RecyclerView.ViewHolder{
-    public TextView messageId,message,subject,link,author,date,urgent,video_duration,attach,filename;
+    public TextView messageId,message,subject,link,author,date,urgent,video_duration,attach,filename,sender;
     RelativeLayout card;
     public ImageView video_thumbnail;
     public FrameLayout play,duration;
@@ -31,6 +31,6 @@ public class VideosHolder extends RecyclerView.ViewHolder{
         duration = (FrameLayout)tv.findViewById(R.id.video_duration_layout);
         video_duration = (TextView)tv.findViewById(R.id.video_duration);
         video_footer = (LinearLayout)tv.findViewById(R.id.video_footer_layout);
-
+        sender = (TextView)tv.findViewById(R.id.author_message);
     }
 }

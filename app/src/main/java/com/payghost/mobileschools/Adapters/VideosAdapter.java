@@ -65,6 +65,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosHolder> {
     @Override
     public void onBindViewHolder(final VideosHolder holder, final int position) {
         if (mDataset.get(position).getAttach().toString().equalsIgnoreCase("video")) {
+            holder.sender.setText(mDataset.get(position).getAuthor());
             holder.message.setText(mDataset.get(position).getMessage());
             holder.date.setText(mDataset.get(position).getDate());
             holder.subject.setText("" + mDataset.get(position).getSubject());

@@ -4,7 +4,9 @@
     android:id="@+id/message"
     android:layout_width="match_parent"
     android:background="@color/greyish_color"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/five_device_pixels">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

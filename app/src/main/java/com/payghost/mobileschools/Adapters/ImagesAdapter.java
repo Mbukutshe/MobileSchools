@@ -66,6 +66,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesHolder>{
     @Override
     public void onBindViewHolder(final ImagesHolder holder, final int position) {
         if (mDataset.get(position).getAttach().toString().equalsIgnoreCase("image")) {
+            holder.author.setText(mDataset.get(position).getAuthor());
             holder.message.setText(mDataset.get(position).getMessage());
             holder.date.setText(mDataset.get(position).getDate());
             holder.subject.setText("" + mDataset.get(position).getSubject());

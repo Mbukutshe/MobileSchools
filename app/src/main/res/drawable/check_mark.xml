@@ -7,14 +7,14 @@
     <group android:name="background">
         <path
             android:name="circle"
-            android:fillColor="@color/colorPrimary"
+            android:fillColor="@color/white_color"
             android:pathData="M12,12m-10,0a10,10 0,1 1,20 0a10,10 0,1 1,-20 0" />
     </group>
     <group android:name="check">
         <path
             android:name="tick"
             android:pathData="M6,11 l0,0 l0,0"
-            android:strokeColor="@color/white_color"
+            android:strokeColor="@color/colorPrimary"
             android:strokeWidth="1"/>
     </group>
 </vector>

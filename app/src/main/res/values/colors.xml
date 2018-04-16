@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#557200</color>
-    <color name="colorPrimaryDark">#557200</color>
-    <color name="colorAccent">#93c403</color>
+    <color name="colorPrimary">#15713E</color>
+    <color name="colorPrimaryDark">#15713E</color>
+    <color name="colorAccent">#DAA520</color>
     <color name="menuColor">#627984</color>
     <color name="groupIcon">#95a5a6</color>
     <color name="greyish_color">#EAEAEA</color>
     <color name="white_color">#FFFFFF</color>
     <color name="black_color">#000</color>
     <color name="red_color">#e23f3f</color>
+    <color name="titleColor">#FFFFFF</color>
+    <color name="transparent">#FFFFFF</color>
 </resources>

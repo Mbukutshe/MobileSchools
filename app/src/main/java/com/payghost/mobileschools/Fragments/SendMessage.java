@@ -1,6 +1,7 @@
 package com.payghost.mobileschools.Fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -60,12 +61,17 @@ public class SendMessage extends Fragment implements View.OnClickListener{
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     List<String> spinnerArray;
+    String subject,mesage;
+    FragmentManager fragmentManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.send_message, container, false);
         pref = view.getContext().getSharedPreferences("Users", Context.MODE_PRIVATE);
         editor = pref.edit();
+
+        fragmentManager = getFragmentManager();
+
         message_layout = (RelativeLayout)view.findViewById(R.id.message);
         anim = new Animation(view.getContext());
         anim.fromSides(message_layout);
@@ -144,13 +150,22 @@ public class SendMessage extends Fragment implements View.OnClickListener{
         switch (view.getId())
         {
             case R.id.send_button:
-                if(staff_check.isChecked()||parents_check.isChecked()||learner_check.isChecked())
+                subject = subject_message.getText().toString();
+                mesage = text_message.getText().toString();
+                if(!mesage.isEmpty())
                 {
-                    Register(view.getContext());
+                    if (staff_check.isChecked() || parents_check.isChecked() || learner_check.isChecked()) {
+                        Register(view.getContext());
+                        subject_message.setText("");
+                        text_message.setText("");
+                        fragmentManager.popBackStack();
+                    } else {
+                        Toast.makeText(view.getContext(), "Select the receiver please!", Toast.LENGTH_LONG).show();
+                    }
                 }
                 else
                 {
-                    Toast.makeText(view.getContext(),"Select the receiver please!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), "Please write a message!", Toast.LENGTH_LONG).show();
                 }
             break;
             case R.id.staff:
@@ -233,7 +248,8 @@ public class SendMessage extends Fragment implements View.OnClickListener{
     }
     public void Register(final Context context)
     {
-        progress = new ProgressDialog(context);
+        progress = new ProgressDialog(context,R.style.MyTheme);
+        progress.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         progress.show();
         progress.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar)progress.findViewById(R.id.progressBar);
@@ -244,7 +260,6 @@ public class SendMessage extends Fragment implements View.OnClickListener{
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(view.getContext(),response,Toast.LENGTH_LONG).show();
                         progress.dismiss();
                         if(!response.equalsIgnoreCase("fail"))
                         {
@@ -260,7 +275,8 @@ public class SendMessage extends Fragment implements View.OnClickListener{
 
                                 }
                                 @Override
-                                public void onFinish(){
+                                public void onFinish()
+                                {
                                     mImgCheck.setVisibility(View.GONE);
                                     myProgressDialog.dismiss();
                                 }
@@ -304,14 +320,15 @@ public class SendMessage extends Fragment implements View.OnClickListener{
             protected Map<String, String> getParams()
             {
                 Map<String, String> parameters = new HashMap<String, String>();
-                parameters.put("subject",subject_message.getText().toString());
-                parameters.put("message",text_message.getText().toString());
+                parameters.put("subject",subject);
+                parameters.put("message",mesage);
                 parameters.put("staff",staff_);
                 parameters.put("learner",learner_);
                 parameters.put("parent",parents_);
                 parameters.put("learner_grade",learners_grade);
                 parameters.put("staff_grade",staf_grade);
                 parameters.put("school",pref.getString("school",""));
+                parameters.put("sender",pref.getString("uploader",""));
                 return parameters;
             }
         };

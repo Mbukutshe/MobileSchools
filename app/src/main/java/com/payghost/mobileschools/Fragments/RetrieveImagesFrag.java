@@ -27,7 +27,7 @@ import java.util.List;
 public class RetrieveImagesFrag extends Fragment {
 
     private String JSON_STRING;
-    String message,time,title,subject,link;
+    String sender, message,time,title,subject,link;
 
     LinearLayoutManager linearlayout;
     RecyclerView recyclerView;
@@ -57,13 +57,13 @@ public class RetrieveImagesFrag extends Fragment {
 
             for(int i = 0; i<result.length(); i++){
                 JSONObject jo = result.getJSONObject(i);
-
+                sender = jo.getString(Config.TAG_MESSAGE_SENDER);
                 time = jo.getString(Config.TAG_MESSAGE_TIME);
                 title = jo.getString(Config.TAG_MESSAGE_TITLE);
                 message = jo.getString(Config.TAG_RESOURCE_DESCRIPTION);
                 link = jo.getString(Config.TAG_RESOURCE_LINK);
 
-                arrList.add(new RetrieveService(title,message,time,link));
+                arrList.add(new RetrieveService(title,message,time,link,sender));
 
             }
             recyclerviewAdapter = new RecyclerviewAdapter(getActivity().getApplicationContext(),arrList,getFragmentManager());

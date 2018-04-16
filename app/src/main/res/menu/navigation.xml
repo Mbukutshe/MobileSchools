@@ -21,6 +21,6 @@
     <item
         android:id="@+id/navigation_more"
         android:icon="@drawable/more"
-        android:title="General" />
+        android:title="More" />
 
 </menu>

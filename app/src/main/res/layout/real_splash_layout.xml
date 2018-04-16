@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -17,7 +17,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textSize="@dimen/large_subject_size"
                 android:textColor="@color/white_color"
-                android:text="Mobile Schools"
+                android:text="S.S.C"
                 />
         </LinearLayout>
         <LinearLayout
@@ -30,9 +30,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/lowest_description_size"
+                android:textSize="@dimen/perfect_description_size"
                 android:textColor="@color/white_color"
-                android:text="@string/message"
+                app:fontFamily="@font/montserrat_alternates"
+                android:text="@string/app_name"
                 />
         </LinearLayout>
 </LinearLayout>

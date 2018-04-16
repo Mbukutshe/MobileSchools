@@ -1,6 +1,7 @@
 package com.payghost.mobileschools.Activities;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,7 +30,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -38,6 +39,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.payghost.mobileschools.Adapters.SchoolRegistrationAdapter;
+import com.payghost.mobileschools.Fragments.AddSujects;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.Objects.SubjAndGrades;
 import com.payghost.mobileschools.Objects.SubjectAndGrade;
@@ -55,7 +57,6 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.payghost.mobileschools.Globals.Config.CAMERA_REQUEST;
-import static com.payghost.mobileschools.Globals.Config.IS_GRADES_VISIBLE;
 import static com.payghost.mobileschools.Globals.Config.RESULT_LOAD_IMAGE;
 
 /**
@@ -86,14 +87,18 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
     Drawable drawable;
     RequestQueue requestQueue;
     byte[] bytes;
-    String encodeImage;
+    String encodeImage="";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_school_layout);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("School Registration");
+        fragmentManager = getFragmentManager();
         pref = getSharedPreferences("Users", Context.MODE_PRIVATE);
         editor = pref.edit();
         requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -102,42 +107,35 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
         school_logo.setOnClickListener(this);
         add_grades = (LinearLayout)findViewById(R.id.add_grades);
         add_grade = (LinearLayout)findViewById(R.id.add_grade);
-        all_grades = (LinearLayout)findViewById(R.id.all_grades);
+    //    all_grades = (LinearLayout)findViewById(R.id.all_grades);
         grade = (EditText)findViewById(R.id.grade);
-        grade.setOnTouchListener(this);
+      //  grade.setOnTouchListener(this);
         school_name = (EditText)findViewById(R.id.name_of_school);
         register_school_button = (LinearLayout)findViewById(R.id.register_school_button);
         register_school_button.setOnClickListener(this);
         school_name_validator = (TextView)findViewById(R.id.school_name_validator);
         subject_name = (TextView)findViewById(R.id.subject_name);
         grade_validator = (TextView)findViewById(R.id.grade_validator);
-
+/*
         subjects_recyclerview = (RecyclerView)findViewById(R.id.subjects_recycler_view);
         recyclerView = (RecyclerView)findViewById(R.id.grades_recycler_view);
         linearlayout = new LinearLayoutManager(getApplicationContext());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(linearlayout);
+        recyclerView.setLayoutManager(linearlayout);*/
         Config.fragment = "grades";
+        Config.modify = "register";
         list = getList();
-        add_grades.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                if(IS_GRADES_VISIBLE==0)
-                {
-                    all_grades.setVisibility(View.VISIBLE);
-                    recyclerviewAdapter = new SchoolRegistrationAdapter(getApplicationContext(),recyclerView,list,grade,add_grade,school_name,register_school_button,school_name_validator,grade_validator);
-                    recyclerView.setAdapter(recyclerviewAdapter);
-                    IS_GRADES_VISIBLE = 1;
-                }
-            }
-        });
-
+        /*
+        recyclerviewAdapter = new SchoolRegistrationAdapter(getApplicationContext(),recyclerView,list,grade,add_grade,grade_validator);
+        recyclerView.setAdapter(recyclerviewAdapter);
+        */
+        fragmentManager.beginTransaction().replace(R.id.grade_steps,new AddSujects()).commit();
     }
     public List<SubjectAndGrade> getList()
     {
         List<SubjectAndGrade> list = new ArrayList<>();
         list.add(new SubjectAndGrade("Grade R"));
+
         return  list;
     }
     @Override
@@ -252,7 +250,8 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
         return false;
     }
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
         ByteArrayOutputStream stream;
         if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK )
@@ -277,20 +276,19 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
             school_logo.buildDrawingCache();
             school_logo.setImageBitmap(bitmap);
             //showing it on the image view widget
-
         }
 
         stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         bytes = stream.toByteArray();
         encodeImage = Base64.encodeToString(bytes, Base64.DEFAULT);
-
-        Toast.makeText(this,encodeImage.length()+"",Toast.LENGTH_LONG).show();
     }
     public void register(final JSONArray obj, final String name, final Context context)
     {
         editor.putString("school_name",name);
-        progress = new ProgressDialog(context);
+        editor.commit();
+        progress = new ProgressDialog(context,R.style.MyTheme);
+        progress.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
         progress.show();
         progress.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar)progress.findViewById(R.id.progressBar);
@@ -316,7 +314,8 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                             }
                             @Override
                             public void onFinish(){
-                                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                                editor.putString("school",response);
+                                editor.commit();
                                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
                                 mImgCheck.setVisibility(View.GONE);
                                 myProgressDialog.dismiss();
@@ -324,6 +323,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                             }
                         };
                         countDownTimer.start();
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -338,6 +338,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                 parameters.put("json",obj.toString());
                 parameters.put("icon",encodeImage);
                 parameters.put("name",name);
+                parameters.put("action","INSERT");
                 return parameters;
             }
         };

@@ -102,16 +102,32 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
             staff_grade = (AppCompatSpinner)findViewById(R.id.staff_grade);
             ArrayList<String> spinnerArray =  new ArrayList<String>();
             spinnerArray.add("All");
-            spinnerArray.add("Instructor");
-            spinnerArray.add("Parent");
-            spinnerArray.add("Learner");
+            spinnerArray.add("Instructors");
+            spinnerArray.add("Parents");
+            spinnerArray.add("Learners");
             ArrayAdapter<String> adaptor =  new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
             adaptor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             staff_grade.setAdapter(adaptor);
             staff_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    staf_grade = adapterView.getItemAtPosition(i).toString();
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+                {
+                   // staf_grade = adapterView.getItemAtPosition(i).toString();
+                    switch(i)
+                    {
+                        case 0:
+                            staf_grade="All";
+                        case 1:
+                            staf_grade="instructor";
+                        break;
+                        case 2:
+                            staf_grade="parent";
+                        break;
+                        case 3:
+                            staf_grade = "learner";
+                        break;
+                    }
+
                 }
 
                 @Override
@@ -131,7 +147,8 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
             fab_send.setOnClickListener(this);
             visible = new Visible();
             functions.setDoneAction(caption);
-            myProgressDialog = new ProgressDialog(this);
+            myProgressDialog = new ProgressDialog(this,R.style.MyTheme);
+            myProgressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
 
             camera = (FrameLayout)findViewById(R.id.camera);
             gallery = (FrameLayout)findViewById(R.id.gallery);
@@ -345,7 +362,7 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
                             parameters.put("description",desc.getText().toString());
                             parameters.put("school",pref.getString("school",""));
                             parameters.put("receiver",staf_grade);
-                            parameters.put("uploader",pref.getString("who_log_on",""));
+                            parameters.put("uploader",pref.getString("uploader",""));
                             return parameters;
                     }
                 };
@@ -364,6 +381,7 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
                 .addParameter("school",Config.school_id)
                 .addParameter("which_one","video")
                 .addParameter("image","")
+                .addParameter("uploader",pref.getString("uploader",""))
                 .setMethod("POST")
                 .setNotificationConfig(new UploadNotificationConfig())
                 .setMaxRetries(1)

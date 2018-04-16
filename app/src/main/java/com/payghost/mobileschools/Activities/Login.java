@@ -1,15 +1,21 @@
 package com.payghost.mobileschools.Activities;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Animatable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -19,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -56,10 +63,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     RelativeLayout log;
     Animation upAnim;
     RequestQueue requestQueue;
-    String access, privileges = "";
+    String surname,name,title,sender,school,access, privileges = "";
     ScrollView scrollView;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+    ProgressDialog myProgressDialog,progress;
+    public static  int COUNT_DOWN=1000;
+    CountDownTimer countDownTimer;
+    AppCompatImageView mImgCheck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,104 +162,152 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     writePassword.setVisibility(View.VISIBLE);
                     writePassword.startAnimation(textAnim);
                 }
-            } else {
-                login(user, pass);
+            }
+            else
+                {
+                login(user, pass,view.getContext());
             }
         }
     }
 
-    public void login(final String username, final String password)
+    public void login(final String username, final String password,final Context context)
     {
+        errorMessage.setText("");
+        myProgressDialog = new ProgressDialog(context,R.style.MyTheme);
+        myProgressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        myProgressDialog.show();
+        myProgressDialog.setContentView(R.layout.progress);
+        ProgressBar progressBar = (ProgressBar) myProgressDialog.findViewById(R.id.progressBar);
+        progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
+
         StringRequest request = new StringRequest(Request.Method.POST,Config.LOGIN_URL, new Response.Listener<String>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(final String response) {
+                myProgressDialog.dismiss();
+                        try {
 
-                try {
-
-                    JSONObject obj = new JSONObject(response);
-                    access = obj.getString("access");
-                    privileges = obj.getString("privileges");
-
-                    if(access.equalsIgnoreCase("granted"))
-                    {
-                        String username = obj.getString("username");
-                        editor.putString("username",username);
-                        editor.commit();
-                        String school = obj.getString("school");
-                        editor.putString("school",school);
-                        editor.commit();
-
-                        String title = obj.getString("title");
-                        String name = obj.getString("name");
-                        String surname = obj.getString("surname");
-                        editor.putString("uploader",title+" "+name+" "+surname);
-                        editor.commit();
-
-                        final Boolean check = pref.getBoolean("check",false);
-
-                        if(check)
-                        {
-                            startActivity(new Intent(Login.this,MainActivity.class));
-                            finish();
-                        }
-                        else
-                        {
-                            if(privileges.equalsIgnoreCase("principal"))
+                            JSONObject obj = new JSONObject(response);
+                            access = obj.getString("access");
+                            privileges = obj.getString("privileges");
+                            if(access.equalsIgnoreCase("granted"))
                             {
-                                if(!obj.getString("school").equalsIgnoreCase(""))
-                                {
-                                    Config.granted = true;
-                                       editor.putString("school",obj.getString("school"));
-                                       editor.commit();
-                                    editor.putString("who_log_on","Principal");
-                                    editor.commit();
-                                    editor.putString("uploader","Principal");
-                                    editor.commit();
-                                    startActivity(new Intent(Login.this,MainActivity.class));
-                                    finish();
-                                }
-                                else
-                                {
-                                    Config.granted = true;
-                                    Intent mainIntent = new Intent(getApplicationContext(),SchoolRegistration.class);
-                                    Login.this.startActivity(mainIntent);
-                                    Login.this.finish();
-                                }
-
-                            }
-                            else
-                            if(privileges.equalsIgnoreCase("admin"))
-                            {
-                                editor.putString("who_log_on","admin");
+                                final String username = obj.getString("username");
+                                editor.putString("username",username);
                                 editor.commit();
-                                startActivity(new Intent(Login.this,MainActivity.class));
-                                finish();
+                                final String school = obj.getString("school");
+                                editor.putString("school",school);
+                                editor.commit();
+                                editor.putString("staff_id",obj.getString("staff_id"));
+                                editor.commit();
+                                final String title = obj.getString("title");
+                                final String name = obj.getString("name");
+                                final String surname = obj.getString("surname");
+                                editor.putString("uploader",title+" "+name+" "+surname);
+                                editor.commit();
+
+                                mImgCheck = (AppCompatImageView)findViewById(R.id.success_image);
+                                mImgCheck.setVisibility(View.VISIBLE);
+                                // drawable = mImgCheck.getDrawable();
+                                // mImgCheck.setImageDrawable(avd);
+                                ((Animatable) mImgCheck.getDrawable()).start();
+                                countDownTimer = new CountDownTimer(COUNT_DOWN,16) {
+                                    @Override
+                                    public void onTick(long l) {
+                                    }
+                                    @Override
+                                    public void onFinish(){
+
+
+
+                                        final Boolean check = pref.getBoolean("check",false);
+
+                                        if(check)
+                                        {
+                                            startActivity(new Intent(Login.this,MainActivity.class));
+                                            finish();
+                                        }
+                                        else
+                                        {
+                                            if(privileges.equalsIgnoreCase("principal"))
+                                            {
+                                                if(!school.equalsIgnoreCase(""))
+                                                {
+                                                    Config.granted = true;
+                                                    editor.putString("school",school);
+                                                    editor.commit();
+                                                    editor.putString("who_log_on","Principal");
+                                                    editor.commit();
+                                                    editor.putString("uploader","Principal");
+                                                    editor.commit();
+                                                    startActivity(new Intent(Login.this,MainActivity.class));
+                                                    finish();
+                                                }
+                                                else
+                                                {
+                                                    editor.putString("who_log_on","Principal");
+                                                    editor.commit();
+                                                    editor.putString("uploader","Principal");
+                                                    editor.commit();
+                                                    Config.granted = true;
+                                                    Intent mainIntent = new Intent(getApplicationContext(),SchoolRegistration.class);
+                                                    Login.this.startActivity(mainIntent);
+                                                    Login.this.finish();
+                                                }
+
+                                            }
+                                            else
+                                            if(privileges.equalsIgnoreCase("admin"))
+                                            {
+                                                editor.putString("who_log_on","admin");
+                                                editor.commit();
+                                                startActivity(new Intent(Login.this,MainActivity.class));
+                                                finish();
+                                            }
+                                            else
+                                            if(privileges.equalsIgnoreCase("instructor"))
+                                            {
+                                                editor.putString("who_log_on","instructor");
+                                                editor.commit();
+                                                startActivity(new Intent(Login.this,MainActivity.class));
+                                                finish();
+                                            }
+                                        }
+                                        finish();
+                                    }
+                                };
+                                countDownTimer.start();
                             }
                             else
-                                if(privileges.equalsIgnoreCase("instructor"))
-                                {
-                                    editor.putString("who_log_on","instructor");
-                                    editor.commit();
-                                    startActivity(new Intent(Login.this,MainActivity.class));
-                                    finish();
-                                }
+                            if(access.equalsIgnoreCase("denied"))
+                            {
+                                mImgCheck = (AppCompatImageView)findViewById(R.id.error_image);
+                                mImgCheck.setVisibility(View.VISIBLE);
+                               // avd = AnimatedVectorDrawableCompat.create(context,R.drawable.animated_check);
+                                // drawable = mImgCheck.getDrawable();
+                                // mImgCheck.setImageDrawable(avd);
+                                ((Animatable) mImgCheck.getDrawable()).start();
+                                countDownTimer = new CountDownTimer(COUNT_DOWN,16) {
+                                    @Override
+                                    public void onTick(long l) {
+                                    }
+                                    @Override
+                                    public void onFinish() {
+                                        mImgCheck.setVisibility(View.GONE);
+                                        final Animation textAnim = new AlphaAnimation(0.0f, 1.0f);
+                                        textAnim.setDuration(50);
+                                        textAnim.setStartOffset(20);
+                                        textAnim.setRepeatMode(Animation.REVERSE);
+                                        textAnim.setRepeatCount(6);
+                                        errorMessage.setText("Incorrect Username or Password!");
+                                        errorMessage.startAnimation(textAnim);
+                                    }
+                                };
+                                countDownTimer.start();
+                            }
                         }
-                    }
-                    else
-                    if(access.equalsIgnoreCase("denied"))
-                    {
-                        final Animation textAnim = new AlphaAnimation(0.0f,1.0f);
-                        textAnim.setDuration(50);
-                        textAnim.setStartOffset(20);
-                        textAnim.setRepeatMode(Animation.REVERSE);
-                        textAnim.setRepeatCount(6);
-                        errorMessage.setText("Incorrect Username or Password!");
-                        errorMessage.startAnimation(textAnim);
-                    }
-                }
-                catch (JSONException ex) {
-                    Toast.makeText(getApplication(),ex.getMessage().toString(), Toast.LENGTH_LONG).show();
-                }
+                        catch (JSONException ex) {
+                            Toast.makeText(getApplication(),ex.getMessage().toString(), Toast.LENGTH_LONG).show();
+                        }
 
             }
         }, new Response.ErrorListener() {
@@ -268,6 +327,5 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         };
         request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));        requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(request);
-
     }
 }
