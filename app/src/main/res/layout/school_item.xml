@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_weight="0"
             android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/profile_image"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -41,13 +41,31 @@
                     android:layout_gravity="start|center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:textSize="@dimen/subject_text_size"
+                    android:fontFamily="sans-serif-condensed"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="School Name"/>
                 <TextView
                     android:id="@+id/checked"
                     android:layout_height="0dp"
                     android:layout_width="0dp"
                     android:text="false"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/school_slogan"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/lowest_description_size"
+                    android:text="Education is power"/>
             </FrameLayout>
         </LinearLayout>
         <LinearLayout

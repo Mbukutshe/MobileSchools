@@ -2,20 +2,16 @@ package com.payghost.mobileschools.Adapters;
 
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
-import android.os.CountDownTimer;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.volley.RequestQueue;
 import com.payghost.mobileschools.Fragments.GradesList;
 import com.payghost.mobileschools.Fragments.SubjectList;
 import com.payghost.mobileschools.Functions.Animation;
@@ -41,11 +37,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter{
     Context context;
     Animation anim;
     FragmentManager fragmentManager;
-    RequestQueue requestQueue;
-    AppCompatImageView mImgCheck;
     public static  int COUNT_DOWN=1000;
-    CountDownTimer countDownTimer;
-    ProgressDialog myProgressDialog,progress;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     public RecyclerviewAdapter(Context applicationContext, List<RetrieveService> arrList, FragmentManager fragmentManager)

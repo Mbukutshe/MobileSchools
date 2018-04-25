@@ -44,7 +44,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Really, Does your School have this grade?"
-                    android:textSize="@dimen/subject_text_size"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textColor="@color/menuColor"
                     android:ellipsize="end"/>
             </FrameLayout>
         </LinearLayout>

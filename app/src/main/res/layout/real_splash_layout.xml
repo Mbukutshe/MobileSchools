@@ -15,7 +15,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/large_subject_size"
+                android:textSize="@dimen/subject_text_size"
+                android:fontFamily="@font/montserrat_alternates"
                 android:textColor="@color/white_color"
                 android:text="S.S.C"
                 />
@@ -24,13 +25,13 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:gravity="center"
-            android:padding="@dimen/activity_horizontal_margin"
+            android:padding="@dimen/five_device_pixels"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/perfect_description_size"
+                android:textSize="@dimen/lowest_description_size"
                 android:textColor="@color/white_color"
                 app:fontFamily="@font/montserrat_alternates"
                 android:text="@string/app_name"

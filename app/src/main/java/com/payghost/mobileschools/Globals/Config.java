@@ -50,6 +50,10 @@ public class Config {
     public static final int RESULT_LOAD_IMAGE=1;
     public static final int CAMERA_REQUEST = 1888;
     public static final int RESULT_LOAD_VIDEO=2;
+    public static final int DELETE_MESSAGE=111;
+    public static final int DELETE_DOCUMENTS=222;
+    public static final int DELETE_VIDEOS=333;
+    public static final int DELETE_IMAGES=444;
 
     public static final int VIEW_TYPE_DELETE = 1;
     public static final int VIEW_TYPE_OPTIONS = 2;
@@ -66,6 +70,8 @@ public class Config {
     public static final String URL_GET_ALL_GENERAL= " http://mydm.co.za/schools/general.php";
     public static final String URL_GET_ALL_PAST= " http://mydm.co.za/schools/past_year.php";
     public static final String URL_SEND_NEW= " http://mydm.co.za/schools/send_new.php";
+    public static final String URL_GET_MESSAGES= " http://mydm.co.za/schools/retrieve_messages.php";
+    public static final String URL_DELETE_ITEMS= " http://mydm.co.za/schools/delete.php";
     ////////// Messages ////////////
     public static final String TAG_RESOURCE_LINK = "link";
     public static final String TAG_RESOURCE_TYPE = "type";

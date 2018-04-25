@@ -179,14 +179,14 @@ public class SendMessage extends Fragment implements View.OnClickListener{
                 {
                     staff_check.setChecked(true);
                     instructor_grade_layout.setVisibility(View.VISIBLE);
-                    staff_ = "staff";
+                    staff_ = "instructor";
                 }
                 break;
             case R.id.staff_check:
 
                 if(staff_check.isChecked())
                 {
-                    staff_ = "staff";
+                    staff_ = "instructor";
                     instructor_grade_layout.setVisibility(View.VISIBLE);
                 }
                 else
@@ -204,14 +204,14 @@ public class SendMessage extends Fragment implements View.OnClickListener{
                 }
                 else
                 {
-                    parents_ = "parents";
+                    parents_ = "parent";
                     parents_check.setChecked(true);
                 }
                 break;
             case R.id.parents_check:
                 if(parents_check.isChecked())
                 {
-                    parents_ = "parents";
+                    parents_ = "parent";
                 }
                 else
                 {
@@ -227,7 +227,7 @@ public class SendMessage extends Fragment implements View.OnClickListener{
                 }
                 else
                     {
-                        learner_ = "learners";
+                        learner_ = "learner";
                         learner_grade_layout.setVisibility(View.VISIBLE);
                         learner_check.setChecked(true);
                     }
@@ -235,7 +235,7 @@ public class SendMessage extends Fragment implements View.OnClickListener{
             case R.id.learner_check:
                 if(learner_check.isChecked())
                 {
-                    learner_ = "learners";
+                    learner_ = "learner";
                     learner_grade_layout.setVisibility(View.VISIBLE);
                 }
                 else

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,14 +12,12 @@ import com.payghost.mobileschools.Objects.RetrieveService;
 import com.payghost.mobileschools.R;
 import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 /**
  * Created by Wiseman on 2018-02-13.
  */
 
 public class SchoolsHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    CircleImageView logo;
+    ImageView logo;
     public TextView name,checked,pointer;
     LinearLayout item;
     Context context;
@@ -27,7 +26,7 @@ public class SchoolsHolder extends RecyclerView.ViewHolder implements View.OnCli
     {
         super(view);
         item = (LinearLayout)view.findViewById(R.id.school_item);
-        logo = (CircleImageView)view.findViewById(R.id.profile_image);
+        logo = (ImageView)view.findViewById(R.id.profile_image);
         name = (TextView)view.findViewById(R.id.school_name);
         checked = (TextView)view.findViewById(R.id.checked);
         tick = (AppCompatImageView)view.findViewById(R.id.check_image);

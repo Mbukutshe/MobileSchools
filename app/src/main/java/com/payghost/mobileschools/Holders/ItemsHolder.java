@@ -18,6 +18,6 @@ public class ItemsHolder extends RecyclerView.ViewHolder {
     {
         super(view);
         delete = (FrameLayout)view.findViewById(R.id.delete);
-        name = (ImageView)view.findViewById(R.id.options_name);
+      //  name = (ImageView)view.findViewById(R.id.options_name);
     }
 }

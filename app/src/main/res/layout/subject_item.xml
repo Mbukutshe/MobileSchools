@@ -28,7 +28,9 @@
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:textSize="@dimen/subject_text_size"
+                android:fontFamily="sans-serif-condensed"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="Maths"/>
             <TextView
                 android:id="@+id/checked"

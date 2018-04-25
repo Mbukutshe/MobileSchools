@@ -30,8 +30,8 @@ public class PostJSONParser {
             for (int i = 0; i < items_arry.length(); i++) {
 
                 JSONObject obj = items_arry.getJSONObject(i);
-                items = new Item(obj.getString("subject").toString(),obj.getString("time").toString(),
-                        obj.getString("description").toString(),obj.getString("which_one").toString(),
+                items = new Item(obj.getString("title").toString(),obj.getString("time").toString(),
+                        obj.getString("message").toString(),obj.getString("which_one").toString(),
                         "",obj.getString("uploader").toString(),
                         obj.getString("url").toString(),"");
                 itemList.add(items);

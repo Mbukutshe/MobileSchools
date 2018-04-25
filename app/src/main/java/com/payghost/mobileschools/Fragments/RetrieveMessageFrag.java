@@ -69,7 +69,7 @@ public class RetrieveMessageFrag extends Fragment implements View.OnClickListene
         linearlayout = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearlayout);
-
+        requestQueue = Volley.newRequestQueue(view.getContext());
         connectivityManager = (ConnectivityManager)view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         activeNetwork = connectivityManager.getActiveNetworkInfo();
         isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
@@ -114,7 +114,6 @@ public class RetrieveMessageFrag extends Fragment implements View.OnClickListene
         myProgressDialog.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar) myProgressDialog.findViewById(R.id.progressBar);
         progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
-
 
         StringRequest request = new StringRequest(Request.Method.POST, Config.URL_GET_ALL_MESSAGES,
 
@@ -180,7 +179,6 @@ public class RetrieveMessageFrag extends Fragment implements View.OnClickListene
             }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue = Volley.newRequestQueue(view.getContext());
         requestQueue.add(request);
     }
 }

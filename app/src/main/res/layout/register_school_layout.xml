@@ -2,14 +2,14 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/InputLayout">
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:layout_height="wrap_content"
     android:background="#EAEAEA"
     android:scrollbars="none">
     <LinearLayout
@@ -18,9 +18,8 @@
         android:layout_height="match_parent"
         android:id="@+id/register_school"
         android:background="#EAEAEA"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:paddingBottom="?attr/actionBarSize">
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:padding="@dimen/activity_horizontal_margin">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +34,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/subject_text_size"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Choose the school logo:"/>
             </FrameLayout>
             <FrameLayout
@@ -66,7 +65,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </FrameLayout>
-
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -86,7 +84,6 @@
                         android:background="@android:color/transparent"
                         android:textCursorDrawable="@drawable/edittext_cursor"
                         android:layout_width="match_parent"
-                        android:textSize="@dimen/subject_text_size"
                         android:hint="School Name"
                         android:inputType="text"
                         android:textColorHint="#afafaf"
@@ -120,7 +117,7 @@
                         android:id="@+id/instruction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/perfect_description_size"
+                        android:fontFamily="sans-serif-condensed"
                         android:textColor="@color/menuColor"
                         android:text="Please add the Grades below and click Next to add all subjects per grade:"/>
                 </FrameLayout>
@@ -137,10 +134,14 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:clickable="true"
-            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="?android:attr/actionBarSize"
             android:padding="5dp"
             android:background="@drawable/search_button_background"
             android:textColor="@drawable/button_selector"
+            android:layout_gravity="bottom"
             android:gravity="center"
             android:layout_height="wrap_content">
             <FrameLayout
@@ -175,8 +176,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
             <LinearLayout
                 android:orientation="horizontal"
@@ -196,8 +197,8 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:background="@drawable/logo"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:layout_gravity="center"/>
                         </FrameLayout>
                         <FrameLayout
@@ -214,7 +215,6 @@
                                 android:ellipsize="end"
                                 android:text="Smart Schools Communicator"
                                 android:textColor="#fff"
-                                android:textSize="@dimen/subject_text_size"
                                 app:fontFamily="@font/montserrat_alternates" />
                         </FrameLayout>
                     </LinearLayout>

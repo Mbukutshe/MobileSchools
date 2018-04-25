@@ -68,7 +68,6 @@
                     app:fontFamily="@font/montserrat_alternates"
                     android:text="Please take a moment to input the CORRECT username and password."
                     android:textColor="#fff"
-                    android:textSize="@dimen/description_text_size"
                     android:layout_gravity="center" />
             </FrameLayout>
         </LinearLayout>
@@ -83,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#FF00"
                         android:paddingLeft="56dp"
-                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-condensed"
                         android:gravity="center"
                         android:layout_marginBottom="24dp"
                         android:paddingRight="56dp"/>
@@ -117,7 +116,8 @@
                                 android:layout_height="wrap_content"
                                 android:textCursorDrawable="@drawable/text_input_color_cursor"
                                 android:textColor="#fff"
-                                android:inputType="textCapWords"
+                                android:inputType="textPersonName"
+                                android:fontFamily="sans-serif-condensed"
                                 android:hint="Username or Email address" />
                         </android.support.design.widget.TextInputLayout>
                             <TextView

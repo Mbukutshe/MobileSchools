@@ -10,6 +10,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?android:actionBarSize"
         android:background="#ECECEC"
-        android:paddingBottom="?android:actionBarSize">
+        android:paddingBottom="?android:attr/actionBarSize">
     </FrameLayout>
 </RelativeLayout>

@@ -45,6 +45,7 @@ public class GradesList extends Fragment {
     RecyclerviewAdapter recyclerviewAdapter;
     RequestQueue requestQueue;
     String id,grade;
+    List<RetrieveService> names;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.grade_layout,container,false);
@@ -64,7 +65,7 @@ public class GradesList extends Fragment {
         progress.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar)progress.findViewById(R.id.progressBar);
         progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
-        final List<RetrieveService> names = new ArrayList<>();
+        names = new ArrayList<>();
         StringRequest request = new StringRequest(Request.Method.POST, Config.URL_GET_ALL_GRADES,
 
                 new Response.Listener<String>() {
@@ -76,9 +77,9 @@ public class GradesList extends Fragment {
                             jsonObject = new JSONObject(response);
                             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
 
-                            for(int i = 0; i<result.length(); i++){
+                            for(int i = 0; i<result.length(); i++)
+                            {
                                 JSONObject jo = result.getJSONObject(i);
-
                                 id = jo.getString(Config.TAG_GRADE_ID);
                                 grade = jo.getString(Config.TAG_GRADE_NAME);
                                 names.add(new RetrieveService(id,grade));

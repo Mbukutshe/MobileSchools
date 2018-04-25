@@ -237,8 +237,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                                     editor.commit();
                                                     editor.putString("who_log_on","Principal");
                                                     editor.commit();
-                                                    editor.putString("uploader","Principal");
-                                                    editor.commit();
                                                     startActivity(new Intent(Login.this,MainActivity.class));
                                                     finish();
                                                 }

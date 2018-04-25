@@ -36,7 +36,7 @@
                     android:id="@+id/step_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/description_text_size"
+                    android:fontFamily="sans-serif-condensed"
                     android:textColor="@color/menuColor"
                     android:text="Next"/>
             </FrameLayout>
@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="#afafaf"
                         android:hint="...number.."
-                        android:textSize="@dimen/description_text_size"
+                        android:fontFamily="sans-serif-condensed"
                         android:inputType="number"/>
                     <TextView
                         android:id="@+id/grade_validator"

@@ -7,6 +7,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:paddingBottom="@dimen/ten_device_pixels"
         android:layout_height="match_parent">
         <FrameLayout
             android:id="@+id/delete"
@@ -17,6 +18,110 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                android:id="@+id/empty_layout"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/empty_icon_corners"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/empty_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/nomessages"
+                        android:layout_gravity="center"/>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/empty_icon_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="7pt"
+                        android:text="No Messages To Show"/>
+                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/no_internet"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <FrameLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/empty_icon_corners">
+                        <TextView
+                            android:id="@+id/subject_message"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/nonetwork"
+                            />
+                    </FrameLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="5dp">
+
+                        <TextView
+                            android:id="@+id/message_message"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="No Internet Access!"
+                            android:textColor="@color/menuColor"
+                            android:textSize="9pt"
+                            android:ellipsize="end"/>
+                    </FrameLayout>
+                </LinearLayout>
+                <FrameLayout
+                    android:id="@+id/try_again"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:background="@drawable/play_white_stroke"
+                    android:padding="@dimen/activity_horizontal_margin" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Try Again"
+                        android:textStyle="bold"
+                        android:textColor="@color/menuColor"
+                        android:textSize="9pt"
+                        android:ellipsize="end"/>
+                </FrameLayout>
+            </LinearLayout>
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

@@ -10,7 +10,7 @@
         android:right="@dimen/activity_horizontal_margin"
         android:top="5dp"
         android:bottom="5dp"/>
-    <corners android:topLeftRadius="50dp"
-        android:bottomLeftRadius="50dp"
-        android:bottomRightRadius="50dp"/>
+    <corners android:topLeftRadius="16dp"
+        android:bottomLeftRadius="16dp"
+        android:bottomRightRadius="16dp"/>
 </shape>

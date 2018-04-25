@@ -339,6 +339,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                 parameters.put("icon",encodeImage);
                 parameters.put("name",name);
                 parameters.put("action","INSERT");
+                parameters.put("device_registration","yep");
                 return parameters;
             }
         };

@@ -17,8 +17,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary"
             android:elevation="@dimen/five_device_pixels"
             app:popupTheme="@style/AppTheme.PopupOverlay">
             <LinearLayout
@@ -39,8 +39,8 @@
                             android:layout_height="wrap_content">
                             <TextView
                                 android:background="@drawable/logo"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
                                 android:layout_gravity="center"/>
                         </FrameLayout>
                         <FrameLayout
@@ -58,7 +58,7 @@
                                 android:maxLines="1"
                                 android:text="Smart Schools Communicator"
                                 android:textColor="#fff"
-                                android:textSize="@dimen/subject_text_size"
+                                android:textSize="@dimen/description_text_size"
                                 app:fontFamily="@font/montserrat_alternates"
                                 tools:fontFamily="sans-serif" />
                         </FrameLayout>

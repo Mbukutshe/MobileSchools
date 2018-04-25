@@ -78,6 +78,8 @@
                             android:textColor="@color/menuColor"
                             app:autoSizeTextType="uniform"
                             app:fontFamily="@font/montserrat_alternates"
+                            android:maxLines="1"
+                            android:ellipsize="end"
                             android:text="Learner"/>
                     </FrameLayout>
                 </LinearLayout>
@@ -126,6 +128,8 @@
                             android:textColor="@color/menuColor"
                             app:autoSizeTextType="uniform"
                             app:fontFamily="@font/montserrat_alternates"
+                            android:maxLines="1"
+                            android:ellipsize="end"
                             android:text="Parent"/>
                     </FrameLayout>
                 </LinearLayout>
@@ -174,6 +178,8 @@
                             android:textColor="@color/menuColor"
                             app:autoSizeTextType="uniform"
                             app:fontFamily="@font/montserrat_alternates"
+                            android:maxLines="1"
+                            android:ellipsize="end"
                             android:text="Instructor"/>
                     </FrameLayout>
                 </LinearLayout>

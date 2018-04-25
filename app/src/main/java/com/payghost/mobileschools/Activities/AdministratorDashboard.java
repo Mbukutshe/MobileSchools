@@ -55,12 +55,12 @@ public class AdministratorDashboard extends Fragment {
     private List<Dashboard> getAdmin()
     {
         List<Dashboard> names = new ArrayList<>();
-        names.add(new Dashboard("Send Messages",R.drawable.send));
-        names.add(new Dashboard("Documents",R.drawable.successfile));
+        names.add(new Dashboard("Send Message",R.drawable.send));
+        names.add(new Dashboard("Upload Document",R.drawable.successfile));
         names.add(new Dashboard("Media",R.drawable.videos));
         names.add(new Dashboard("Add Instructor",R.drawable.add));
-        names.add(new Dashboard("Edit or Delete",R.drawable.edit));
-        names.add(new Dashboard("School Profile",R.drawable.add));
+        names.add(new Dashboard("Sent",R.drawable.sent));
+        names.add(new Dashboard("School Profile",R.drawable.schoolprof));
         return names;
     }
     private List<Dashboard> getData()
@@ -68,7 +68,7 @@ public class AdministratorDashboard extends Fragment {
         List<Dashboard> names = new ArrayList<>();
         names.add(new Dashboard("Documents",R.drawable.successfile));
         names.add(new Dashboard("Media",R.drawable.videos));
-        names.add(new Dashboard("Edit or Delete",R.drawable.edit));
+        names.add(new Dashboard("Sent",R.drawable.sent));
         return names;
     }
 

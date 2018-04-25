@@ -63,11 +63,13 @@ public class SchoolsList extends Fragment implements View.OnClickListener{
     SharedPreferences.Editor editor;
     String school_id;
     View view;
+    List<RetrieveService> names;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
        view =inflater.inflate(R.layout.shools_list_layout,container,false);
         pref = view.getContext().getSharedPreferences("Users",view.getContext().MODE_PRIVATE);
         editor = pref.edit();
+        requestQueue = Volley.newRequestQueue(view.getContext());
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerv_message);
         linearlayout = new LinearLayoutManager(view.getContext());
         recyclerView.setHasFixedSize(true);
@@ -110,7 +112,7 @@ public class SchoolsList extends Fragment implements View.OnClickListener{
         progress.setContentView(R.layout.progress);
         ProgressBar progressBar = (ProgressBar)progress.findViewById(R.id.progressBar);
         progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.MULTIPLY);
-       final List<RetrieveService> names = new ArrayList<>();
+        names = new ArrayList<>();
         StringRequest request = new StringRequest(Request.Method.GET, Config.URL_GET_ALL_SCHOOLS,
                 new Response.Listener<String>() {
                     @Override
@@ -152,7 +154,6 @@ public class SchoolsList extends Fragment implements View.OnClickListener{
 
         };
         request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue = Volley.newRequestQueue(view.getContext());
         requestQueue.add(request);
     }
     public void Register(final Context context)
@@ -246,7 +247,6 @@ public class SchoolsList extends Fragment implements View.OnClickListener{
             }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(request);
     }
     public void addToshared(String mykey,String value){

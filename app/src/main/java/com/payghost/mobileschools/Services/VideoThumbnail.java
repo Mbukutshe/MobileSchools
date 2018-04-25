@@ -34,8 +34,8 @@ public class VideoThumbnail {
                 JSONObject obj = items_arry.getJSONObject(i);
                 thumbnail = getVideoThumbnail(obj.getString("url").toString());
 
-                items = new Item(thumbnail,video_duration,obj.getString("subject").toString(),obj.getString("time").toString(),
-                        obj.getString("description").toString(),obj.getString("which_one").toString(),
+                items = new Item(thumbnail,video_duration,obj.getString("title").toString(),obj.getString("time").toString(),
+                        obj.getString("message").toString(),obj.getString("which_one").toString(),
                         "no",obj.getString("uploader").toString(),
                         obj.getString("url").toString(),"");
                 itemList.add(items);
