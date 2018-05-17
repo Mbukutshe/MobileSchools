@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/trash_item"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -30,7 +31,7 @@
             <FrameLayout
                 android:id="@+id/play_video_layout"
                 android:layout_width="wrap_content"
-                android:background="@drawable/text_view_corners"
+                android:background="@drawable/download_background"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_height="wrap_content">
@@ -63,8 +64,9 @@
                         android:layout_gravity="end|center_vertical"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:textSize="@dimen/date_text_size"
-                        android:text="08:10 am"/>
+                        app:fontFamily="@font/montserrat_alternates"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
                 </FrameLayout>
             </LinearLayout>
             <FrameLayout
@@ -77,8 +79,10 @@
                     android:layout_gravity="start|center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:textSize="@dimen/subject_text_size"
-                    android:text="Document Title"/>
+                    app:fontFamily="@font/montserrat_alternates"
+                    android:textSize="@dimen/lowest_description_size"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
             </FrameLayout>
             <FrameLayout
                 android:id="@+id/edit"
@@ -94,10 +98,8 @@
                     android:layout_gravity="start|center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="@dimen/description_text_size"
-                    android:text="Document Description"/>
+                    app:fontFamily="@font/montserrat_alternates"
+                    android:ellipsize="end" />
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>

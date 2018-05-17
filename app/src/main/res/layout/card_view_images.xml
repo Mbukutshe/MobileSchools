@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
     android:scrollbars="none"
     android:fitsSystemWindows="true">
     <android.support.v7.widget.CardView
@@ -69,8 +69,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:gravity="center"
-                            android:layout_toRightOf="@+id/info_text_message"
-                            android:layout_alignParentRight="true"
+                            app:fontFamily="@font/montserrat_alternates"
+                            app:autoSizeTextType="uniform"
                             android:textColor="@color/menuColor" />
                     </FrameLayout>
                 </FrameLayout>
@@ -88,9 +88,9 @@
                             android:gravity="top|left"
                             android:maxLines="1"
                             android:ellipsize="end"
-                            android:layout_alignParentLeft="true"
                             android:layout_weight="1"
-                            android:textAppearance="@style/Subject"
+                            app:fontFamily="@font/montserrat_alternates"
+                            app:autoSizeTextType="uniform"
                             />
                         <TextView
                             android:id="@+id/message_message"
@@ -101,6 +101,8 @@
                             android:textColor="@color/menuColor"
                             android:textSize="7pt"
                             android:maxLines="5"
+                            app:fontFamily="@font/montserrat_alternates"
+                            app:autoSizeTextType="uniform"
                             android:ellipsize="end"/>
                     </LinearLayout>
                 </FrameLayout>

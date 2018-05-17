@@ -46,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         app:autoSizeTextType="uniform"
-                        android:maxLines="1"
+                        android:maxLength="16"
                         android:ellipsize="end"
                         android:text=""/>
                 </FrameLayout>

@@ -25,13 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.payghost.mobileschools.Functions.Animation;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
@@ -48,9 +42,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
@@ -262,11 +254,10 @@ public class UploadDocument extends Fragment implements View.OnClickListener{
 
             break;
             case  R.id.file_choose:
-                Intent intent = new Intent();
-                intent.setType("application/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
-                startActivityForResult(Intent.createChooser(intent, "Choose a document"), 2);
+                intent.setType("application/*");
+                startActivity(Intent.createChooser(intent, "Choose a document"));
             break;
             case R.id.staff:
                 if(staff_check.isChecked())
@@ -392,8 +383,11 @@ public class UploadDocument extends Fragment implements View.OnClickListener{
             Toast.makeText(view.getContext(),ex.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
     }
-    public int uploadFile() {
-
+    public int uploadFile()
+    {
+        String[]variables = {"title","description","staff","learner","parent","school","subject","learner_grade","staff_grade","unique","type"};
+        String[]values = {subject.getText().toString(),description.getText().toString(),staff_,learner_,parents_,pref.getString("school",""),learners_subject,
+       learners_grade,staf_grade,uniqueKey,type};
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy);
 
@@ -413,7 +407,7 @@ public class UploadDocument extends Fragment implements View.OnClickListener{
 
                 // open a URL connection to the Servlet
                 FileInputStream fileInputStream = new FileInputStream(new File(filePath.getPath()));
-                URL url = new URL(Config.URL_SEND_DOCUMENT);
+                URL url = new URL(Config.INSERT_POST_URL);
 
                 // Open a HTTP  connection to  the URL
                 conn = (HttpURLConnection) url.openConnection();
@@ -424,21 +418,32 @@ public class UploadDocument extends Fragment implements View.OnClickListener{
                 conn.setRequestProperty("Connection", "Keep-Alive");
                 conn.setRequestProperty("ENCTYPE", "multipart/form-data");
                 conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
-                conn.setConnectTimeout(1000);
+                conn.setConnectTimeout(1000*100);
 
                 dos = new DataOutputStream(conn.getOutputStream());
-
+/*
                 dos.writeBytes(twoHyphens + boundary + lineEnd);
                 dos.writeBytes("Content-Disposition: form-data; name=\"unique\"" + lineEnd);
                 dos.writeBytes("Content-Type: text/plain;charset=UTF-8" + lineEnd);
                 dos.writeBytes("Content-Length: " +uniqueKey.length() + lineEnd);
                 dos.writeBytes(lineEnd);
                 dos.writeBytes( uniqueKey + lineEnd);
-                dos.writeBytes(twoHyphens + boundary + lineEnd);
-
+                dos.writeBytes(twoHyphens + boundary + lineEnd);*/
+                for(int i=0;i<variables.length;i++)
+                {
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+                    dos.writeBytes("Content-Disposition: form-data; name=\""+variables[i]+"\" " + lineEnd);
+                    dos.writeBytes("Content-Type: text/plain;charset=UTF-8" + lineEnd);
+                    dos.writeBytes("Content-Length: " +values[i].length() + lineEnd);
+                    dos.writeBytes(lineEnd);
+                    dos.writeBytes( values[i] + lineEnd);
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+                }
                 dos.writeBytes("Content-Disposition: form-data;name=\"uploaded_file\";filename=\""
                         + fileName + "\"" + lineEnd);
                 dos.writeBytes(lineEnd);
+
+
 
 
 
@@ -472,6 +477,8 @@ public class UploadDocument extends Fragment implements View.OnClickListener{
 
                 if (serverResponseCode == 200)
                 {
+                    progress.dismiss();
+                    /*
                     StringRequest request = new StringRequest(Request.Method.POST,Config.INSERT_POST_URL, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -501,9 +508,9 @@ public class UploadDocument extends Fragment implements View.OnClickListener{
                         return parameters;
                         }
                     };
-                    request.setRetryPolicy(new DefaultRetryPolicy(0,0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS*5,0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                     requestQueue = Volley.newRequestQueue(view.getContext());
-                    requestQueue.add(request);
+                    requestQueue.add(request);*/
                 }
 
                 //close the streams //

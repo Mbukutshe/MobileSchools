@@ -38,6 +38,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.payghost.mobileschools.Database.SqliteController;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 
@@ -71,11 +72,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public static  int COUNT_DOWN=1000;
     CountDownTimer countDownTimer;
     AppCompatImageView mImgCheck;
+    SqliteController controller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         pref = getSharedPreferences("Users", Context.MODE_PRIVATE);
+        controller = new SqliteController(this);
         editor = pref.edit();
         login = (AppCompatButton) findViewById(R.id.btn_login);
         log = (RelativeLayout) findViewById(R.id.login);
@@ -204,7 +207,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 final String surname = obj.getString("surname");
                                 editor.putString("uploader",title+" "+name+" "+surname);
                                 editor.commit();
-
+                                controller.insertUser(obj.getString("staff_id"),obj.getString("title"),obj.getString("name"),obj.getString("surname"),obj.getString("dob"),obj.getString("gender"),obj.getString("email"),obj.getString("pic"));
                                 mImgCheck = (AppCompatImageView)findViewById(R.id.success_image);
                                 mImgCheck.setVisibility(View.VISIBLE);
                                 // drawable = mImgCheck.getDrawable();

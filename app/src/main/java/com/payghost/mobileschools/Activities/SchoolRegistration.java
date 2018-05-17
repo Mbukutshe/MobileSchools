@@ -240,7 +240,8 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
     }
 
     @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
+    public boolean onTouch(View view, MotionEvent motionEvent)
+    {
         switch (view.getId())
         {
             case R.id.grade:
@@ -268,15 +269,14 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
             encodeImage = Base64.encodeToString(bytes, Base64.DEFAULT);
         }
         else
-        if(requestCode == CAMERA_REQUEST && resultCode == RESULT_OK)
-        {
-
-            bitmap  = (Bitmap) data.getExtras().get("data");
-            school_logo.setDrawingCacheEnabled(true);
-            school_logo.buildDrawingCache();
-            school_logo.setImageBitmap(bitmap);
-            //showing it on the image view widget
-        }
+            if(requestCode == CAMERA_REQUEST && resultCode == RESULT_OK)
+            {
+                bitmap  = (Bitmap) data.getExtras().get("data");
+                school_logo.setDrawingCacheEnabled(true);
+                school_logo.buildDrawingCache();
+                school_logo.setImageBitmap(bitmap);
+                //showing it on the image view widget
+            }
 
         stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -299,6 +299,7 @@ public class SchoolRegistration extends AppCompatActivity implements View.OnClic
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(final String response) {
+
                         progress.dismiss();
                         myProgressDialog = new ProgressDialog(context);
                         myProgressDialog.show();

@@ -4,9 +4,14 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -25,6 +31,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.payghost.mobileschools.Fragments.Gallery;
@@ -34,17 +42,37 @@ import com.payghost.mobileschools.Fragments.RetrieveMessageFrag;
 import com.payghost.mobileschools.Globals.Config;
 import com.payghost.mobileschools.R;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+    boolean connected ;
+    /////// Ads /////////
+    HttpResponse httpResponse;
+    JSONObject jsonObject = null ;
+    String StringHolder = "" ;
+    String HttpURL = "http://mydm.co.za/schools/Ads/RetrieveAds.php";
+    Timer t ;
+    TimerTask task ;
+    //////////////////////
+    ImageView imageView;
+    ImageView adsClose;
+
     FragmentManager fragmentManager;
     List<String> spinnerArray;
     SharedPreferences pref;
@@ -97,6 +125,50 @@ public class MainActivity extends AppCompatActivity {
         {
             updateDevice();
         }
+        ////////////////////////////////////////////////////////////// ADS  ///////////////////////////
+
+        imageView = (ImageView)findViewById(R.id.adsimage);
+        adsClose = (ImageView)findViewById(R.id.adsclose);
+        adsClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView.setVisibility(View.GONE);
+                adsClose.setVisibility(View.GONE);
+            }
+        });
+
+        // load the ads from server
+
+        t=new Timer();
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+
+                    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
+                    @Override
+                    public void run() {
+
+                        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+                            //we are connected to a network
+                            new GetDataFromServerIntoTextView(MainActivity.this).execute();
+                            connected = true;
+                        }
+                        else
+                            connected = false;
+
+
+                    }
+                });
+            }
+        };
+
+        t.scheduleAtFixedRate(task, 0, 7000);
+
+
+///////////////////////////////////////////////////  END    /////////////////////////////////////////////////////////////////////
     }
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -107,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId())
             {
                 case R.id.navigation_message:
+                    imageView.setVisibility(View.VISIBLE);
                     Config.fragment="messages";
                     if(pref.getString("which_one","").equalsIgnoreCase("learner") || pref.getString("which_one","").equalsIgnoreCase("parent"))
                     {
@@ -115,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.content,new RetrieveMessageFrag()).addToBackStack("messages").commit();
                     return true;
                 case R.id.navigation_dash:
+                    imageView.setVisibility(View.GONE);
                     Config.fragment="images";
                     if(pref.getString("which_one","").equalsIgnoreCase("learner") || pref.getString("which_one","").equalsIgnoreCase("parent"))
                     {
@@ -123,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.content,new AdministratorDashboard()).addToBackStack("admin").commit();
                     return true;
                 case R.id.navigation_posts:
+                    imageView.setVisibility(View.VISIBLE);
                     Config.fragment="videos";
                     if(pref.getString("which_one","").equalsIgnoreCase("learner") || pref.getString("which_one","").equalsIgnoreCase("parent"))
                     {
@@ -131,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.content,new Gallery()).addToBackStack("gallery").commit();
                     return true;
                 case R.id.navigation_documents:
+                    imageView.setVisibility(View.VISIBLE);
                     Config.fragment="documents";
                     if(pref.getString("which_one","").equalsIgnoreCase("learner") || pref.getString("which_one","").equalsIgnoreCase("parent"))
                     {
@@ -139,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.content,new RetrieveDocumentsFrag()).addToBackStack("documents").commit();
                     return true;
                 case R.id.navigation_more:
+                    imageView.setVisibility(View.VISIBLE);
                     if(pref.getString("which_one","").equalsIgnoreCase("learner") || pref.getString("which_one","").equalsIgnoreCase("parent"))
                     {
                         menuItem.setVisible(false);
@@ -186,7 +263,6 @@ public class MainActivity extends AppCompatActivity {
             });
             menuItem.setVisible(false);
         }
-
 
         return true;
     }
@@ -364,5 +440,97 @@ public class MainActivity extends AppCompatActivity {
         request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(request);
+    }
+
+    ////////////////////////////////////////  ADVERTISEMENT  HERE //////////////////////////////////////////////////////////////////////////
+
+
+    // Declaring GetDataFromServerIntoTextView method with AsyncTask.
+    public class GetDataFromServerIntoTextView extends AsyncTask<Void, Void, Void>
+    {
+        // Declaring CONTEXT.
+        public Context context;
+
+
+        public GetDataFromServerIntoTextView(Context context)
+        {
+            this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0)
+        {
+
+            HttpClient httpClient = new DefaultHttpClient();
+
+            // Adding HttpURL to my HttpPost oject.
+            HttpPost httpPost = new HttpPost(HttpURL);
+
+            try {
+                httpResponse = httpClient.execute(httpPost);
+
+                StringHolder = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
+
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try{
+                // Passing string holder variable to JSONArray.
+                JSONArray jsonArray = new JSONArray(StringHolder);
+                jsonObject = jsonArray.getJSONObject(0);
+
+
+            } catch ( JSONException e) {
+                e.printStackTrace();
+            }
+
+            catch (Exception e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            try {
+
+                //Loading ads images into picaso and imageview
+
+                //Picasso.with(context).load("http://mydm.co.za/Elearning/allfile/"+jsonObject.get("image")).into(imageView);
+                Glide.with(getApplicationContext()).load("http://mydm.co.za/schools/"+jsonObject.get("image")).into(new GlideDrawableImageViewTarget(imageView));
+
+                // opens a browser when the ads image is clicked
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent browserIntent = null;
+                        try {
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(jsonObject.getString("site")));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        context.startActivity(browserIntent);
+
+                    }
+                });
+
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
     }
 }

@@ -149,7 +149,8 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
             functions.setDoneAction(caption);
             myProgressDialog = new ProgressDialog(this,R.style.MyTheme);
             myProgressDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-
+            progress = new ProgressDialog(this,R.style.MyTheme);
+            progress.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
             camera = (FrameLayout)findViewById(R.id.camera);
             gallery = (FrameLayout)findViewById(R.id.gallery);
             video = (FrameLayout)findViewById(R.id.video);
@@ -297,10 +298,9 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onResponse(String response) {
 
-                            if( Config.GROUP_CREATION_SUCCESS.equalsIgnoreCase(response))
+                            if(!Config.GROUP_CREATION_SUCCESS.equalsIgnoreCase("fail"))
                             {
                                     myProgressDialog.dismiss();
-                                    progress = new ProgressDialog(getApplicationContext());
                                     progress.show();
                                     progress.setContentView(R.layout.success_layout);
                                     mImgCheck = (AppCompatImageView)progress.findViewById(R.id.success_image);
@@ -322,7 +322,6 @@ public class MediaUpload extends AppCompatActivity implements View.OnClickListen
                             else
                             {
                                 myProgressDialog.dismiss();
-                                progress = new ProgressDialog(getApplicationContext());
                                 progress.show();
                                 progress.setContentView(R.layout.error_layout);
                                 mImgCheck = (AppCompatImageView)progress.findViewById(R.id.error_image);

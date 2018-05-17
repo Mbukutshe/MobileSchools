@@ -22,6 +22,10 @@ public class SqliteController extends SQLiteOpenHelper
         String query;
         query = "CREATE TABLE Profile ( SchoolId TEXT, SchoolName TEXT,SchoolLogo TEXT,GradeId TEXT,GradeName TEXT,SubjectId TEXT,SubjectName TEXT,SubjectAction TEXT,GradeAction TEXT)";
         database.execSQL(query);
+
+        String queri;
+        queri = "CREATE TABLE IF NOT EXISTS User  (id TEXT,title TEXT,name TEXT,surname TEXT,dob TEXT,gender TEXT,email TEXT,pic TEXT)";
+        database.execSQL(queri);
     }
     @Override
     public void onUpgrade(SQLiteDatabase database, int version_old, int current_version)
@@ -114,5 +118,21 @@ public class SqliteController extends SQLiteOpenHelper
         Cursor cursor = database.query("Message",columns, null,null,null,null,"date DESC");
         return cursor;
     }
-
+    public void insertUser(String id,String title,String name,String surname,String dob,String gender,String email,String pic)
+    {
+        Log.d(LOGCAT,"insert");
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query = "INSERT INTO User (id,title,name,surname,dob,gender,email,pic) VALUES('"+id+"','"+title+"','"+name+"', '"+surname+"','"+dob+"','"+gender+"','"+email+"','"+pic+"');";
+        Log.d("query",query);
+        database.execSQL(query);
+        database.close();
+    }
+    public Cursor getUser()
+    {
+        String selectQuery = "SELECT * FROM User";
+        String []columns = {"id","title","name","surname","dob","gender","email","pic"};
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.query("User",columns, null,null,null,null,"id DESC");
+        return cursor;
+    }
 }

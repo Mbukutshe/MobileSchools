@@ -78,7 +78,7 @@ public class CurrentYear extends Fragment implements View.OnClickListener{
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearlayout);
         Config.fragment = "documents";
-
+        requestQueue = Volley.newRequestQueue(view.getContext());
         connectivityManager = (ConnectivityManager)view.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         activeNetwork = connectivityManager.getActiveNetworkInfo();
         isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
@@ -188,7 +188,6 @@ public class CurrentYear extends Fragment implements View.OnClickListener{
             }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        requestQueue = Volley.newRequestQueue(view.getContext());
         requestQueue.add(request);
     }
 }

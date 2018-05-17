@@ -65,12 +65,17 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectsHolder> impleme
     @Override
     public void onBindViewHolder(final SubjectsHolder holder,final int position)
     {
-        holder.subject_name.setText(list.get(position).subjectName);
+
         if(modify.equalsIgnoreCase("update"))
         {
+            holder.subject_name.setText(list.get(position).subjectName);
             holder.grade_id.setText(list.get(position).gradeId);
             holder.subject_id.setText(list.get(position).subjectId);
             id = list.get(position).gradeId;
+        }
+        else
+        {
+            holder.subject_name.setText(list.get(position).name);
         }
         holder.subject_name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,7 +146,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectsHolder> impleme
             {
                 e.printStackTrace();
             }
-
         }
         try
         {
@@ -236,10 +240,11 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectsHolder> impleme
         switch(view.getId())
         {
             case R.id.add_subject:
-                list.add(new SubjectAndGrade(subject.getText().toString(),id));
-                notifyDataSetChanged();
+
                 if(modify.equalsIgnoreCase("update"))
                 {
+                    list.add(new SubjectAndGrade(subject.getText().toString(),id));
+                    notifyDataSetChanged();
                     if (subjectsArray.get(0).gradeId.equalsIgnoreCase(""))
                     {
                         controller.newSubject(pref.getString("school", ""), "00", grade_name, subject.getText().toString(), "nothing", "INSERT");
@@ -248,6 +253,11 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectsHolder> impleme
                     {
                         controller.newSubject(pref.getString("school", ""), list.get(0).gradeId, grade_name, subject.getText().toString(), "INSERT", "nothing");
                     }
+                }
+                else
+                {
+                    list.add(new SubjectAndGrade(subject.getText().toString()));
+                    notifyDataSetChanged();
                 }
                 subject.setText("");
             break;

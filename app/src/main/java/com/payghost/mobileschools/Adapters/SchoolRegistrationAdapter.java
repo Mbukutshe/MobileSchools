@@ -144,7 +144,7 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
                     {
                         getList(grade_name);
                         ((GradesHolder)holder).all_subjects.setVisibility(View.VISIBLE);
-                         subjectAdapter = new SubjectAdapter(context, subjectsArray,((GradesHolder)holder).subjects,((GradesHolder)holder).edit_subject_name,((GradesHolder)holder).add_subject);
+                         subjectAdapter = new SubjectAdapter(context,subjectsArray,((GradesHolder)holder).subjects,((GradesHolder)holder).edit_subject_name,((GradesHolder)holder).add_subject);
                         ((GradesHolder)holder).subjects.setAdapter(subjectAdapter);
                         ((GradesHolder)holder).grade_pointer.setRotation(270);
                         ((GradesHolder)holder).edit_text_subject.setVisibility(View.VISIBLE);
@@ -272,7 +272,6 @@ public class SchoolRegistrationAdapter extends RecyclerView.Adapter implements V
                             recyclerView.scrollToPosition(list.size()-1);
                             notifyDataSetChanged();
                             grade.setText("");
-
                         }
             break;
         }
